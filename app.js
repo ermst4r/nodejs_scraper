@@ -6,54 +6,21 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var scraper = require('./routes/scraper');
+var scraper = require('./scraper');
 var app = express();
 
-var cupones = require('./scraper/cupones.js');
-var getcupones = cupones();
-getcupones.fetchData();
-
-
-//request({
-//    uri: "http://www.cupones.es/cupones-descuento-por-categorias",
-//}, function(error, response, body) {
-//    var $ = cheerio.load(body);
-//    var baseUrl = "http://www.cupones.es/";
-//    var jsonArr = [];
-//    var teller = 0;
-//    $(".category-list .l-shops-container").each(function() {
-//        var links = $(this);
-//        request({
-//            uri: baseUrl+links.find(".title-link").attr("href"),
-//        }, function(error, response, body) {
-//            var $ = cheerio.load(body);
-//            $(".coupon-item-content").each(function() {
-//                var coupon = $(this);
-//                if(coupon.find(".button-text").text()=="Accede a la oferta") {
-//                    var shopName = coupon.find(".coupon-title-link").text().split("      ");
-//
-//                    if(typeof shopName[1] !== "undefined") {
-//                        //console.log(shopName[1].replace("en",""));
-//                        //console.log(coupon.find(".coupon-title-link").text());
-//                        //console.log(coupon.find(".coupon-title-link").attr("href"));
-//                        jsonArr.push ({
-//                            shopName:shopName[1].replace("en",""),
-//                            productName:coupon.find(".coupon-title-link").text(),
-//                            productUrl:baseUrl+coupon.find(".coupon-title-link").attr("href")
-//                        });
-//                        console.log(jsonArr);
-//
-//                    }
-//                }
-//            });
-//        });
-//    });
-//});
+var scraper = scraper();
+scraper.setScraper("cupones");
+scraper.parseWebsite();
 
 
 
-
-
+//var cupones = require('./scraper/cupones.js');
+//var getcupones = cupones();
+//getcupones.fetchData();
+process.argv.forEach(function (val, index, array) {
+    //console.log(index + ': ' + val);
+});
 
 
 // view engine setup
@@ -70,7 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/scraper',scraper);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
