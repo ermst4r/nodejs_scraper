@@ -1,86 +1,71 @@
+// call the packages we need
 var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var scraper = require('./scraper');
 var app = express();
+var morgan = require('morgan');
+var scraper = require('./scraper');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+var port = process.env.PORT || 3000;        // set our port
+var mongo = require('mongodb');
+var monk = require('monk');
 mongoConnectionString = "localhost:27017/scrapedcontent";
 mongoCollection ="content";
+var db = monk(mongoConnectionString);
+var content = db.get(mongoCollection);
 
 // New Code
-var scraper = scraper();
-scraper.setScraper("cupones");
-scraper.parseWebsite();
+//var scraper = scraper();
+//scraper.setScraper("cupones");
+//scraper.parseWebsite();
 
 
-process.argv.forEach(function (val, index, array) {
-    //console.log(index + ': ' + val);
+// ROUTES FOR OUR API
+// =============================================================================
+var router = express.Router();              // get an instance of the express Router
+
+router.use(function(req, res, next) {
+    console.log('Something is happening.');
+    next();
 });
 
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-// uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', routes);
-app.use('/users', users);
-
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+//http://localhost:3000/api/updatecode
+router.route('/updatecode')
+    .post(function(req, res) {
+        res.send(req.body.codeHash);
 });
 
-// error handlers
+// e.g. http://localhost:3000/api/getcontent/cupones
+router.route('/getcontent/:website_name')
+    .get(function(req, res) {
+        content.find({website:req.params.website_name}, function (error, docs) {
+            res.json(docs);
+        });
 
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
     });
-  });
-}
 
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
-});
 
-app.get('/', function (req, res) {
-    res.send('Hello World!')
-})
 
-var server = app.listen(3000, function () {
 
-    var host = server.address().address
-    var port = server.address().port
+router.route('/check_content/:website_name/:content_hash')
+// get the bear with that id
+    .get(function(req, res) {
+        res.send(req.params.website_name + req.params.content_hash);
 
-    console.log('Example app listening at http://%s:%s', host, port)
+    });
 
-})
+
+
+
+
+
+app.use('/api', router);
+
+// START THE SERVER
+// =============================================================================
+app.listen(port);
+console.log('Magic happens on port ' + port);
 
 
 module.exports = app;
