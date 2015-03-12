@@ -8,16 +8,15 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var scraper = require('./scraper');
 var app = express();
+mongoConnectionString = "localhost:27017/scrapedcontent";
+mongoCollection ="content";
 
+// New Code
 var scraper = scraper();
 scraper.setScraper("cupones");
 scraper.parseWebsite();
 
 
-
-//var cupones = require('./scraper/cupones.js');
-//var getcupones = cupones();
-//getcupones.fetchData();
 process.argv.forEach(function (val, index, array) {
     //console.log(index + ': ' + val);
 });

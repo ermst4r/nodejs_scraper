@@ -1,7 +1,8 @@
 
 var Scraper = function () {
     this.data = {
-        scraper: null
+        scraper: null,
+        mongoConnection:'localhost:27017/scrapedcontent'
     };
 
     this.setScraper = function (scraper) {
@@ -20,9 +21,16 @@ var Scraper = function () {
         switch(this.getScraper()) {
             case "cupones":
                 var cupones = require('./cupones.js');
-                var getcupones = cupones();
+                var getcupones = cupones('localhost:27017/scrapedcontent');
                 getcupones.fetchData();
+
             break;
+            case "cuponation":
+
+            break;
+
+
+
 
         }
 
