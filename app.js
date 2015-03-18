@@ -13,7 +13,7 @@ mongoConnectionString = "localhost:27017/scrapedcontent";
 mongoCollection ="content";
 var db = monk(mongoConnectionString);
 var content = db.get(mongoCollection);
-
+var crypto = require('crypto');
 // New Code
 //var scraper = scraper();
 //scraper.setScraper("cupones");
@@ -29,17 +29,40 @@ router.use(function(req, res, next) {
     next();
 });
 
+var enableCORS = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+
+    // intercept OPTIONS method
+    if ('OPTIONS' == req.method) {
+        res.send(200);
+    }
+    else {
+        next();
+    }
+};
+
+
 
 //http://localhost:3000/api/updatecode
 router.route('/updatecode')
     .post(function(req, res) {
-        res.send(req.body.codeHash);
+        var oldValue = crypto.createHash('md5').update(req.body.oldValue).digest('hex');
+        var newValue = req.body.newValue;
+        var shopName = req.body.shopName;
+        res.send(newValue);
+        content.update({orginProductName: oldValue,shopName:shopName}, {$set : {"productName": newValue}}, function(err,doc){
+            console.log(err);
+        });
 });
 
 // e.g. http://localhost:3000/api/getcontent/cupones
 router.route('/getcontent/:website_name')
     .get(function(req, res) {
-        content.find({website:req.params.website_name}, function (error, docs) {
+        var data;
+
+        content.find({website:req.params.website_name}, { sort:{shopName:1},fields : {productUrl:0,_id:0,orginProductName:0}} , function (error, docs) {
             res.json(docs);
         });
 
@@ -47,11 +70,22 @@ router.route('/getcontent/:website_name')
 
 
 
-
 router.route('/check_content/:website_name/:content_hash')
 // get the bear with that id
     .get(function(req, res) {
-        res.send(req.params.website_name + req.params.content_hash);
+        if(req.params.content_hash != null) {
+            var md5hash = crypto.createHash('md5').update(req.params.content_hash).digest('hex');
+            console.log('orgineel: '+ req.params.content_hash + 'hash:' +md5hash+"\n");
+            content.count({website:req.params.website_name,orginProductName:md5hash }, function (error, count) {
+                if(count == 1) {
+                    res.send("1");
+                } else {
+                    res.send("0");
+                }
+            });
+        }
+
+
 
     });
 
@@ -59,7 +93,7 @@ router.route('/check_content/:website_name/:content_hash')
 
 
 
-
+app.use(enableCORS);
 app.use('/api', router);
 
 // START THE SERVER
