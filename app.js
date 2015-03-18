@@ -14,6 +14,8 @@ mongoCollection ="content";
 var db = monk(mongoConnectionString);
 var content = db.get(mongoCollection);
 var crypto = require('crypto');
+var parsedJSON = require('./shopnames');
+
 // New Code
 //var scraper = scraper();
 //scraper.setScraper("cupones");
@@ -51,8 +53,8 @@ router.route('/updatecode')
         var oldValue = crypto.createHash('md5').update(req.body.oldValue).digest('hex');
         var newValue = req.body.newValue;
         var shopName = req.body.shopName;
-        res.send(newValue);
-        content.update({orginProductName: oldValue,shopName:shopName}, {$set : {"productName": newValue}}, function(err,doc){
+        res.send(newValue + oldValue);
+        content.update({newProductName: oldValue}, {$set : {"productName": newValue,newProductName:crypto.createHash('md5').update(newValue).digest('hex')}}, function(err,doc){
             console.log(err);
         });
 });
@@ -60,23 +62,40 @@ router.route('/updatecode')
 // e.g. http://localhost:3000/api/getcontent/cupones
 router.route('/getcontent/:website_name')
     .get(function(req, res) {
-        var data;
-
+        var newDocs = new Array ;
         content.find({website:req.params.website_name}, { sort:{shopName:1},fields : {productUrl:0,_id:0,orginProductName:0}} , function (error, docs) {
-            res.json(docs);
+            var jsonFile = parsedJSON;
+
+            //console.log(jsonFile);
+            for(var i=0; i<jsonFile.length; i++) {
+                for(var x=0; x<docs.length;x++) {
+                    var obj = docs[x];
+                       if(obj.shopName.toLowerCase() == jsonFile[i].toLowerCase()) {
+                           console.log("match");
+                           newDocs.push({website:"cupones",shopName:obj.shopName,productName:obj.productName,match:1});
+                       }
+
+                    //if(jsonFile[i] == obj.shopName) {
+
+
+
+                }
+            }
+            console.log(newDocs);
+            res.json(newDocs);
         });
 
     });
 
 
 
-router.route('/check_content/:website_name/:content_hash')
+router.route('/check_content/:website_name')
 // get the bear with that id
-    .get(function(req, res) {
-        if(req.params.content_hash != null) {
-            var md5hash = crypto.createHash('md5').update(req.params.content_hash).digest('hex');
-            console.log('orgineel: '+ req.params.content_hash + 'hash:' +md5hash+"\n");
-            content.count({website:req.params.website_name,orginProductName:md5hash }, function (error, count) {
+    .post(function(req, res) {
+        if(req.body.content_hash != null) {
+            var md5hash = crypto.createHash('md5').update(req.body.content_hash).digest('hex');
+            content.count({website:req.params.website_name,orginProductName:md5hash}, function (error, count) {
+
                 if(count == 1) {
                     res.send("1");
                 } else {

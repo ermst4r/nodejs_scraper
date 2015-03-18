@@ -33,10 +33,11 @@ var Cupones = function () {
                                 var promise = content.insert({
                                     uid: uid,
                                     website: websiteName,
-                                    shopName: shopName[1].replace("en", ""),
+                                    shopName: shopName[1].replace("en", "").slice(0,-1).trim(),
                                     productName: coupon.find(".coupon-title-link").text().replace("      "," ").slice(0,-1),
                                     productUrl: baseUrl + coupon.find(".coupon-title-link").attr("href"),
-                                    orginProductName: crypto.createHash('md5').update(coupon.find(".coupon-title-link").text().replace("      "," ").slice(0,-1)).digest('hex')
+                                    orginProductName: crypto.createHash('md5').update(coupon.find(".coupon-title-link").text().replace("      "," ").slice(0,-1)).digest('hex'),
+                                    newProductName: crypto.createHash('md5').update(coupon.find(".coupon-title-link").text().replace("      "," ").slice(0,-1)).digest('hex')
 
                                 });
                                 promise.on('success', function(err, doc){
