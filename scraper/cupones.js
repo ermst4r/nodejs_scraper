@@ -28,16 +28,19 @@ var Cupones = function () {
                     var shopName = coupon.find(".coupon-title-link").text().split("      ");
                     if(typeof shopName[1] !== "undefined") {
                         var uid = crypto.createHash('md5').update(websiteName+shopName[1].replace("en","")+coupon.find(".coupon-title-link").text()+baseUrl+coupon.find(".coupon-title-link").attr("href")).digest('hex');
+
                         content.count({uid:uid}, function (error, count) {
                             if(count == 0 ) {
+                                var pName = coupon.find(".coupon-title-link").text().replace("      "," ").slice(0,-1).replace("  ","");
                                 var promise = content.insert({
                                     uid: uid,
                                     website: websiteName,
                                     shopName: shopName[1].replace("en", "").slice(0,-1).trim(),
-                                    productName: coupon.find(".coupon-title-link").text().replace("      "," ").slice(0,-1),
+                                    productName:pName ,
                                     productUrl: baseUrl + coupon.find(".coupon-title-link").attr("href"),
-                                    orginProductName: crypto.createHash('md5').update(coupon.find(".coupon-title-link").text().replace("      "," ").slice(0,-1)).digest('hex'),
-                                    newProductName: crypto.createHash('md5').update(coupon.find(".coupon-title-link").text().replace("      "," ").slice(0,-1)).digest('hex')
+                                    orginProductName: crypto.createHash('md5').update(pName).digest('hex'),
+                                    newProductName: crypto.createHash('md5').update(pName).digest('hex'),
+                                    updated:0
 
                                 });
                                 promise.on('success', function(err, doc){

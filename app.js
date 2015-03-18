@@ -15,11 +15,11 @@ var db = monk(mongoConnectionString);
 var content = db.get(mongoCollection);
 var crypto = require('crypto');
 var parsedJSON = require('./shopnames');
-
+var json2csv = require('json2csv');
 // New Code
-//var scraper = scraper();
-//scraper.setScraper("cupones");
-//scraper.parseWebsite();
+var scraper = scraper();
+scraper.setScraper("cupones");
+scraper.parseWebsite();
 
 
 // ROUTES FOR OUR API
@@ -54,7 +54,7 @@ router.route('/updatecode')
         var newValue = req.body.newValue;
         var shopName = req.body.shopName;
         res.send(newValue + oldValue);
-        content.update({newProductName: oldValue}, {$set : {"productName": newValue,newProductName:crypto.createHash('md5').update(newValue).digest('hex')}}, function(err,doc){
+        content.update({newProductName: oldValue}, {$set : {"updated":1,"productName": newValue,newProductName:crypto.createHash('md5').update(newValue).digest('hex')}}, function(err,doc){
             console.log(err);
         });
 });
@@ -65,20 +65,12 @@ router.route('/getcontent/:website_name')
         var newDocs = new Array ;
         content.find({website:req.params.website_name}, { sort:{shopName:1},fields : {productUrl:0,_id:0,orginProductName:0}} , function (error, docs) {
             var jsonFile = parsedJSON;
-
-            //console.log(jsonFile);
             for(var i=0; i<jsonFile.length; i++) {
                 for(var x=0; x<docs.length;x++) {
                     var obj = docs[x];
                        if(obj.shopName.toLowerCase() == jsonFile[i].toLowerCase()) {
-                           console.log("match");
-                           newDocs.push({website:"cupones",shopName:obj.shopName,productName:obj.productName,match:1});
+                           newDocs.push({website:"cupones",shopName:obj.shopName,productName:obj.productName});
                        }
-
-                    //if(jsonFile[i] == obj.shopName) {
-
-
-
                 }
             }
             console.log(newDocs);
@@ -95,7 +87,6 @@ router.route('/check_content/:website_name')
         if(req.body.content_hash != null) {
             var md5hash = crypto.createHash('md5').update(req.body.content_hash).digest('hex');
             content.count({website:req.params.website_name,orginProductName:md5hash}, function (error, count) {
-
                 if(count == 1) {
                     res.send("1");
                 } else {
@@ -103,8 +94,33 @@ router.route('/check_content/:website_name')
                 }
             });
         }
+});
 
 
+router.route('/getdata/:website_name/:type')
+// get the bear with that id
+    .get(function(req, res) {
+        content.find({website:req.params.website_name}, { sort:{shopName:1},fields : {productUrl:0,_id:0,orginProductName:0,uid:0,newProductName:0}} , function (error, docs) {
+            switch(req.params.type) {
+                case "csv":
+                    var jsonFile = new Array;
+                    for(var y=0; y<docs.length; y++) {
+                        var obj = docs[y];
+                        jsonFile.push({website:req.params.website_name,shopName:obj.shopName,productName:obj.productName})
+                    }
+                    json2csv({data: jsonFile, fields: ['website', 'shopName','productName']}, function(err, csv) {
+                        res.setHeader('Content-disposition', 'attachment; filename='+req.params.website_name+'.csv');
+                        res.send(csv);
+                    });
+                break;
+                case "json":
+                    res.json(docs);
+                break;
+            }
+
+
+
+        });
 
     });
 
