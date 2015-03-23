@@ -16,10 +16,16 @@ var content = db.get(mongoCollection);
 var crypto = require('crypto');
 var parsedJSON = require('./shopnames');
 var json2csv = require('json2csv');
+var d = new Date();
+var today = ('0' + d.getDate()).slice(-2) + '-'
+    + ('0' + (d.getMonth()+1)).slice(-2) + '-'
+    + d.getFullYear();
+var exportAuteur = 'Arthur Goldman';
+
 // New Code
-var scraper = scraper();
-scraper.setScraper("cupones");
-scraper.parseWebsite();
+//var scraper = scraper();
+//scraper.setScraper("cupones");
+//scraper.parseWebsite();
 
 
 // ROUTES FOR OUR API
@@ -60,10 +66,19 @@ router.route('/updatecode')
 });
 
 // e.g. http://localhost:3000/api/getcontent/cupones
-router.route('/getcontent/:website_name')
+router.route('/getcontent/:website_name/:updated')
     .get(function(req, res) {
-        var newDocs = new Array ;
-        content.find({website:req.params.website_name}, { sort:{shopName:1},fields : {productUrl:0,_id:0,orginProductName:0}} , function (error, docs) {
+        var newDocs = new Array;
+        if(req.params.updated == -1) {
+            var jsonQuery = {"website":req.params.website_name};
+        } else if(req.params.updated == 1) {
+            var jsonQuery = {"website":req.params.website_name,"updated":1};
+        } else if(req.params.updated == 0) {
+            var jsonQuery = {"website":req.params.website_name,"updated":0};
+        }
+
+
+        content.find(jsonQuery, { sort:{shopName:1},fields : {productUrl:0,_id:0,orginProductName:0}} , function (error, docs) {
             var jsonFile = parsedJSON;
             for(var i=0; i<jsonFile.length; i++) {
                 for(var x=0; x<docs.length;x++) {
@@ -97,24 +112,63 @@ router.route('/check_content/:website_name')
 });
 
 
-router.route('/getdata/:website_name/:type')
+router.route('/getdata/:website_name/:type/:updated')
 // get the bear with that id
     .get(function(req, res) {
-        content.find({website:req.params.website_name}, { sort:{shopName:1},fields : {productUrl:0,_id:0,orginProductName:0,uid:0,newProductName:0}} , function (error, docs) {
+
+        if(req.params.updated == -1) {
+            var jsonQuery = {"website":req.params.website_name};
+        } else if(req.params.updated == 1) {
+            var jsonQuery = {"website":req.params.website_name,"updated":1};
+        } else if(req.params.updated == 0) {
+            var jsonQuery = {"website":req.params.website_name,"updated":0};
+        }
+
+        content.find(jsonQuery, { sort:{shopName:1},fields : {productUrl:0,_id:0,orginProductName:0,uid:0,newProductName:0}} , function (error, docs) {
+            var jsonFile = new Array;
+            var shopMatch = parsedJSON;
+            for(var i=0; i<shopMatch.length; i++) {
+                for (var y = 0; y < docs.length; y++) {
+                    var obj = docs[y];
+                    if(obj.shopName.toLowerCase() == shopMatch[i].toLowerCase()) {
+                        jsonFile.push({
+                            productName: obj.productName,
+                            shopName: obj.shopName,
+                            type: 'Aanbieding',
+                            zichtbaarheid: 'Standaard',
+                            uitgeklapt: 'Nee',
+                            startDate: today,
+                            endDate: obj.offerExpireDate,
+                            clickouts: 0,
+                            auteur: exportAuteur,
+                            couponCode: '',
+                            extra_field: '',
+                            exclusief: 'Nee',
+                            editor_picks: 'Nee',
+                            user_generated: 'Nee',
+                            goedgekeurd: 'Nee',
+                            offline: 'Nee',
+                            created_at: today,
+                            deeplink: '',
+                            extra_field2: ''
+                        })
+                    }
+                }
+            }
+
             switch(req.params.type) {
                 case "csv":
-                    var jsonFile = new Array;
-                    for(var y=0; y<docs.length; y++) {
-                        var obj = docs[y];
-                        jsonFile.push({website:req.params.website_name,shopName:obj.shopName,productName:obj.productName})
-                    }
-                    json2csv({data: jsonFile, fields: ['website', 'shopName','productName']}, function(err, csv) {
+                    json2csv({data: jsonFile, fields: ['productName','shopName','type','zichtbaarheid','uitgeklapt','startDate',
+                        'endDate','clickouts','','auteur','couponCode','extra_field','exclusief','editor_picks',
+                        'user_generated','goedgekeurd','offline','created_at','deeplink','extra_field2']}, function(err, csv) {
                         res.setHeader('Content-disposition', 'attachment; filename='+req.params.website_name+'.csv');
+                        res.setHeader("Content-Type", "application/csv; charset=utf-8");
+
                         res.send(csv);
                     });
                 break;
                 case "json":
-                    res.json(docs);
+                    res.json(jsonFile);
                 break;
             }
 
