@@ -23,9 +23,8 @@ var today = ('0' + d.getDate()).slice(-2) + '-'
 var exportAuteur = 'Arthur Goldman';
 
 // New Code
-//var scraper = scraper();
-//scraper.setScraper("cupones");
-//scraper.parseWebsite();
+var scraper = scraper();
+
 
 
 // ROUTES FOR OUR API
@@ -58,11 +57,18 @@ router.route('/updatecode')
     .post(function(req, res) {
         var oldValue = crypto.createHash('md5').update(req.body.oldValue).digest('hex');
         var newValue = req.body.newValue;
-        var shopName = req.body.shopName;
-        res.send(newValue + oldValue);
-        content.update({newProductName: oldValue}, {$set : {"updated":1,"productName": newValue,newProductName:crypto.createHash('md5').update(newValue).digest('hex')}}, function(err,doc){
-            console.log(err);
-        });
+        var dateChange = req.body.dateChange;
+        if(dateChange == 1) {
+            content.update({newProductName: oldValue}, {$set : {"offerExpireDate": newValue}}, function(err,doc){
+                console.log(err);
+            });
+        } else {
+            content.update({newProductName: oldValue}, {$set : {"updated":1,"productName": newValue,newProductName:crypto.createHash('md5').update(newValue).digest('hex')}}, function(err,doc){
+                console.log(err);
+            });
+        }
+        res.send("done");
+
 });
 
 // e.g. http://localhost:3000/api/getcontent/cupones
@@ -84,11 +90,10 @@ router.route('/getcontent/:website_name/:updated')
                 for(var x=0; x<docs.length;x++) {
                     var obj = docs[x];
                        if(obj.shopName.toLowerCase() == jsonFile[i].toLowerCase()) {
-                           newDocs.push({website:"cupones",shopName:obj.shopName,productName:obj.productName});
+                           newDocs.push({website:"cupones",shopName:obj.shopName,productName:obj.productName,endDate:obj.offerExpireDate});
                        }
                 }
             }
-            console.log(newDocs);
             res.json(newDocs);
         });
 
@@ -97,7 +102,6 @@ router.route('/getcontent/:website_name/:updated')
 
 
 router.route('/check_content/:website_name')
-// get the bear with that id
     .post(function(req, res) {
         if(req.body.content_hash != null) {
             var md5hash = crypto.createHash('md5').update(req.body.content_hash).digest('hex');
@@ -110,6 +114,13 @@ router.route('/check_content/:website_name')
             });
         }
 });
+
+router.route('/run_spider/:website_name')
+    .get(function(req, res) {
+        scraper.setScraper(req.params.website_name);
+        scraper.parseWebsite();
+      res.send("done");
+    });
 
 
 router.route('/getdata/:website_name/:type/:updated')

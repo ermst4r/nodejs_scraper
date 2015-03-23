@@ -38,7 +38,7 @@ var Cupones = function () {
                 var endUnixTimeStamp = '';
                 var futureTimestamp =86400 * 60;
                 if(splitDate[2]=='desconocido') {
-                    endUnixTimeStamp=Date.parse(d.getFullYear()+'-12-'+'31') / 1000;
+                    endUnixTimeStamp=Date.parse(d.getFullYear()+'-06-'+'31') / 1000;
                 } else {
                     var getMonth ='';
                     if(spanishDate.indexOf(splitDate[4]) > -1) {
@@ -77,7 +77,8 @@ var Cupones = function () {
 
                                 });
                                 promise.on('success', function(err, doc){
-                                    console.log("essen essen...");
+                                    return "essen";
+
                                 });
                                 promise.on('error', function(err, doc){
                                     console.log("something went wrong");
