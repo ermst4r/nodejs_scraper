@@ -73,11 +73,12 @@ var Cupones = function () {
                                     newProductName: crypto.createHash('md5').update(pName).digest('hex'),
                                     updated:0,
                                     scrapeStartDate:scrapeStartDate,
-                                    offerExpireDate:finalActionExpireDate
+                                    offerExpireDate:finalActionExpireDate,
+                                    deleted:0
 
                                 });
                                 promise.on('success', function(err, doc){
-                                    return "essen";
+                                    console.log("essen");
 
                                 });
                                 promise.on('error', function(err, doc){

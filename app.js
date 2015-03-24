@@ -32,7 +32,7 @@ var scraper = scraper();
 var router = express.Router();              // get an instance of the express Router
 
 router.use(function(req, res, next) {
-    console.log('Something is happening.');
+    //console.log('Something is happening.');
     next();
 });
 
@@ -71,16 +71,32 @@ router.route('/updatecode')
 
 });
 
+//http://localhost:3000/api/delete_code
+// just set param to 1
+router.route('/delete_code')
+    .post(function(req, res) {
+        var oldValue = crypto.createHash('md5').update(req.body.oldValue).digest('hex');
+        content.update({newProductName: oldValue}, {$set : {"deleted":1}}, function(err,doc){
+            console.log(err);
+        });
+
+        res.send("done");
+
+    });
+
+
+
 // e.g. http://localhost:3000/api/getcontent/cupones
-router.route('/getcontent/:website_name/:updated')
+router.route('/getcontent/:website_name/:updated/:deleted')
     .get(function(req, res) {
         var newDocs = new Array;
+        console.log(req.params.deleted);
         if(req.params.updated == -1) {
-            var jsonQuery = {"website":req.params.website_name};
+            var jsonQuery = {"website":req.params.website_name,"deleted":parseInt(req.params.deleted)};
         } else if(req.params.updated == 1) {
-            var jsonQuery = {"website":req.params.website_name,"updated":1};
+            var jsonQuery = {"website":req.params.website_name,"updated":1,"deleted":parseInt(req.params.deleted)};
         } else if(req.params.updated == 0) {
-            var jsonQuery = {"website":req.params.website_name,"updated":0};
+            var jsonQuery = {"website":req.params.website_name,"updated":0,"deleted":parseInt(req.params.deleted)};
         }
 
 
@@ -123,16 +139,16 @@ router.route('/run_spider/:website_name')
     });
 
 
-router.route('/getdata/:website_name/:type/:updated')
+router.route('/getdata/:website_name/:type/:updated/:deleted')
 // get the bear with that id
     .get(function(req, res) {
 
         if(req.params.updated == -1) {
-            var jsonQuery = {"website":req.params.website_name};
+            var jsonQuery = {"website":req.params.website_name,"deleted":req.params.deleted};
         } else if(req.params.updated == 1) {
-            var jsonQuery = {"website":req.params.website_name,"updated":1};
+            var jsonQuery = {"website":req.params.website_name,"updated":1,"deleted":req.params.deleted};
         } else if(req.params.updated == 0) {
-            var jsonQuery = {"website":req.params.website_name,"updated":0};
+            var jsonQuery = {"website":req.params.website_name,"updated":0,"deleted":req.params.deleted};
         }
 
         content.find(jsonQuery, { sort:{shopName:1},fields : {productUrl:0,_id:0,orginProductName:0,uid:0,newProductName:0}} , function (error, docs) {
