@@ -32,7 +32,7 @@ var scraper = scraper();
 var router = express.Router();              // get an instance of the express Router
 
 router.use(function(req, res, next) {
-    //console.log('Something is happening.');
+    console.log('Something is happening.');
     next();
 });
 
@@ -76,9 +76,16 @@ router.route('/updatecode')
 router.route('/delete_code')
     .post(function(req, res) {
         var oldValue = crypto.createHash('md5').update(req.body.oldValue).digest('hex');
-        content.update({newProductName: oldValue}, {$set : {"deleted":1}}, function(err,doc){
-            console.log(err);
-        });
+        if(req.body.delete == 1) {
+            content.update({newProductName: oldValue}, {$set : {"deleted":0}}, function(err,doc){
+                console.log(err);
+            });
+        } else {
+            content.update({newProductName: oldValue}, {$set : {"deleted":1}}, function(err,doc){
+                console.log(err);
+            });
+        }
+
 
         res.send("done");
 
