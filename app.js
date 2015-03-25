@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var app = express();
 var morgan = require('morgan');
 var scraper = require('./scraper');
+var exportFile = require('./models/export');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 var port = process.env.PORT || 3000;        // set our port
@@ -15,15 +16,25 @@ var db = monk(mongoConnectionString);
 var content = db.get(mongoCollection);
 var crypto = require('crypto');
 var parsedJSON = require('./shopnames');
-var json2csv = require('json2csv');
 var d = new Date();
 var today = ('0' + d.getDate()).slice(-2) + '-'
     + ('0' + (d.getMonth()+1)).slice(-2) + '-'
     + d.getFullYear();
 var exportAuteur = 'Arthur Goldman';
-
-// New Code
 var scraper = scraper();
+var exportFile = exportFile();
+
+
+//var str = "Envío estándar gratuitoen compras superiores a 120 € en 50 dagen  en Biukya";
+//var numbers = str.match(/\d+/g).map(Number);
+//for(var i =0; i<numbers.length; i++) {
+//
+//   var re = new RegExp(numbers[i]+'€')
+//   if(re.test(str.replace(/ /g,'')) == true) {
+//            console.log(numbers[i]);
+//   }
+//}
+
 
 
 
@@ -149,15 +160,13 @@ router.route('/run_spider/:website_name')
 router.route('/getdata/:website_name/:type/:updated/:deleted')
 // get the bear with that id
     .get(function(req, res) {
-
         if(req.params.updated == -1) {
-            var jsonQuery = {"website":req.params.website_name,"deleted":req.params.deleted};
+            var jsonQuery = {"website":req.params.website_name,"deleted":parseInt(req.params.deleted)};
         } else if(req.params.updated == 1) {
-            var jsonQuery = {"website":req.params.website_name,"updated":1,"deleted":req.params.deleted};
+            var jsonQuery = {"website":req.params.website_name,"updated":1,"deleted":parseInt(req.params.deleted)};
         } else if(req.params.updated == 0) {
-            var jsonQuery = {"website":req.params.website_name,"updated":0,"deleted":req.params.deleted};
+            var jsonQuery = {"website":req.params.website_name,"updated":0,"deleted":parseInt(req.params.deleted)};
         }
-
         content.find(jsonQuery, { sort:{shopName:1},fields : {productUrl:0,_id:0,orginProductName:0,uid:0,newProductName:0}} , function (error, docs) {
             var jsonFile = new Array;
             var shopMatch = parsedJSON;
@@ -184,26 +193,23 @@ router.route('/getdata/:website_name/:type/:updated/:deleted')
                             offline: 'Nee',
                             created_at: today,
                             deeplink: '',
-                            extra_field2: ''
+                            extra_field2: '',
+                            media_id:obj.media_id
                         })
                     }
                 }
             }
-
             switch(req.params.type) {
                 case "csv":
-                    json2csv({data: jsonFile, fields: ['productName','shopName','type','zichtbaarheid','uitgeklapt','startDate',
-                        'endDate','clickouts','','auteur','couponCode','extra_field','exclusief','editor_picks',
-                        'user_generated','goedgekeurd','offline','created_at','deeplink','extra_field2']}, function(err, csv) {
-                        res.setHeader('Content-disposition', 'attachment; filename='+req.params.website_name+'.csv');
-                        res.setHeader("Content-Type", "application/csv; charset=utf-8");
-
-                        res.send(csv);
-                    });
+                    exportFile.exportCsv(req.params.website_name,jsonFile,res);
                 break;
                 case "json":
                     res.json(jsonFile);
                 break;
+                case "xls":
+                    exportFile.exportXls(req.params.website_name,jsonFile,res);
+                break;
+
             }
 
 
@@ -211,11 +217,6 @@ router.route('/getdata/:website_name/:type/:updated/:deleted')
         });
 
     });
-
-
-
-
-
 app.use(enableCORS);
 app.use('/api', router);
 

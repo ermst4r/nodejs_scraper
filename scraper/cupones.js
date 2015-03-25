@@ -7,10 +7,47 @@ var db = monk(mongoConnectionString);
 var content = db.get(mongoCollection);
 var websiteName = "cupones";
 var spanishDate = Array('enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre');
+var media_ids = require('../media_ids/spain');
+
+
+
+
+
 
 var Cupones = function () {
 
+    var mediaMatching = function(productName)   // Only visible inside Restaurant()
+    {
+        for(var i =0; i<media_ids.length; i++) {
+            var obj = media_ids[i];
+            var str = productName;
+            var numbers = str.match(/\d+/g);
+            if(numbers != null) {
+                for(var x =0; x <numbers.length; x++) {
+                    var re = new RegExp(numbers[x]+'€')
+                    var re2 = new RegExp(numbers[x]+'%')
+                    if(re.test(str.replace(/ /g,'')) == true) {
+                        if(obj.media_title ==numbers[x] +'€') {
+                            return obj.media_id;
+                        }
+                    }
+                    if(re2.test(str.replace(/ /g,'')) == true) {
+                        if(obj.media_title ==numbers[x] +'%') {
+                            return obj.media_id;
+                        }
+                    }
+                }
+            } else {
+                var re = new RegExp('gratis');
+                if(re.test(str.replace(/ /g,'')) == true) {
+                    return 50; // media id
+                }
 
+
+            }
+
+        }
+    }
 
 
   this.fetchData = function () {
@@ -28,7 +65,6 @@ var Cupones = function () {
             var $ = cheerio.load(body);
             $(".coupon-item-content").each(function() {
                 var coupon = $(this);
-
                 // get end date of site
                 var splitDate = coupon.find('.date').text().split(" ");
                 var scrapeStartDate = ('0' + d.getDate()).slice(-2) + '-'
@@ -52,9 +88,6 @@ var Cupones = function () {
                 + ('0' + (MyDate.getMonth()+1)).slice(-2) + '-'
                 + MyDate.getFullYear();
 
-
-
-
                 if(coupon.find(".button-text").text()=="Accede a la oferta") {
                     var shopName = coupon.find(".coupon-title-link").text().split("      ");
                     if(typeof shopName[1] !== "undefined") {
@@ -74,8 +107,8 @@ var Cupones = function () {
                                     updated:0,
                                     scrapeStartDate:scrapeStartDate,
                                     offerExpireDate:finalActionExpireDate,
-                                    deleted:0
-
+                                    deleted:0,
+                                    media_id:mediaMatching(pName)
                                 });
                                 promise.on('success', function(err, doc){
                                     console.log("essen");

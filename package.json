@@ -20,6 +20,7 @@
     "mongodb": "^1.4.34",
     "monk": "^1.0.0",
     "morgan": "~1.5.1",
+    "msexcel-builder": "0.0.2",
     "request": "^2.53.0",
     "serve-favicon": "~2.2.0"
   }
