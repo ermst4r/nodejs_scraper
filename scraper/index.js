@@ -29,7 +29,12 @@ var Scraper = function () {
                 var cuponation = require('./cuponation.js');
                 var getcuponation = cuponation('localhost:27017/scrapedcontent');
                 getcuponation.fetchData();
+            break;
 
+            case "cupon_es":
+                var cuponation = require('./cupon_es.js');
+                var getcupon_es = cuponation('localhost:27017/scrapedcontent');
+                getcupon_es.fetchData();
             break;
 
 

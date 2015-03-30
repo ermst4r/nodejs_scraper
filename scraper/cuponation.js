@@ -6,7 +6,6 @@ var monk = require('monk');
 var db = monk(mongoConnectionString);
 var content = db.get(mongoCollection);
 var websiteName = "cuponation";
-var spanishDate = Array('enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre');
 var media_ids = require('../media_ids/spain');
 var websiteUrl = 'http://www.cuponation.es';
 
@@ -48,27 +47,6 @@ var Cuponation = function () {
 
     this.fetchData = function () {
 
-        //request({
-        //    url:'http://www.cuponation.es/accor-hotels-cupones-descuento'
-        //}, function(pageErr,pageRes,pageBody) {
-        //    if(!pageErr && pageRes.statusCode==200) {
-        //        var date = new Date();
-        //        var d = cheerio.load(pageBody);
-        //        var futureTimestamp =86400 * 60;
-        //        d('.voucher.deal.custom-text').each(function() {
-        //            var scrapeStartDate = ('0' + date.getDate()).slice(-2) + '-'
-        //                + ('0' + (date.getMonth()+1)).slice(-2) + '-'
-        //                + date.getFullYear();
-        //            var detail = d(this);
-        //            var productName = detail.find('h3').text();
-        //            var siteEndDate = String(detail.attr('data-end-date'));
-        //            var endDate = (Date.parse(siteEndDate) / 1000) + futureTimestamp;
-        //            var uid = crypto.createHash('md5').update(productName).digest('hex');
-        //        });
-        //
-        //    }
-        //});
-
         request({
             uri: "http://www.cuponation.es/todaslasmarcas"
         }, function(error, response, body) {
@@ -95,8 +73,13 @@ var Cuponation = function () {
                                 var siteEndDate = String(detail.attr('data-end-date'));
                                 var endDate = (Date.parse(siteEndDate) / 1000) + futureTimestamp;
                                 var uid = crypto.createHash('md5').update(webshopName+productName+webshopName).digest('hex');
+                                var MyDate = new Date( parseInt(endDate*1000));
+                                var finalActionExpireDate = ('0' + MyDate.getDate()).slice(-2) + '-'
+                                    + ('0' + (MyDate.getMonth()+1)).slice(-2) + '-'
+                                    + MyDate.getFullYear();
                                 content.count({uid:uid}, function (error, count) {
                                     if(count == 0 ) {
+
                                             var promise = content.insert({
                                                 uid: uid,
                                                 website: websiteName,
@@ -106,7 +89,7 @@ var Cuponation = function () {
                                                 newProductName: crypto.createHash('md5').update(productName).digest('hex'),
                                                 updated:0,
                                                 scrapeStartDate:scrapeStartDate,
-                                                offerExpireDate:endDate,
+                                                offerExpireDate:finalActionExpireDate,
                                                 deleted:0,
                                                 media_id:mediaMatching(productName)
                                             });
