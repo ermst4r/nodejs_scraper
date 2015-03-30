@@ -25,18 +25,6 @@ var scraper = scraper();
 var exportFile = exportFile();
 
 
-//var str = "Envío estándar gratuitoen compras superiores a 120 € en 50 dagen  en Biukya";
-//var numbers = str.match(/\d+/g).map(Number);
-//for(var i =0; i<numbers.length; i++) {
-//
-//   var re = new RegExp(numbers[i]+'€')
-//   if(re.test(str.replace(/ /g,'')) == true) {
-//            console.log(numbers[i]);
-//   }
-//}
-
-
-
 
 // ROUTES FOR OUR API
 // =============================================================================
@@ -66,6 +54,7 @@ var enableCORS = function(req, res, next) {
 //http://localhost:3000/api/updatecode
 router.route('/updatecode')
     .post(function(req, res) {
+
         var oldValue = crypto.createHash('md5').update(req.body.oldValue).digest('hex');
         var newValue = req.body.newValue;
         var dateChange = req.body.dateChange;
@@ -76,6 +65,7 @@ router.route('/updatecode')
         } else {
             content.update({newProductName: oldValue}, {$set : {"updated":1,"productName": newValue,newProductName:crypto.createHash('md5').update(newValue).digest('hex')}}, function(err,doc){
                 console.log(err);
+                console.log("gelukt");
             });
         }
         res.send("done");
@@ -124,7 +114,7 @@ router.route('/getcontent/:website_name/:updated/:deleted')
                 for(var x=0; x<docs.length;x++) {
                     var obj = docs[x];
                        if(obj.shopName.toLowerCase() == jsonFile[i].toLowerCase()) {
-                           newDocs.push({website:"cupones",shopName:obj.shopName,productName:obj.productName,endDate:obj.offerExpireDate});
+                           newDocs.push({website:req.params.website_name,shopName:obj.shopName,productName:obj.productName,endDate:obj.offerExpireDate});
                        }
                 }
             }
@@ -138,6 +128,7 @@ router.route('/getcontent/:website_name/:updated/:deleted')
 router.route('/check_content/:website_name')
     .post(function(req, res) {
         if(req.body.content_hash != null) {
+
             var md5hash = crypto.createHash('md5').update(req.body.content_hash).digest('hex');
             content.count({website:req.params.website_name,orginProductName:md5hash}, function (error, count) {
                 if(count == 1) {
@@ -152,8 +143,8 @@ router.route('/check_content/:website_name')
 router.route('/run_spider/:website_name')
     .get(function(req, res) {
         scraper.setScraper(req.params.website_name);
-        scraper.parseWebsite();
-      res.send("done");
+        var done = scraper.parseWebsite();
+        res.send(done);
     });
 
 

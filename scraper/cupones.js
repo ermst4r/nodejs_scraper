@@ -74,7 +74,7 @@ var Cupones = function () {
                 var endUnixTimeStamp = '';
                 var futureTimestamp =86400 * 60;
                 if(splitDate[2]=='desconocido') {
-                    endUnixTimeStamp=Date.parse(d.getFullYear()+'-06-'+'31') / 1000;
+                    endUnixTimeStamp=Date.parse(d.getFullYear()+'-06-'+'30') / 1000;
                 } else {
                     var getMonth ='';
                     if(spanishDate.indexOf(splitDate[4]) > -1) {
@@ -95,13 +95,13 @@ var Cupones = function () {
 
                         content.count({uid:uid}, function (error, count) {
                             if(count == 0 ) {
-                                var pName = coupon.find(".coupon-title-link").text().replace("      "," ").slice(0,-1).replace("  ","");
+                                var pName = coupon.find(".coupon-title-link").text().replace("      "," ").slice(0,-1).replace("  ","").replace("-","").replace("+","").replace("\"","");;
+                                //   productUrl: baseUrl + coupon.find(".coupon-title-link").attr("href"),
                                 var promise = content.insert({
                                     uid: uid,
                                     website: websiteName,
                                     shopName: shopName[1].replace("en", "").slice(0,-1).trim(),
                                     productName:pName ,
-                                    productUrl: baseUrl + coupon.find(".coupon-title-link").attr("href"),
                                     orginProductName: crypto.createHash('md5').update(pName).digest('hex'),
                                     newProductName: crypto.createHash('md5').update(pName).digest('hex'),
                                     updated:0,

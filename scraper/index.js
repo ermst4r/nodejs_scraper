@@ -26,6 +26,9 @@ var Scraper = function () {
 
             break;
             case "cuponation":
+                var cuponation = require('./cuponation.js');
+                var getcuponation = cuponation('localhost:27017/scrapedcontent');
+                getcuponation.fetchData();
 
             break;
 
