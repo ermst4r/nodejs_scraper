@@ -17,6 +17,7 @@
     "jade": "~1.9.2",
     "jsdom": "^4.0.2",
     "json2csv": "^2.2.1",
+    "levenshtein": "^1.0.5",
     "mongodb": "^1.4.34",
     "monk": "^1.0.0",
     "morgan": "~1.5.1",

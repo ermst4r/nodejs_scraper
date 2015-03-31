@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var app = express();
 var morgan = require('morgan');
 var scraper = require('./scraper');
+var levenshtein = require('levenshtein');
 var exportFile = require('./models/export');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -23,7 +24,8 @@ var today = ('0' + d.getDate()).slice(-2) + '-'
 var exportAuteur = 'Arthur Goldman';
 var scraper = scraper();
 var exportFile = exportFile();
-
+var util = require("util");
+var jsonFile = parsedJSON;
 
 
 
@@ -35,6 +37,18 @@ router.use(function(req, res, next) {
     console.log('Something is happening.');
     next();
 });
+//console.log(levenshtein('ali','s'));
+
+
+
+
+function checkDistance(compare,value)
+{
+    var verschil = value.length - levenshtein(compare,value);
+    var percentage  = (verschil / value.length) * 100;
+    return Math.round(percentage);
+}
+
 
 var enableCORS = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -99,7 +113,6 @@ router.route('/delete_code')
 router.route('/getcontent/:website_name/:updated/:deleted')
     .get(function(req, res) {
         var newDocs = new Array;
-        console.log(req.params.deleted);
         if(req.params.updated == -1) {
             var jsonQuery = {"website":req.params.website_name,"deleted":parseInt(req.params.deleted)};
         } else if(req.params.updated == 1) {
@@ -107,18 +120,16 @@ router.route('/getcontent/:website_name/:updated/:deleted')
         } else if(req.params.updated == 0) {
             var jsonQuery = {"website":req.params.website_name,"updated":0,"deleted":parseInt(req.params.deleted)};
         }
-
-
         content.find(jsonQuery, { sort:{shopName:1},fields : {productUrl:0,_id:0,orginProductName:0}} , function (error, docs) {
-            var jsonFile = parsedJSON;
-            for(var i=0; i<jsonFile.length; i++) {
                 for(var x=0; x<docs.length;x++) {
                     var obj = docs[x];
-                       if(obj.shopName.toLowerCase() == jsonFile[i].toLowerCase()) {
-                           newDocs.push({website:req.params.website_name,shopName:obj.shopName,productName:obj.productName,endDate:obj.offerExpireDate});
-                       }
+                    if(jsonFile.indexOf(obj.shopName.toLowerCase().trim().replace(/ /g,'')) >0 ) {
+                        newDocs.push({website:req.params.website_name,shopName:obj.shopName,productName:obj.productName,endDate:obj.offerExpireDate});
+                    }
+
+
                 }
-            }
+
             res.json(newDocs);
         });
 
@@ -129,7 +140,6 @@ router.route('/getcontent/:website_name/:updated/:deleted')
 router.route('/check_content/:website_name')
     .post(function(req, res) {
         if(req.body.content_hash != null) {
-
             var md5hash = crypto.createHash('md5').update(req.body.content_hash).digest('hex');
             content.count({website:req.params.website_name,orginProductName:md5hash}, function (error, count) {
                 if(count == 1) {
@@ -162,10 +172,11 @@ router.route('/getdata/:website_name/:type/:updated/:deleted')
         content.find(jsonQuery, { sort:{shopName:1},fields : {productUrl:0,_id:0,orginProductName:0,uid:0,newProductName:0}} , function (error, docs) {
             var jsonFile = new Array;
             var shopMatch = parsedJSON;
-            for(var i=0; i<shopMatch.length; i++) {
+
+
                 for (var y = 0; y < docs.length; y++) {
                     var obj = docs[y];
-                    if(obj.shopName.toLowerCase() == shopMatch[i].toLowerCase()) {
+                    if(shopMatch.indexOf(obj.shopName.toLowerCase().trim().replace(/ /g,'')) >0 ) {
                         jsonFile.push({
                             productName: obj.productName,
                             shopName: obj.shopName,
@@ -190,7 +201,7 @@ router.route('/getdata/:website_name/:type/:updated/:deleted')
                         })
                     }
                 }
-            }
+
             switch(req.params.type) {
                 case "csv":
                     exportFile.exportCsv(req.params.website_name,jsonFile,res);
