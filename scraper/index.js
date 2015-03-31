@@ -37,6 +37,12 @@ var Scraper = function () {
                 getcupon_es.fetchData();
             break;
 
+            case "cuponesmagicos":
+                var cuponesmagicos = require('./cuponesmagicos.js');
+                var cuponesmagicos = cuponesmagicos('localhost:27017/scrapedcontent');
+                cuponesmagicos.fetchData();
+                break;
+
 
 
 

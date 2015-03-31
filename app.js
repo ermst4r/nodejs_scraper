@@ -37,18 +37,9 @@ router.use(function(req, res, next) {
     console.log('Something is happening.');
     next();
 });
-//console.log(levenshtein('ali','s'));
 
-
-
-
-function checkDistance(compare,value)
-{
-    var verschil = value.length - levenshtein(compare,value);
-    var percentage  = (verschil / value.length) * 100;
-    return Math.round(percentage);
-}
-
+//scraper.setScraper("cuponesmagicos");
+//var done = scraper.parseWebsite();
 
 var enableCORS = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -142,7 +133,7 @@ router.route('/check_content/:website_name')
         if(req.body.content_hash != null) {
             var md5hash = crypto.createHash('md5').update(req.body.content_hash).digest('hex');
             content.count({website:req.params.website_name,orginProductName:md5hash}, function (error, count) {
-                if(count == 1) {
+                if(count >= 1) {
                     res.send("1");
                 } else {
                     res.send("0");

@@ -117,6 +117,7 @@ var Cupones = function () {
                                 promise.on('error', function(err, doc){
                                     console.log("something went wrong");
                                 });
+
                             }
                          });
                      }
