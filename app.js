@@ -163,8 +163,6 @@ router.route('/getdata/:website_name/:type/:updated/:deleted')
         content.find(jsonQuery, { sort:{shopName:1},fields : {productUrl:0,_id:0,orginProductName:0,uid:0,newProductName:0}} , function (error, docs) {
             var jsonFile = new Array;
             var shopMatch = parsedJSON;
-
-
                 for (var y = 0; y < docs.length; y++) {
                     var obj = docs[y];
                     if(shopMatch.indexOf(obj.shopName.toLowerCase().trim().replace(/ /g,'')) >0 ) {
@@ -195,13 +193,13 @@ router.route('/getdata/:website_name/:type/:updated/:deleted')
 
             switch(req.params.type) {
                 case "csv":
-                    exportFile.exportCsv(req.params.website_name,jsonFile,res);
+                    exportFile.exportCsv(req.params.website_name+'_'+today,jsonFile,res);
                 break;
                 case "json":
                     res.json(jsonFile);
                 break;
                 case "xls":
-                    exportFile.exportXls(req.params.website_name,jsonFile,res);
+                    exportFile.exportXls(req.params.website_name+'_'+today,jsonFile,res);
                 break;
 
             }

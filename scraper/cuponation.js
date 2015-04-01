@@ -8,7 +8,7 @@ var content = db.get(mongoCollection);
 var websiteName = "cuponation";
 var media_ids = require('../media_ids/spain');
 var websiteUrl = 'http://www.cuponation.es';
-
+var util = require("util");
 var Cuponation = function () {
 
     var mediaMatching = function(productName)   // Only visible inside Restaurant()
@@ -65,44 +65,49 @@ var Cuponation = function () {
                             var d = cheerio.load(pageBody);
                             var futureTimestamp =86400 * 60;
                             d('.voucher.deal.custom-text').each(function() {
+
+
                                 var scrapeStartDate = ('0' + date.getDate()).slice(-2) + '-'
                                     + ('0' + (date.getMonth()+1)).slice(-2) + '-'
                                     + date.getFullYear();
                                 var detail = d(this);
-                                var productName = detail.find('h3').text().replace("-","").replace("+","").replace("\"","");
-                                var siteEndDate = String(detail.attr('data-end-date'));
-                                var endDate = (Date.parse(siteEndDate) / 1000) + futureTimestamp;
-                                var uid = crypto.createHash('md5').update(webshopName+productName+webshopName).digest('hex');
-                                var MyDate = new Date( parseInt(endDate*1000));
-                                var finalActionExpireDate = ('0' + MyDate.getDate()).slice(-2) + '-'
-                                    + ('0' + (MyDate.getMonth()+1)).slice(-2) + '-'
-                                    + MyDate.getFullYear();
-                                content.count({uid:uid}, function (error, count) {
-                                    if(count == 0 ) {
+                                if(detail.find('span.alarm-icon').text()!='Caducado') {
+                                    var productName = detail.find('h3').text().replace("-", "").replace("+", "").replace("\"", "");
+                                    var siteEndDate = String(detail.attr('data-end-date'));
+                                    var endDate = (Date.parse(siteEndDate) / 1000) + futureTimestamp;
+                                    var uid = crypto.createHash('md5').update(webshopName + productName + webshopName).digest('hex');
+                                    var MyDate = new Date(parseInt(endDate * 1000));
+                                    var finalActionExpireDate = ('0' + MyDate.getDate()).slice(-2) + '-'
+                                        + ('0' + (MyDate.getMonth() + 1)).slice(-2) + '-'
+                                        + MyDate.getFullYear();
+
+
+                                    content.count({uid: uid}, function (error, count) {
+                                        if (count == 0) {
 
                                             var promise = content.insert({
                                                 uid: uid,
                                                 website: websiteName,
                                                 shopName: webshopName,
-                                                productName:productName.toString('UTF-8') ,
+                                                productName: productName.toString('UTF-8'),
                                                 orginProductName: crypto.createHash('md5').update(productName).digest('hex'),
                                                 newProductName: crypto.createHash('md5').update(productName).digest('hex'),
-                                                updated:0,
-                                                scrapeStartDate:scrapeStartDate,
-                                                offerExpireDate:finalActionExpireDate,
-                                                deleted:0,
-                                                media_id:mediaMatching(productName)
+                                                updated: 0,
+                                                scrapeStartDate: scrapeStartDate,
+                                                offerExpireDate: finalActionExpireDate,
+                                                deleted: 0,
+                                                media_id: mediaMatching(productName)
                                             });
-                                            promise.on('success', function(err, doc){
+                                            promise.on('success', function (err, doc) {
                                                 console.log("essen" + websiteName);
 
                                             });
 
 
+                                        }
 
-                                    }
-
-                                });
+                                    });
+                                }
 
                             });
 
