@@ -65,13 +65,13 @@ router.route('/updatecode')
         var newValue = req.body.newValue;
         var dateChange = req.body.dateChange;
         if(dateChange == 1) {
-            content.update({newProductName: oldValue}, {$set : {"offerExpireDate": newValue}}, function(err,doc){
+            content.update({newProductName: oldValue}, {$set : {"offerExpireDate": newValue,lastUpdated:today}}, function(err,doc){
                 console.log(err);
             });
         } else {
-            content.update({newProductName: oldValue}, {$set : {"updated":1,"productName": newValue,newProductName:crypto.createHash('md5').update(newValue).digest('hex')}}, function(err,doc){
+            content.update({newProductName: oldValue}, {$set : {"updated":1,lastUpdated:today,"productName": newValue,newProductName:crypto.createHash('md5').update(newValue).digest('hex')}}, function(err,doc){
                 console.log(err);
-                console.log("gelukt");
+                console.log("gelukt" + today);
             });
         }
         res.send("done");
@@ -120,7 +120,6 @@ router.route('/getcontent/:website_name/:updated/:deleted')
 
 
                 }
-
             res.json(newDocs);
         });
 
@@ -128,25 +127,37 @@ router.route('/getcontent/:website_name/:updated/:deleted')
 
 
 
-router.route('/check_content/:website_name')
-    .post(function(req, res) {
-        if(req.body.content_hash != null) {
-            var md5hash = crypto.createHash('md5').update(req.body.content_hash).digest('hex');
-            content.count({website:req.params.website_name,orginProductName:md5hash}, function (error, count) {
-                if(count >= 1) {
-                    res.send("1");
-                } else {
-                    res.send("0");
-                }
-            });
-        }
-});
 
 router.route('/run_spider/:website_name')
     .get(function(req, res) {
         scraper.setScraper(req.params.website_name);
         var done = scraper.parseWebsite();
         res.send(done);
+    });
+
+
+router.route('/gethashcontent/:website_name/:updated/:deleted')
+    .get(function(req, res) {
+        if(req.params.updated == -1) {
+            var jsonQuery = {"website":req.params.website_name,"deleted":parseInt(req.params.deleted)};
+        } else if(req.params.updated == 1) {
+            var jsonQuery = {"website":req.params.website_name,"updated":1,"deleted":parseInt(req.params.deleted)};
+        } else if(req.params.updated == 0) {
+            var jsonQuery = {"website":req.params.website_name,"updated":0,"deleted":parseInt(req.params.deleted)};
+        }
+        var newDocs = new Array();
+
+        content.find(jsonQuery, { sort:{shopName:1},fields : {productUrl:0,_id:0,website:0,endDate:0}} , function (error, docs) {
+            for(var x=0; x<docs.length;x++) {
+                var obj = docs[x];
+                if(jsonFile.indexOf(obj.shopName.toLowerCase().trim().replace(/ /g,'')) >0 ) {
+                    newDocs.push(obj.orginProductNameUnhashed);
+                }
+            }
+
+            res.json(newDocs);
+        });
+
     });
 
 

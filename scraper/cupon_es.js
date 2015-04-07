@@ -95,13 +95,15 @@ var Cupones_es = function () {
                                                     uid: uid,
                                                     website: websiteName,
                                                     shopName: theWebshop,
-                                                    productName:productName.toString('UTF-8') ,
-                                                    orginProductName: crypto.createHash('md5').update(productName.toString('UTF-8')).digest('hex'),
-                                                    newProductName: crypto.createHash('md5').update(productName.toString('UTF-8')).digest('hex'),
+                                                    productName:productName ,
+                                                    orginProductName: crypto.createHash('md5').update(productName).digest('hex'),
+                                                    newProductName: crypto.createHash('md5').update(productName).digest('hex'),
                                                     updated:0,
                                                     scrapeStartDate:scrapeStartDate,
                                                     offerExpireDate:finalActionExpireDate,
                                                     deleted:0,
+                                                    orginProductNameUnhashed:productName,
+                                                    lastUpdated:0,
                                                     media_id:mediaMatching(productName)
                                                 });
                                                 promise.on('success', function(err, doc){

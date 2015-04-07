@@ -8,7 +8,7 @@ var content = db.get(mongoCollection);
 var websiteName = "cupones";
 var spanishDate = Array('enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre');
 var media_ids = require('../media_ids/spain');
-
+var util = require("util");
 
 
 
@@ -95,7 +95,7 @@ var Cupones = function () {
 
                         content.count({uid:uid}, function (error, count) {
                             if(count == 0 ) {
-                                var pName = coupon.find(".coupon-title-link").text().replace("      "," ").slice(0,-1).replace("  ","").replace("-","").replace("+","").replace("\"","");;
+                                var pName = coupon.find(".coupon-title-link").text().replace("      ","").slice(0,-1).replace("  ","");
                                 //   productUrl: baseUrl + coupon.find(".coupon-title-link").attr("href"),
                                 var promise = content.insert({
                                     uid: uid,
@@ -103,15 +103,18 @@ var Cupones = function () {
                                     shopName: shopName[1].replace("en", "").slice(0,-1).trim(),
                                     productName:pName ,
                                     orginProductName: crypto.createHash('md5').update(pName).digest('hex'),
+                                    orginProductNameUnhashed:pName,
                                     newProductName: crypto.createHash('md5').update(pName).digest('hex'),
                                     updated:0,
                                     scrapeStartDate:scrapeStartDate,
                                     offerExpireDate:finalActionExpireDate,
                                     deleted:0,
-                                    media_id:mediaMatching(pName)
+                                    media_id:mediaMatching(pName),
+                                    lastUpdated:0
                                 });
                                 promise.on('success', function(err, doc){
-                                    console.log("essen");
+                                    console.log(util.inspect(pName));
+
 
                                 });
                                 promise.on('error', function(err, doc){
