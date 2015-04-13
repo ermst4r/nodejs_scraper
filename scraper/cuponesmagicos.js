@@ -9,6 +9,9 @@ var websiteName = "cuponesmagicos";
 var media_ids = require('../media_ids/spain');
 var websiteUrl = 'http://www.cuponesmagicos.com/';
 var util = require("util");
+var parsedJSON = require('../shopnames');
+var jsonFile = parsedJSON;
+
 var Cuponesmagicos = function () {
 
     var mediaMatching = function(productName)   // Only visible inside Restaurant()
@@ -85,25 +88,27 @@ var Cuponesmagicos = function () {
 
                                      content.count({uid:uid}, function (error, count) {
                                         if(count == 0 ) {
-                                            var promise = content.insert({
-                                                uid: uid,
-                                                website: websiteName,
-                                                shopName: shopName,
-                                                productName:productName ,
-                                                orginProductName: crypto.createHash('md5').update(productName).digest('hex'),
-                                                newProductName: crypto.createHash('md5').update(productName).digest('hex'),
-                                                orginProductNameUnhashed:productName,
-                                                updated:0,
-                                                scrapeStartDate:scrapeStartDate,
-                                                offerExpireDate:finalActionExpireDate,
-                                                deleted:0,
-                                                media_id:mediaMatching(productName),
-                                                lastUpdated:0
-                                            });
-                                            promise.on('success', function(err, doc){
-                                                console.log("essen : " + websiteName);
+                                            if (jsonFile.indexOf(shopName.trim().toLowerCase().replace(/ /g, '')) > 0) {
+                                                var promise = content.insert({
+                                                    uid: uid,
+                                                    website: websiteName,
+                                                    shopName: shopName,
+                                                    productName: productName,
+                                                    orginProductName: crypto.createHash('md5').update(productName).digest('hex'),
+                                                    newProductName: crypto.createHash('md5').update(productName).digest('hex'),
+                                                    orginProductNameUnhashed: productName,
+                                                    updated: 0,
+                                                    scrapeStartDate: scrapeStartDate,
+                                                    offerExpireDate: finalActionExpireDate,
+                                                    deleted: 0,
+                                                    media_id: mediaMatching(productName),
+                                                    lastUpdated: 0
+                                                });
+                                                promise.on('success', function (err, doc) {
+                                                    console.log("essen : " + websiteName);
 
-                                            });
+                                                });
+                                            }
 
                                         }
 

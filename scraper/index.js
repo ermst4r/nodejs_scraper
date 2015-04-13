@@ -41,7 +41,13 @@ var Scraper = function () {
                 var cuponesmagicos = require('./cuponesmagicos.js');
                 var cuponesmagicos = cuponesmagicos('localhost:27017/scrapedcontent');
                 cuponesmagicos.fetchData();
-                break;
+            break;
+
+            case "flipit_es":
+                var flipites = require('./flipit_es.js');
+                var flipites = flipites('localhost:27017/scrapedcontent');
+                flipites.fetchData();
+            break;
 
 
 

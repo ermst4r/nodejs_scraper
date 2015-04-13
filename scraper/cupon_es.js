@@ -9,6 +9,9 @@ var websiteName = "cupon_es";
 var media_ids = require('../media_ids/spain');
 var websiteUrl = 'http://www.cupon.es/';
 var util = require("util");
+var parsedJSON = require('../shopnames');
+var jsonFile = parsedJSON;
+
 var Cupones_es = function () {
 
     var mediaMatching = function(productName)   // Only visible inside Restaurant()
@@ -90,28 +93,28 @@ var Cupones_es = function () {
                                         var uid = crypto.createHash('md5').update(theWebshop+productName+websiteName).digest('hex');
                                         content.count({uid:uid}, function (error, count) {
                                             if(count == 0 ) {
+                                                if (jsonFile.indexOf(theWebshop.trim().toLowerCase().replace(/ /g, '')) > 0) {
+                                                    var promise = content.insert({
+                                                        uid: uid,
+                                                        website: websiteName,
+                                                        shopName: theWebshop,
+                                                        productName: productName,
+                                                        orginProductName: crypto.createHash('md5').update(productName).digest('hex'),
+                                                        newProductName: crypto.createHash('md5').update(productName).digest('hex'),
+                                                        updated: 0,
+                                                        scrapeStartDate: scrapeStartDate,
+                                                        offerExpireDate: finalActionExpireDate,
+                                                        deleted: 0,
+                                                        orginProductNameUnhashed: productName,
+                                                        lastUpdated: 0,
+                                                        media_id: mediaMatching(productName)
+                                                    });
+                                                    promise.on('success', function (err, doc) {
+                                                        console.log("essen" + websiteName);
 
-                                                var promise = content.insert({
-                                                    uid: uid,
-                                                    website: websiteName,
-                                                    shopName: theWebshop,
-                                                    productName:productName ,
-                                                    orginProductName: crypto.createHash('md5').update(productName).digest('hex'),
-                                                    newProductName: crypto.createHash('md5').update(productName).digest('hex'),
-                                                    updated:0,
-                                                    scrapeStartDate:scrapeStartDate,
-                                                    offerExpireDate:finalActionExpireDate,
-                                                    deleted:0,
-                                                    orginProductNameUnhashed:productName,
-                                                    lastUpdated:0,
-                                                    media_id:mediaMatching(productName)
-                                                });
-                                                promise.on('success', function(err, doc){
-                                                    console.log("essen" + websiteName);
+                                                    });
 
-                                                });
-
-
+                                                }
 
                                             }
 

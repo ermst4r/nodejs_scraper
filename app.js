@@ -25,9 +25,10 @@ var exportAuteur = 'Arthur Goldman';
 var scraper = scraper();
 var exportFile = exportFile();
 var util = require("util");
-var jsonFile = parsedJSON;
 
-
+//
+//scraper.setScraper('flipit_es');
+//var done = scraper.parseWebsite();
 
 // ROUTES FOR OUR API
 // =============================================================================
@@ -105,19 +106,26 @@ router.route('/getcontent/:website_name/:updated/:deleted')
     .get(function(req, res) {
         var newDocs = new Array;
         if(req.params.updated == -1) {
-            var jsonQuery = {"website":req.params.website_name,"deleted":parseInt(req.params.deleted)};
+            var jsonQuery = {"deleted":parseInt(req.params.deleted)};
         } else if(req.params.updated == 1) {
-            var jsonQuery = {"website":req.params.website_name,"updated":1,"deleted":parseInt(req.params.deleted)};
+            var jsonQuery = {"updated":1,"deleted":parseInt(req.params.deleted)};
         } else if(req.params.updated == 0) {
-            var jsonQuery = {"website":req.params.website_name,"updated":0,"deleted":parseInt(req.params.deleted)};
+            var jsonQuery = {"updated":0,"deleted":parseInt(req.params.deleted) };
         }
-        content.find(jsonQuery, { sort:{shopName:1},fields : {productUrl:0,_id:0,orginProductName:0}} , function (error, docs) {
+
+        var content2 = content;
+        content2.find({"website":'flipit_es'},function(flipErr,flipDocs) {
+            for(var y=0; y<flipDocs.length;y++) {
+                var flipObj = flipDocs[y];
+                console.log(flipObj);
+            }
+        });
+
+
+        content.find(jsonQuery, {sort:{shopName:1,website:-1},fields : {productUrl:0,_id:0,orginProductName:0}} , function (error, docs) {
                 for(var x=0; x<docs.length;x++) {
                     var obj = docs[x];
-                    if(jsonFile.indexOf(obj.shopName.toLowerCase().trim().replace(/ /g,'')) >0 ) {
-                        newDocs.push({website:req.params.website_name,shopName:obj.shopName,productName:obj.productName,endDate:obj.offerExpireDate});
-                    }
-
+                        newDocs.push({website:obj.website,shopName:obj.shopName,productName:obj.productName,endDate:obj.offerExpireDate});
 
                 }
             res.json(newDocs);
@@ -139,20 +147,18 @@ router.route('/run_spider/:website_name')
 router.route('/gethashcontent/:website_name/:updated/:deleted')
     .get(function(req, res) {
         if(req.params.updated == -1) {
-            var jsonQuery = {"website":req.params.website_name,"deleted":parseInt(req.params.deleted)};
+            var jsonQuery = {"deleted":parseInt(req.params.deleted)};
         } else if(req.params.updated == 1) {
-            var jsonQuery = {"website":req.params.website_name,"updated":1,"deleted":parseInt(req.params.deleted)};
+            var jsonQuery = {"updated":1,"deleted":parseInt(req.params.deleted)};
         } else if(req.params.updated == 0) {
-            var jsonQuery = {"website":req.params.website_name,"updated":0,"deleted":parseInt(req.params.deleted)};
+            var jsonQuery = {"updated":0,"deleted":parseInt(req.params.deleted)};
         }
         var newDocs = new Array();
 
         content.find(jsonQuery, { sort:{shopName:1},fields : {productUrl:0,_id:0,website:0,endDate:0}} , function (error, docs) {
             for(var x=0; x<docs.length;x++) {
                 var obj = docs[x];
-                if(jsonFile.indexOf(obj.shopName.toLowerCase().trim().replace(/ /g,'')) >0 ) {
                     newDocs.push(obj.orginProductNameUnhashed);
-                }
             }
 
             res.json(newDocs);
@@ -165,18 +171,18 @@ router.route('/getdata/:website_name/:type/:updated/:deleted')
 // get the bear with that id
     .get(function(req, res) {
         if(req.params.updated == -1) {
-            var jsonQuery = {"website":req.params.website_name,"deleted":parseInt(req.params.deleted)};
+            var jsonQuery = {"deleted":parseInt(req.params.deleted)};
         } else if(req.params.updated == 1) {
-            var jsonQuery = {"website":req.params.website_name,"updated":1,"deleted":parseInt(req.params.deleted)};
+            var jsonQuery = {"updated":1,"deleted":parseInt(req.params.deleted)};
         } else if(req.params.updated == 0) {
-            var jsonQuery = {"website":req.params.website_name,"updated":0,"deleted":parseInt(req.params.deleted)};
+            var jsonQuery = {"updated":0,"deleted":parseInt(req.params.deleted)};
         }
         content.find(jsonQuery, { sort:{shopName:1},fields : {productUrl:0,_id:0,orginProductName:0,uid:0,newProductName:0}} , function (error, docs) {
             var jsonFile = new Array;
             var shopMatch = parsedJSON;
                 for (var y = 0; y < docs.length; y++) {
                     var obj = docs[y];
-                    if(shopMatch.indexOf(obj.shopName.toLowerCase().trim().replace(/ /g,'')) >0 ) {
+
                         jsonFile.push({
                             productName: obj.productName,
                             shopName: obj.shopName,
@@ -199,7 +205,7 @@ router.route('/getdata/:website_name/:type/:updated/:deleted')
                             extra_field2: '',
                             media_id:obj.media_id
                         })
-                    }
+
                 }
 
             switch(req.params.type) {
