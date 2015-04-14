@@ -90,7 +90,7 @@ var Cuponation = function () {
                                                 var promise = content.insert({
                                                     uid: uid,
                                                     website: websiteName,
-                                                    shopName: webshopName,
+                                                    shopName: webshopName.trim().toLowerCase().replace(/ /g, ''),
                                                     productName: productName.toString('UTF-8'),
                                                     orginProductName: crypto.createHash('md5').update(productName).digest('hex'),
                                                     newProductName: crypto.createHash('md5').update(productName).digest('hex'),

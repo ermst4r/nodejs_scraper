@@ -50,7 +50,7 @@ var Flipt_es = function () {
                                                 var promise = content.insert({
                                                     uid: uid,
                                                     website: websiteName,
-                                                    shopName: shopName,
+                                                    shopName: shopName.trim().toLowerCase().replace(/ /g, ''),
                                                     productName: productName,
                                                     orginProductName: crypto.createHash('md5').update(productName).digest('hex'),
                                                     newProductName: crypto.createHash('md5').update(productName).digest('hex'),

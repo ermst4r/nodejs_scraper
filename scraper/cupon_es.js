@@ -97,7 +97,7 @@ var Cupones_es = function () {
                                                     var promise = content.insert({
                                                         uid: uid,
                                                         website: websiteName,
-                                                        shopName: theWebshop,
+                                                        shopName: theWebshop.trim().toLowerCase().replace(/ /g, ''),
                                                         productName: productName,
                                                         orginProductName: crypto.createHash('md5').update(productName).digest('hex'),
                                                         newProductName: crypto.createHash('md5').update(productName).digest('hex'),

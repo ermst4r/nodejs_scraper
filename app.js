@@ -26,6 +26,7 @@ var scraper = scraper();
 var exportFile = exportFile();
 var util = require("util");
 
+
 //
 //scraper.setScraper('flipit_es');
 //var done = scraper.parseWebsite();
@@ -101,6 +102,39 @@ router.route('/delete_code')
 
 
 
+
+
+router.route('/noflipitdata/')
+    .get(function(req, res) {
+        var jsonQuery = { "website": { $ne: "flipit_es" } };
+        var newDocs = new Array();
+        content.find(jsonQuery , function (error, docs) {
+            for(var x=0; x<docs.length;x++) {
+                var obj = docs[x];
+                newDocs.push(obj.shopName);
+            }
+            res.json(newDocs);
+        });
+
+    });
+
+
+router.route('/getflipitdata/')
+    .get(function(req, res) {
+        var jsonQuery = {"website":"flipit_es"};
+        var newDocs = new Array();
+        content.find(jsonQuery , function (error, docs) {
+            for(var x=0; x<docs.length;x++) {
+                var obj = docs[x];
+                newDocs.push(obj.shopName);
+            }
+            res.json(newDocs);
+        });
+
+    });
+
+
+
 // e.g. http://localhost:3000/api/getcontent/cupones
 router.route('/getcontent/:website_name/:updated/:deleted')
     .get(function(req, res) {
@@ -113,20 +147,10 @@ router.route('/getcontent/:website_name/:updated/:deleted')
             var jsonQuery = {"updated":0,"deleted":parseInt(req.params.deleted) };
         }
 
-        var content2 = content;
-        content2.find({"website":'flipit_es'},function(flipErr,flipDocs) {
-            for(var y=0; y<flipDocs.length;y++) {
-                var flipObj = flipDocs[y];
-                console.log(flipObj);
-            }
-        });
-
-
         content.find(jsonQuery, {sort:{shopName:1,website:-1},fields : {productUrl:0,_id:0,orginProductName:0}} , function (error, docs) {
                 for(var x=0; x<docs.length;x++) {
                     var obj = docs[x];
-                        newDocs.push({website:obj.website,shopName:obj.shopName,productName:obj.productName,endDate:obj.offerExpireDate});
-
+                    newDocs.push({website:obj.website,shopName:obj.shopName,productName:obj.productName,endDate:obj.offerExpireDate});
                 }
             res.json(newDocs);
         });
@@ -167,7 +191,7 @@ router.route('/gethashcontent/:website_name/:updated/:deleted')
     });
 
 
-router.route('/getdata/:website_name/:type/:updated/:deleted')
+router.route('/getdata/:type/:updated/:deleted')
 // get the bear with that id
     .get(function(req, res) {
         if(req.params.updated == -1) {
@@ -179,7 +203,6 @@ router.route('/getdata/:website_name/:type/:updated/:deleted')
         }
         content.find(jsonQuery, { sort:{shopName:1},fields : {productUrl:0,_id:0,orginProductName:0,uid:0,newProductName:0}} , function (error, docs) {
             var jsonFile = new Array;
-            var shopMatch = parsedJSON;
                 for (var y = 0; y < docs.length; y++) {
                     var obj = docs[y];
 
@@ -210,13 +233,13 @@ router.route('/getdata/:website_name/:type/:updated/:deleted')
 
             switch(req.params.type) {
                 case "csv":
-                    exportFile.exportCsv(req.params.website_name+'_'+today,jsonFile,res);
+                    exportFile.exportCsv(today,jsonFile,res);
                 break;
                 case "json":
                     res.json(jsonFile);
                 break;
                 case "xls":
-                    exportFile.exportXls(req.params.website_name+'_'+today,jsonFile,res);
+                    exportFile.exportXls(today,jsonFile,res);
                 break;
 
             }
