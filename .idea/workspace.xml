@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4970e438-6bc3-443b-ba85-8dd92a1a3842" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scraper/cupon_es.js" afterPath="$PROJECT_DIR$/scraper/cupon_es.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scraper/cuponation.js" afterPath="$PROJECT_DIR$/scraper/cuponation.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scraper/cupones.js" afterPath="$PROJECT_DIR$/scraper/cupones.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scraper/cuponesmagicos.js" afterPath="$PROJECT_DIR$/scraper/cuponesmagicos.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scraper/flipit_es.js" afterPath="$PROJECT_DIR$/scraper/flipit_es.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="contentscraper.iws" />
@@ -34,11 +29,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4095941" vertical-offset="3192" max-vertical-offset="4005">
-              <caret line="235" column="41" selection-start-line="235" selection-start-column="41" selection-end-line="235" selection-end-column="41" />
+            <state vertical-scroll-proportion="-3.8709676" vertical-offset="0" max-vertical-offset="4005">
+              <caret line="8" column="51" selection-start-line="8" selection-start-column="51" selection-end-line="8" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -49,6 +44,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3180">
               <caret line="1" column="33" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="flipit_es.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/scraper/flipit_es.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5974329" vertical-offset="313" max-vertical-offset="1530">
+              <caret line="55" column="30" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -140,13 +145,13 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/scraper/index.js" />
         <option value="$PROJECT_DIR$/shopnames.json" />
-        <option value="$PROJECT_DIR$/scraper/flipit_es.js" />
         <option value="$PROJECT_DIR$/scraper/cupon_es.js" />
         <option value="$PROJECT_DIR$/scraper/cuponation.js" />
         <option value="$PROJECT_DIR$/scraper/cupones.js" />
         <option value="$PROJECT_DIR$/scraper/cuponesmagicos.js" />
         <option value="$PROJECT_DIR$/node_modules/mongo-sync/lib/mongo-sync.js" />
         <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/scraper/flipit_es.js" />
       </list>
     </option>
   </component>
@@ -388,13 +393,20 @@
       <option name="project" value="LOCAL" />
       <updated>1428932170580</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="fixed blue lines, and removed duplicated codes">
+      <created>1429009293998</created>
+      <option name="number" value="00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1429009293998</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="977" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -411,7 +423,6 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -450,7 +461,8 @@
     <MESSAGE value="fixed cuponation spider&#10;" />
     <MESSAGE value="fixed xhr hell" />
     <MESSAGE value="added flipit data on top, need to normalise data" />
-    <option name="LAST_COMMIT_MESSAGE" value="added flipit data on top, need to normalise data" />
+    <MESSAGE value="fixed blue lines, and removed duplicated codes" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed blue lines, and removed duplicated codes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -797,14 +809,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scraper/flipit_es.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11566265" vertical-offset="444" max-vertical-offset="1455">
-          <caret line="36" column="49" selection-start-line="36" selection-start-column="49" selection-end-line="36" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scraper/cuponesmagicos.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-19.11111" vertical-offset="1029" max-vertical-offset="2160">
@@ -831,8 +835,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4095941" vertical-offset="3192" max-vertical-offset="4005">
-          <caret line="235" column="41" selection-start-line="235" selection-start-column="41" selection-end-line="235" selection-end-column="41" />
+        <state vertical-scroll-proportion="-3.8709676" vertical-offset="0" max-vertical-offset="4005">
+          <caret line="8" column="51" selection-start-line="8" selection-start-column="51" selection-end-line="8" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scraper/flipit_es.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5974329" vertical-offset="313" max-vertical-offset="1530">
+          <caret line="55" column="30" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
           <folding />
         </state>
       </provider>
