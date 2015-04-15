@@ -39,6 +39,8 @@ var Cupones_es = function () {
                 var re = new RegExp('gratis');
                 if(re.test(str.replace(/ /g,'')) == true) {
                     return 50; // media id
+                } else {
+                    return 51;
                 }
 
 
@@ -107,7 +109,7 @@ var Cupones_es = function () {
                                                         deleted: 0,
                                                         orginProductNameUnhashed: productName,
                                                         lastUpdated: 0,
-                                                        media_id: mediaMatching(productName)
+                                                        media_id: (mediaMatching(productName)==null) ? 50 : mediaMatching(productName)
                                                     });
                                                     promise.on('success', function (err, doc) {
                                                         console.log("essen" + websiteName);

@@ -27,9 +27,6 @@ var exportFile = exportFile();
 var util = require("util");
 
 
-//
-scraper.setScraper('flipit_es');
-var done = scraper.parseWebsite();
 
 // ROUTES FOR OUR API
 // =============================================================================
