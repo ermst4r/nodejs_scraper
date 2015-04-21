@@ -6,6 +6,8 @@ var morgan = require('morgan');
 var scraper = require('./scraper');
 var levenshtein = require('levenshtein');
 var exportFile = require('./models/export');
+var matching = require('./models/matching');
+var matching = matching();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 var port = process.env.PORT || 3000;        // set our port
@@ -28,6 +30,11 @@ var util = require("util");
 
 
 
+
+
+
+
+
 // ROUTES FOR OUR API
 // =============================================================================
 var router = express.Router();              // get an instance of the express Router
@@ -37,8 +44,6 @@ router.use(function(req, res, next) {
     next();
 });
 
-//scraper.setScraper("cuponesmagicos");
-//var done = scraper.parseWebsite();
 
 var enableCORS = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');

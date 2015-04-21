@@ -92,7 +92,7 @@ var Cupones_es = function () {
 
 
                                         var theWebshop = webshopName.replace(/ *\([^)]*\) */g, "");
-                                        var uid = crypto.createHash('md5').update(theWebshop+productName+websiteName).digest('hex');
+                                        var uid = crypto.createHash('md5').update(productName).digest('hex');
                                         content.count({uid:uid}, function (error, count) {
                                             if(count == 0 ) {
                                                 if (jsonFile.indexOf(theWebshop.trim().toLowerCase().replace(/ /g, '')) > 0) {

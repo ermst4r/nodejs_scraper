@@ -9,12 +9,14 @@ var content = db.get(mongoCollection);
 var websiteName = "flipit_es";
 var websiteUrl = 'http://www.flipit.com/es/';
 var util = require("util");
-var parsedJSON = require('../shopnames');
+var parsedJSON = require('../shopnames/es_match.json');
 var jsonFile = parsedJSON;
+var matching = require('./../models/matching');
+var matching = matching();
+
 
 
 var Flipt_es = function () {
-
     this.fetchData = function () {
         var date = new Date();
         var scrapeStartDate = ('0' + date.getDate()).slice(-2) + '-'
@@ -46,7 +48,7 @@ var Flipt_es = function () {
                                     var detail = d(this);
                                     var productName = detail.find('h3 a').text().replace(/^\s+|\s+$/g, '');
                                     var isOffer = detail.find('.btn-code').attr('vote');
-                                    var uid = crypto.createHash('md5').update(productName + websiteName).digest('hex');
+                                    var uid = crypto.createHash('md5').update(productName).digest('hex');
                                     if (isOffer != '0') {
                                         content.count({uid: uid}, function (error, count) {
                                             if (count == 0) {

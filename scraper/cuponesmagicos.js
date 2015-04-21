@@ -83,7 +83,7 @@ var Cuponesmagicos = function () {
                                     var finalActionExpireDate = ('0' + MyDate.getDate()).slice(-2) + '-'
                                         + ('0' + (MyDate.getMonth()+1)).slice(-2) + '-'
                                         + MyDate.getFullYear();
-                                     var uid = crypto.createHash('md5').update(productName+websiteName).digest('hex');
+                                     var uid = crypto.createHash('md5').update(productName).digest('hex');
 
 
                                      content.count({uid:uid}, function (error, count) {

@@ -77,7 +77,7 @@ var Cuponation = function () {
                                     var productName = detail.find('h3').text().replace("-", "").replace("+", "").replace("\"", "");
                                     var siteEndDate = String(detail.attr('data-end-date'));
                                     var endDate = (Date.parse(siteEndDate) / 1000) + futureTimestamp;
-                                    var uid = crypto.createHash('md5').update(webshopName + productName + webshopName).digest('hex');
+                                    var uid = crypto.createHash('md5').update(productName).digest('hex');
                                     var MyDate = new Date(parseInt(endDate * 1000));
                                     var finalActionExpireDate = ('0' + MyDate.getDate()).slice(-2) + '-'
                                         + ('0' + (MyDate.getMonth() + 1)).slice(-2) + '-'
