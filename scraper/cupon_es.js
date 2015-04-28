@@ -109,7 +109,7 @@ var Cupones_es = function () {
                                                         deleted: 0,
                                                         orginProductNameUnhashed: productName,
                                                         lastUpdated: 0,
-                                                        media_id: (mediaMatching(productName)==null) ? 50 : mediaMatching(productName)
+                                                        media_id: (mediaMatching(productName)==null) ? 182 : mediaMatching(productName)
                                                     });
                                                     promise.on('success', function (err, doc) {
                                                         console.log("essen" + websiteName);

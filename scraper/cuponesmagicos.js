@@ -101,7 +101,7 @@ var Cuponesmagicos = function () {
                                                     scrapeStartDate: scrapeStartDate,
                                                     offerExpireDate: finalActionExpireDate,
                                                     deleted: 0,
-                                                    media_id: mediaMatching(productName),
+                                                    media_id: (mediaMatching(productName)==null) ? 182 : mediaMatching(productName),
                                                     lastUpdated: 0
                                                 });
                                                 promise.on('success', function (err, doc) {
