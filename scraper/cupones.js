@@ -41,7 +41,7 @@ var Cupones = function () {
             } else {
                 var re = new RegExp('gratis');
                 if(re.test(str.replace(/ /g,'')) == true) {
-                    return 50; // media id
+                    return 128; // media id
                 }
 
 
@@ -110,7 +110,7 @@ var Cupones = function () {
                                             scrapeStartDate: scrapeStartDate,
                                             offerExpireDate: finalActionExpireDate,
                                             deleted: 0,
-                                            media_id: (mediaMatching(productName)==null) ? 182 : mediaMatching(productName),
+                                            media_id: (mediaMatching(pName)==null) ? 182 : mediaMatching(pName),
                                             lastUpdated: 0
                                         });
                                         promise.on('success', function (err, doc) {

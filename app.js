@@ -7,12 +7,14 @@ var scraper = require('./scraper');
 var levenshtein = require('levenshtein');
 var exportFile = require('./models/export');
 var matching = require('./models/matching');
+var orginShopname = require('./shopnames/es')
 var matching = matching();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 var port = process.env.PORT || 3000;        // set our port
 var mongo = require('mongodb');
 var monk = require('monk');
+
 mongoConnectionString = "localhost:27017/scrapedcontent";
 mongoCollection ="content";
 var db = monk(mongoConnectionString);
@@ -27,9 +29,20 @@ var exportAuteur = 'Arthur Goldman';
 var scraper = scraper();
 var exportFile = exportFile();
 var util = require("util");
+var objShopname = orginShopname;
 
 
-
+function genFlipitShopName(string2)
+{
+    var shopName = false;
+    for(var o=0; o<orginShopname.length; o++) {
+        var smallShopName  = objShopname[o].trim().toLowerCase().replace(/ /g, '');
+        if(smallShopName == string2) {
+            shopName = objShopname[o]
+        }
+    }
+    return shopName;
+}
 
 
 
@@ -207,10 +220,11 @@ router.route('/getdata/:type/:updated/:deleted')
             var jsonFile = new Array;
                 for (var y = 0; y < docs.length; y++) {
                     var obj = docs[y];
-
+                    var shopName  = genFlipitShopName(obj.shopName);
+                    if(shopName != false) {
                         jsonFile.push({
                             productName: obj.productName,
-                            shopName: obj.shopName,
+                            shopName: genFlipitShopName(obj.shopName),
                             type: 'sale',
                             zichtbaarheid: 'DE',
                             uitgeklapt: 0,
@@ -227,6 +241,8 @@ router.route('/getdata/:type/:updated/:deleted')
                             deeplink: '',
                             media_id:obj.media_id
                         })
+                    }
+
 
                 }
 

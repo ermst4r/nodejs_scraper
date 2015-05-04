@@ -37,7 +37,7 @@ var Cuponation = function () {
             } else {
                 var re = new RegExp('gratis');
                 if(re.test(str.replace(/ /g,'')) == true) {
-                    return 50; // media id
+                    return 128; // media id
                 }
 
 

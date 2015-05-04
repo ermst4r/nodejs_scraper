@@ -38,9 +38,9 @@ var Cupones_es = function () {
             } else {
                 var re = new RegExp('gratis');
                 if(re.test(str.replace(/ /g,'')) == true) {
-                    return 50; // media id
+                    return 128; // media id
                 } else {
-                    return 51;
+                    return 182;
                 }
 
 
