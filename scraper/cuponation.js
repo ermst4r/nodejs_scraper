@@ -53,11 +53,14 @@ var Cuponation = function () {
             uri: "http://www.cuponation.es/todaslasmarcas"
         }, function(error, response, body) {
             var c = cheerio.load(body);
+            console.log(response.statusCode);
             c(".cn-alphabet-list .letter a").each(function() {
                 var coupon = c(this);
+
                 if (!error && response.statusCode == 200) {
                     var pageUrl =  websiteUrl+coupon.attr('href');
                     var webshopName = coupon.text();
+
                     // do another request
                     request({
                         url:pageUrl
@@ -66,6 +69,7 @@ var Cuponation = function () {
                             var date = new Date();
                             var d = cheerio.load(pageBody);
                             var futureTimestamp =86400 * 60;
+                            c
                             d('.voucher.deal.custom-text').each(function() {
 
 
@@ -75,6 +79,7 @@ var Cuponation = function () {
                                 var detail = d(this);
                                 if(detail.find('span.alarm-icon').text()!='Caducado') {
                                     var productName = detail.find('h3').text().replace("-", "").replace("+", "").replace("\"", "");
+
                                     var siteEndDate = String(detail.attr('data-end-date'));
                                     var endDate = (Date.parse(siteEndDate) / 1000) + futureTimestamp;
                                     var uid = crypto.createHash('md5').update(productName).digest('hex');
@@ -99,6 +104,7 @@ var Cuponation = function () {
                                                     scrapeStartDate: scrapeStartDate,
                                                     offerExpireDate: finalActionExpireDate,
                                                     deleted: 0,
+                                                    country:"es",
                                                     media_id: (mediaMatching(productName)==null) ? 182 : mediaMatching(productName),
                                                     lastUpdated: 0
                                                 });

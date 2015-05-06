@@ -63,6 +63,7 @@ var Cupones = function () {
         request({
             uri: baseUrl+links.find(".title-link").attr("href"),
         }, function(error, response, body) {
+
             var $ = cheerio.load(body);
             $(".coupon-item-content").each(function() {
                 var coupon = $(this);
@@ -91,6 +92,7 @@ var Cupones = function () {
 
                 if(coupon.find(".button-text").text()=="Accede a la oferta") {
                     var shopName = coupon.find(".coupon-title-link").text().split("      ");
+
                     if(typeof shopName[1] !== "undefined") {
                         var uid = crypto.createHash('md5').update(websiteName+shopName[1].replace("en","")+coupon.find(".coupon-title-link").text()+baseUrl+coupon.find(".coupon-title-link").attr("href")).digest('hex');
 
@@ -98,6 +100,7 @@ var Cupones = function () {
                             if(count == 0 ) {
                                     if (jsonFile.indexOf(shopName[1].replace("en", "").slice(0, -1).trim().toLowerCase().replace(/ /g, '')) > 0) {
                                         var pName = coupon.find(".coupon-title-link").text().replace("      ", "").slice(0, -1).replace("  ", "");
+                                        console.log(pName);
                                         var promise = content.insert({
                                             uid: uid,
                                             website: websiteName,
@@ -110,6 +113,7 @@ var Cupones = function () {
                                             scrapeStartDate: scrapeStartDate,
                                             offerExpireDate: finalActionExpireDate,
                                             deleted: 0,
+                                            country:"es",
                                             media_id: (mediaMatching(pName)==null) ? 182 : mediaMatching(pName),
                                             lastUpdated: 0
                                         });

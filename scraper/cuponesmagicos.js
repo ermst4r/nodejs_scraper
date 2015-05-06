@@ -64,6 +64,7 @@ var Cuponesmagicos = function () {
                     var detail = d(this);
                     var shopUrl = detail.find('a').attr("href");
                     var shopName = detail.find('a').text().replace(/^\s+|\s+$/g, '');
+
                     var date = new Date();
                     request({
                         uri: shopUrl
@@ -84,7 +85,7 @@ var Cuponesmagicos = function () {
                                         + ('0' + (MyDate.getMonth()+1)).slice(-2) + '-'
                                         + MyDate.getFullYear();
                                      var uid = crypto.createHash('md5').update(productName).digest('hex');
-
+                                    console.log(productName);
 
                                      content.count({uid:uid}, function (error, count) {
                                         if(count == 0 ) {
@@ -101,6 +102,7 @@ var Cuponesmagicos = function () {
                                                     scrapeStartDate: scrapeStartDate,
                                                     offerExpireDate: finalActionExpireDate,
                                                     deleted: 0,
+                                                    country:"es",
                                                     media_id: (mediaMatching(productName)==null) ? 182 : mediaMatching(productName),
                                                     lastUpdated: 0
                                                 });

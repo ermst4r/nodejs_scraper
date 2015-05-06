@@ -6,8 +6,8 @@ var monk = require('monk');
 var trim = require('trim');
 var db = monk(mongoConnectionString);
 var content = db.get(mongoCollection);
-var websiteName = "flipit_es";
-var websiteUrl = 'http://www.flipit.com/es/';
+var websiteName = "flipit_de";
+var websiteUrl = 'http://www.flipit.com/de/';
 var util = require("util");
 var parsedJSON = require('../shopnames/es_match.json');
 var jsonFile = parsedJSON;
@@ -16,18 +16,18 @@ var matching = matching();
 
 
 
-var Flipt_es = function () {
+var Flipt_de = function () {
     this.fetchData = function () {
         var date = new Date();
         var scrapeStartDate = ('0' + date.getDate()).slice(-2) + '-'
             + ('0' + (date.getMonth()+1)).slice(-2) + '-'
             + date.getFullYear();
         var uriPath = new Array();
-        uriPath[0] = 'todas-las-tiendas-09-e';
-        uriPath[1] = 'todas-las-tiendas-f-j';
-        uriPath[2] = 'todas-las-tiendas-k-o';
-        uriPath[3] = 'todas-las-tiendas-p-t';
-        uriPath[4] = 'todas-las-tiendas-u-z';
+        uriPath[0] = 'alle-shops-09-e';
+        uriPath[1] = 'alle-shops-f-j';
+        uriPath[2] = 'alle-shops-k-o';
+        uriPath[3] = 'alle-shops-p-t';
+        uriPath[4] = 'alle-shops-u-z';
         for (var z = 0; z<uriPath.length;  z++) {
             console.log('start' +websiteUrl  +uriPath[z] );
             request({
@@ -52,7 +52,6 @@ var Flipt_es = function () {
                                     if (isOffer != '0') {
                                         content.count({uid: uid}, function (error, count) {
                                             if (count == 0) {
-                                                if (jsonFile.indexOf(shopName.trim().toLowerCase().replace(/ /g, '')) > 0) {
                                                     var promise = content.insert({
                                                         uid: uid,
                                                         website: websiteName,
@@ -64,15 +63,15 @@ var Flipt_es = function () {
                                                         updated: 0,
                                                         scrapeStartDate: scrapeStartDate,
                                                         deleted: 0,
-                                                        lastUpdated: 0,
-                                                        country:"es",
+                                                        country:"de",
+                                                        lastUpdated: 0
                                                     });
                                                     promise.on('success', function (err, doc) {
                                                         console.log("essen : " + websiteName);
 
                                                     });
                                                 }
-                                            }
+
                                         });
                                     }
 
@@ -95,6 +94,6 @@ var Flipt_es = function () {
 };
 
 module.exports = function () {
-    var instance = new Flipt_es();
+    var instance = new Flipt_de();
     return instance;
 };

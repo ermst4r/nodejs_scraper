@@ -109,6 +109,7 @@ var Cupones_es = function () {
                                                         deleted: 0,
                                                         orginProductNameUnhashed: productName,
                                                         lastUpdated: 0,
+                                                        country:"es",
                                                         media_id: (mediaMatching(productName)==null) ? 182 : mediaMatching(productName)
                                                     });
                                                     promise.on('success', function (err, doc) {

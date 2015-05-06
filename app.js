@@ -1,26 +1,19 @@
-// call the packages we need
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 var morgan = require('morgan');
 var scraper = require('./scraper');
-var levenshtein = require('levenshtein');
 var exportFile = require('./models/export');
-var matching = require('./models/matching');
-var orginShopname = require('./shopnames/es')
-var matching = matching();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 var port = process.env.PORT || 3000;        // set our port
 var mongo = require('mongodb');
 var monk = require('monk');
-
 mongoConnectionString = "localhost:27017/scrapedcontent";
 mongoCollection ="content";
 var db = monk(mongoConnectionString);
 var content = db.get(mongoCollection);
 var crypto = require('crypto');
-var parsedJSON = require('./shopnames');
 var d = new Date();
 var today = ('0' + d.getDate()).slice(-2) + '-'
     + ('0' + (d.getMonth()+1)).slice(-2) + '-'
@@ -29,24 +22,14 @@ var exportAuteur = 'Arthur Goldman';
 var scraper = scraper();
 var exportFile = exportFile();
 var util = require("util");
-var objShopname = orginShopname;
 
 
-function genFlipitShopName(string2)
-{
-    var shopName = false;
-    for(var o=0; o<orginShopname.length; o++) {
-        var smallShopName  = objShopname[o].trim().toLowerCase().replace(/ /g, '');
-        if(smallShopName == string2) {
-            shopName = objShopname[o]
-        }
-    }
-    return shopName;
-}
+// restore mongo dump
+//   mongoimport --db scrapedcontent please use dump as a foldr
+// mongo multi update: db.test.update({foo: "bar"}, {$set: {test: "success!"}}, false, true)
 
-
-
-
+//scraper.setScraper('flipit_de');
+//var done = scraper.parseWebsite();
 
 // ROUTES FOR OUR API
 // =============================================================================
@@ -177,6 +160,7 @@ router.route('/getcontent/:website_name/:updated/:deleted')
 
 router.route('/run_spider/:website_name')
     .get(function(req, res) {
+
         scraper.setScraper(req.params.website_name);
         var done = scraper.parseWebsite();
         res.send(done);
@@ -220,11 +204,11 @@ router.route('/getdata/:type/:updated/:deleted')
             var jsonFile = new Array;
                 for (var y = 0; y < docs.length; y++) {
                     var obj = docs[y];
-                    var shopName  = genFlipitShopName(obj.shopName);
+                    var shopName  = exportFile.exportShopNames(obj.shopName);
                     if(shopName != false) {
                         jsonFile.push({
                             productName: obj.productName,
-                            shopName: genFlipitShopName(obj.shopName),
+                            shopName: exportFile.exportShopNames(obj.shopName),
                             type: 'sale',
                             zichtbaarheid: 'DE',
                             uitgeklapt: 0,
@@ -242,8 +226,6 @@ router.route('/getdata/:type/:updated/:deleted')
                             media_id:obj.media_id
                         })
                     }
-
-
                 }
 
             switch(req.params.type) {

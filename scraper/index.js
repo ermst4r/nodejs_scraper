@@ -49,6 +49,17 @@ var Scraper = function () {
                 flipites.fetchData();
             break;
 
+            case "gutscheincodes":
+                var gutscheincodes = require('./gutscheincodes_de.js');
+                var gutscheincodes = gutscheincodes('localhost:27017/scrapedcontent');
+                gutscheincodes.fetchData();
+            break;
+            case "flipit_de":
+                var flipit_de = require('./flipit_de.js');
+                var flipit_de = flipit_de('localhost:27017/scrapedcontent');
+                flipit_de.fetchData();
+                break;
+
 
 
 

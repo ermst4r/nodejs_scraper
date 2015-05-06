@@ -1,7 +1,8 @@
 var excelbuilder = require('msexcel-builder');
 var fs = require('fs');
 var json2csv = require('json2csv');
-var exportAuteur = 'Arthur Goldman';
+var orginShopname = require('../shopnames/es');
+var objShopname = orginShopname;
 var Export = function () {
 
     this.exportCsv = function (websiteName,jsonFile,res) {
@@ -14,6 +15,18 @@ var Export = function () {
         });
 
     },
+
+        this.exportShopNames = function(string2)
+        {
+            var shopName = false;
+            for(var o=0; o<orginShopname.length; o++) {
+                var smallShopName  = objShopname[o].trim().toLowerCase().replace(/ /g, '');
+                if(smallShopName == string2) {
+                    shopName = objShopname[o]
+                }
+            }
+            return shopName;
+        }
 
 
 
