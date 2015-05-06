@@ -27,7 +27,7 @@ var util = require("util");
 // restore mongo dump
 //   mongoimport --db scrapedcontent please use dump as a foldr
 // mongo multi update: db.test.update({foo: "bar"}, {$set: {test: "success!"}}, false, true)
-
+//
 //scraper.setScraper('flipit_de');
 //var done = scraper.parseWebsite();
 
@@ -60,7 +60,6 @@ var enableCORS = function(req, res, next) {
 //http://localhost:3000/api/updatecode
 router.route('/updatecode')
     .post(function(req, res) {
-
         var oldValue = crypto.createHash('md5').update(req.body.oldValue).digest('hex');
         var newValue = req.body.newValue;
         var dateChange = req.body.dateChange;
@@ -92,8 +91,6 @@ router.route('/delete_code')
                 console.log(err);
             });
         }
-
-
         res.send("done");
 
     });
@@ -102,9 +99,10 @@ router.route('/delete_code')
 
 
 
-router.route('/noflipitdata/')
+router.route('/noflipitdata/:country')
+
     .get(function(req, res) {
-        var jsonQuery = { "website": { $ne: "flipit_es" } };
+        var jsonQuery = { "website": { $ne: "flipit_"+req.params.country } };
         var newDocs = new Array();
         content.find(jsonQuery , function (error, docs) {
             for(var x=0; x<docs.length;x++) {
@@ -117,9 +115,9 @@ router.route('/noflipitdata/')
     });
 
 
-router.route('/getflipitdata/')
+router.route('/getflipitdata/:country')
     .get(function(req, res) {
-        var jsonQuery = {"website":"flipit_es"};
+        var jsonQuery = {"website":"flipit_"+req.params.country };
         var newDocs = new Array();
         content.find(jsonQuery , function (error, docs) {
             for(var x=0; x<docs.length;x++) {
@@ -134,20 +132,21 @@ router.route('/getflipitdata/')
 
 
 // e.g. http://localhost:3000/api/getcontent/cupones
-router.route('/getcontent/:website_name/:updated/:deleted')
+router.route('/getcontent/:website_name/:updated/:deleted/:country')
     .get(function(req, res) {
         var newDocs = new Array;
         if(req.params.updated == -1) {
-            var jsonQuery = {"deleted":parseInt(req.params.deleted)};
+            var jsonQuery = {"country":req.params.country,"deleted":parseInt(req.params.deleted)};
         } else if(req.params.updated == 1) {
-            var jsonQuery = {"updated":1,"deleted":parseInt(req.params.deleted)};
+            var jsonQuery = {"country":req.params.country,"updated":1,"deleted":parseInt(req.params.deleted)};
         } else if(req.params.updated == 0) {
-            var jsonQuery = {"updated":0,"deleted":parseInt(req.params.deleted) };
+            var jsonQuery = {"country":req.params.country,"updated":0,"deleted":parseInt(req.params.deleted) };
         }
 
-        content.find(jsonQuery, {sort:{shopName:1,website:-1},fields : {productUrl:0,_id:0,orginProductName:0}} , function (error, docs) {
+        content.find(jsonQuery, {sort:{shopName:1,website:1},fields : {productUrl:0,_id:0,orginProductName:0}} , function (error, docs) {
                 for(var x=0; x<docs.length;x++) {
                     var obj = docs[x];
+                    console.log(obj.website);
                     newDocs.push({website:obj.website,shopName:obj.shopName,productName:obj.productName,endDate:obj.offerExpireDate});
                 }
             res.json(newDocs);
@@ -167,14 +166,14 @@ router.route('/run_spider/:website_name')
     });
 
 
-router.route('/gethashcontent/:website_name/:updated/:deleted')
+router.route('/gethashcontent/:website_name/:updated/:deleted/:country')
     .get(function(req, res) {
         if(req.params.updated == -1) {
-            var jsonQuery = {"deleted":parseInt(req.params.deleted)};
+            var jsonQuery = {"country":req.params.country,"deleted":parseInt(req.params.deleted)};
         } else if(req.params.updated == 1) {
-            var jsonQuery = {"updated":1,"deleted":parseInt(req.params.deleted)};
+            var jsonQuery = {"country":req.params.country,"updated":1,"deleted":parseInt(req.params.deleted)};
         } else if(req.params.updated == 0) {
-            var jsonQuery = {"updated":0,"deleted":parseInt(req.params.deleted)};
+            var jsonQuery = {"country":req.params.country,"updated":0,"deleted":parseInt(req.params.deleted)};
         }
         var newDocs = new Array();
 
@@ -190,15 +189,15 @@ router.route('/gethashcontent/:website_name/:updated/:deleted')
     });
 
 
-router.route('/getdata/:type/:updated/:deleted')
+router.route('/getdata/:type/:updated/:deleted/:country')
 // get the bear with that id
     .get(function(req, res) {
         if(req.params.updated == -1) {
-            var jsonQuery = {"deleted":parseInt(req.params.deleted)};
+            var jsonQuery = {"country":req.params.country,"deleted":parseInt(req.params.deleted)};
         } else if(req.params.updated == 1) {
-            var jsonQuery = {"updated":1,"deleted":parseInt(req.params.deleted)};
+            var jsonQuery = {"country":req.params.country,"updated":1,"deleted":parseInt(req.params.deleted)};
         } else if(req.params.updated == 0) {
-            var jsonQuery = {"updated":0,"deleted":parseInt(req.params.deleted)};
+            var jsonQuery = {"country":req.params.country,"updated":0,"deleted":parseInt(req.params.deleted)};
         }
         content.find(jsonQuery, { sort:{shopName:1},fields : {productUrl:0,_id:0,orginProductName:0,uid:0,newProductName:0}} , function (error, docs) {
             var jsonFile = new Array;

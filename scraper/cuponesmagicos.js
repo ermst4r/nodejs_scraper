@@ -9,7 +9,7 @@ var websiteName = "cuponesmagicos";
 var media_ids = require('../media_ids/spain');
 var websiteUrl = 'http://www.cuponesmagicos.com/';
 var util = require("util");
-var parsedJSON = require('../shopnames');
+var parsedJSON = require('../shopnames/es');
 var jsonFile = parsedJSON;
 
 var Cuponesmagicos = function () {

@@ -9,7 +9,7 @@ var content = db.get(mongoCollection);
 var websiteName = "flipit_de";
 var websiteUrl = 'http://www.flipit.com/de/';
 var util = require("util");
-var parsedJSON = require('../shopnames/es_match.json');
+var parsedJSON = require('../shopnames/de_match.json');
 var jsonFile = parsedJSON;
 var matching = require('./../models/matching');
 var matching = matching();
@@ -52,6 +52,7 @@ var Flipt_de = function () {
                                     if (isOffer != '0') {
                                         content.count({uid: uid}, function (error, count) {
                                             if (count == 0) {
+                                                if (jsonFile.indexOf(shopName.trim().toLowerCase().replace(/ /g, '')) > 0) {
                                                     var promise = content.insert({
                                                         uid: uid,
                                                         website: websiteName,
@@ -63,13 +64,14 @@ var Flipt_de = function () {
                                                         updated: 0,
                                                         scrapeStartDate: scrapeStartDate,
                                                         deleted: 0,
-                                                        country:"de",
+                                                        country: "de",
                                                         lastUpdated: 0
                                                     });
                                                     promise.on('success', function (err, doc) {
                                                         console.log("essen : " + websiteName);
 
                                                     });
+                                                }
                                                 }
 
                                         });

@@ -16,6 +16,7 @@ MyDate.setMonth(MyDate.getMonth() + 6);
 var finalActionExpireDate = ('0' + MyDate.getDate()).slice(-2) + '-'
     + ('0' + (MyDate.getMonth()+1)).slice(-2) + '-'
     + MyDate.getFullYear();
+var parsedJSON = require('../shopnames/de');
 
 var Gutscheincodes = function () {
 
@@ -81,25 +82,27 @@ var Gutscheincodes = function () {
                                     var uid = crypto.createHash('md5').update(productName).digest('hex');
                                     content.count({uid:uid}, function (error, count) {
                                         if(count == 0 ) {
-                                            var promise = content.insert({
-                                                uid: uid,
-                                                website: websiteName,
-                                                shopName: webshopName.trim().toLowerCase().replace(/ /g, ''),
-                                                productName: productName,
-                                                orginProductName: crypto.createHash('md5').update(productName).digest('hex'),
-                                                newProductName: crypto.createHash('md5').update(productName).digest('hex'),
-                                                orginProductNameUnhashed: productName,
-                                                updated: 0,
-                                                scrapeStartDate: scrapeStartDate,
-                                                offerExpireDate: finalActionExpireDate,
-                                                deleted: 0,
-                                                lastUpdated: 0,
-                                                country:'de'
-                                            });
-                                            promise.on('success', function (err, doc) {
-                                                console.log("essen : " + websiteName);
+                                            if (parsedJSON.indexOf(webshopName.toLowerCase().replace(/ /g, '')) > 0) {
+                                                var promise = content.insert({
+                                                    uid: uid,
+                                                    website: websiteName,
+                                                    shopName: webshopName.trim().toLowerCase().replace(/ /g, ''),
+                                                    productName: productName,
+                                                    orginProductName: crypto.createHash('md5').update(productName).digest('hex'),
+                                                    newProductName: crypto.createHash('md5').update(productName).digest('hex'),
+                                                    orginProductNameUnhashed: productName,
+                                                    updated: 0,
+                                                    scrapeStartDate: scrapeStartDate,
+                                                    offerExpireDate: finalActionExpireDate,
+                                                    deleted: 0,
+                                                    lastUpdated: 0,
+                                                    country: 'de'
+                                                });
+                                                promise.on('success', function (err, doc) {
+                                                    console.log("essen : " + websiteName);
 
-                                            });
+                                                });
+                                            }
 
                                         }
 
