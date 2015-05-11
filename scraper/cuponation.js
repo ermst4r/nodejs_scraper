@@ -38,6 +38,9 @@ var Cuponation = function () {
                 var re = new RegExp('gratis');
                 if(re.test(str.replace(/ /g,'')) == true) {
                     return 128; // media id
+                } else {
+                    var RandGeneralTile = [128,122,126,75,70,186];
+                    return RandGeneralTile[Math.floor(Math.random() * RandGeneralTile.length)];
                 }
 
 
@@ -61,8 +64,6 @@ var Cuponation = function () {
                     var pageUrl =  websiteUrl+coupon.attr('href');
                     var webshopName = coupon.text();
 
-                    // do another request
-                    console.log(pageUrl);
                     request({
                         url:pageUrl
                     }, function(pageErr,pageRes,pageBody) {

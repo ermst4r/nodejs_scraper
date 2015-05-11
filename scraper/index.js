@@ -54,11 +54,19 @@ var Scraper = function () {
                 var gutscheincodes = gutscheincodes('localhost:27017/scrapedcontent');
                 gutscheincodes.fetchData();
             break;
+
+            case "gutscheinsammler":
+                var gutscheinsammler = require('./gutscheinsammler_de.js');
+                var gutscheinsammler = gutscheinsammler('localhost:27017/scrapedcontent');
+                gutscheinsammler.fetchData();
+            break;
+
+
             case "flipit_de":
                 var flipit_de = require('./flipit_de.js');
                 var flipit_de = flipit_de('localhost:27017/scrapedcontent');
                 flipit_de.fetchData();
-                break;
+            break;
 
 
 

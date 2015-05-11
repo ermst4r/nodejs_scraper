@@ -28,8 +28,8 @@ var util = require("util");
 //   mongoimport --db scrapedcontent please use dump as a foldr
 // mongo multi update: db.test.update({foo: "bar"}, {$set: {test: "success!"}}, false, true)
 //
-//scraper.setScraper('flipit_de');
-//var done = scraper.parseWebsite();
+scraper.setScraper('gutscheinsammler');
+var done = scraper.parseWebsite();
 
 // ROUTES FOR OUR API
 // =============================================================================

@@ -38,9 +38,11 @@ var Cupones_es = function () {
             } else {
                 var re = new RegExp('gratis');
                 if(re.test(str.replace(/ /g,'')) == true) {
+
                     return 128; // media id
                 } else {
-                    return 182;
+                    var RandGeneralTile = [128,122,126,75,70,186];
+                    return RandGeneralTile[Math.floor(Math.random() * RandGeneralTile.length)];
                 }
 
 
