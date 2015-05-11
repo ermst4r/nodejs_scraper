@@ -117,7 +117,7 @@ router.route('/noflipitdata/:country')
 
 router.route('/getflipitdata/:country')
     .get(function(req, res) {
-        var jsonQuery = {"website":"flipit_"+req.params.country };
+        var jsonQuery = {"website":"zflipit_"+req.params.country };
         var newDocs = new Array();
         content.find(jsonQuery , function (error, docs) {
             for(var x=0; x<docs.length;x++) {
@@ -143,10 +143,10 @@ router.route('/getcontent/:website_name/:updated/:deleted/:country')
             var jsonQuery = {"country":req.params.country,"updated":0,"deleted":parseInt(req.params.deleted) };
         }
 
-        content.find(jsonQuery, {sort:{shopName:1,website:1},fields : {productUrl:0,_id:0,orginProductName:0}} , function (error, docs) {
+        content.find(jsonQuery, {sort:{shopName:1,website:-1},fields : {productUrl:0,_id:0,orginProductName:0}} , function (error, docs) {
                 for(var x=0; x<docs.length;x++) {
                     var obj = docs[x];
-                    console.log(obj.website);
+
                     newDocs.push({website:obj.website,shopName:obj.shopName,productName:obj.productName,endDate:obj.offerExpireDate});
                 }
             res.json(newDocs);
@@ -155,14 +155,33 @@ router.route('/getcontent/:website_name/:updated/:deleted/:country')
     });
 
 
-
-
 router.route('/run_spider/:website_name')
     .get(function(req, res) {
-
         scraper.setScraper(req.params.website_name);
         var done = scraper.parseWebsite();
         res.send(done);
+    });
+
+
+router.route('/getsrapedates/:country')
+    .get(function(req, res) {
+        var newDocs = new Array;
+        var oldValue = null;
+        var jsonQuery = {"country":req.params.country};
+        content.find(jsonQuery,{sort:{lastUpdated:1}}, function (error, docs) {
+            for(var x=0; x<docs.length;x++) {
+                var obj = docs[x];
+                if(obj.lastUpdated != 0 ) {
+
+                    if(oldValue != obj.lastUpdated ) {
+                        newDocs.push({lastUpdated:obj.lastUpdated});
+                    }
+                     oldValue = obj.lastUpdated;
+                }
+
+            }
+            res.json(newDocs);
+        });
     });
 
 
@@ -189,25 +208,41 @@ router.route('/gethashcontent/:website_name/:updated/:deleted/:country')
     });
 
 
-router.route('/getdata/:type/:updated/:deleted/:country')
+router.route('/getdata/:type/:updated/:deleted/:country/:exportDate')
 // get the bear with that id
     .get(function(req, res) {
-        if(req.params.updated == -1) {
-            var jsonQuery = {"country":req.params.country,"deleted":parseInt(req.params.deleted)};
-        } else if(req.params.updated == 1) {
-            var jsonQuery = {"country":req.params.country,"updated":1,"deleted":parseInt(req.params.deleted)};
-        } else if(req.params.updated == 0) {
-            var jsonQuery = {"country":req.params.country,"updated":0,"deleted":parseInt(req.params.deleted)};
+        var orginShopname = require('./shopnames/'+req.params.country);
+        if(req.params.exportDate  != 0) {
+            if(req.params.updated == -1) {
+                var jsonQuery = {"country":req.params.country,"deleted":parseInt(req.params.deleted),"lastUpdated":req.params.exportDate};
+            } else if(req.params.updated == 1) {
+                var jsonQuery = {"country":req.params.country,"updated":1,"deleted":parseInt(req.params.deleted),"lastUpdated":req.params.exportDate};
+            } else if(req.params.updated == 0) {
+                var jsonQuery = {"country":req.params.country,"updated":0,"deleted":parseInt(req.params.deleted),"lastUpdated":req.params.exportDate};
+            }
         }
+
+        if(req.params.exportDate  == 0)  {
+            if(req.params.updated == -1) {
+                var jsonQuery = {"country":req.params.country,"deleted":parseInt(req.params.deleted)};
+            } else if(req.params.updated == 1) {
+                var jsonQuery = {"country":req.params.country,"updated":1,"deleted":parseInt(req.params.deleted)};
+            } else if(req.params.updated == 0) {
+                var jsonQuery = {"country":req.params.country,"updated":0,"deleted":parseInt(req.params.deleted)};
+            }
+        }
+
+
         content.find(jsonQuery, { sort:{shopName:1},fields : {productUrl:0,_id:0,orginProductName:0,uid:0,newProductName:0}} , function (error, docs) {
             var jsonFile = new Array;
                 for (var y = 0; y < docs.length; y++) {
                     var obj = docs[y];
-                    var shopName  = exportFile.exportShopNames(obj.shopName);
+                    var shopName  = exportFile.exportShopNames(obj.shopName,orginShopname);
+                    console.log(obj.shopName);
                     if(shopName != false) {
                         jsonFile.push({
                             productName: obj.productName,
-                            shopName: exportFile.exportShopNames(obj.shopName),
+                            shopName: exportFile.exportShopNames(obj.shopName,orginShopname),
                             type: 'sale',
                             zichtbaarheid: 'DE',
                             uitgeklapt: 0,

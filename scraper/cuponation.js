@@ -53,8 +53,8 @@ var Cuponation = function () {
             uri: "http://www.cuponation.es/todaslasmarcas"
         }, function(error, response, body) {
             var c = cheerio.load(body);
-            console.log(response.statusCode);
-            c(".cn-alphabet-list .letter a").each(function() {
+
+            c(".cn-alphabet-list ul li a").each(function() {
                 var coupon = c(this);
 
                 if (!error && response.statusCode == 200) {
@@ -62,6 +62,7 @@ var Cuponation = function () {
                     var webshopName = coupon.text();
 
                     // do another request
+                    console.log(pageUrl);
                     request({
                         url:pageUrl
                     }, function(pageErr,pageRes,pageBody) {
@@ -69,23 +70,22 @@ var Cuponation = function () {
                             var date = new Date();
                             var d = cheerio.load(pageBody);
                             var futureTimestamp =86400 * 60;
-                            c
-                            d('.voucher.deal.custom-text').each(function() {
-
-
+                            d('.cn-voucher.deal.action-btn-on-right').each(function() {
                                 var scrapeStartDate = ('0' + date.getDate()).slice(-2) + '-'
                                     + ('0' + (date.getMonth()+1)).slice(-2) + '-'
                                     + date.getFullYear();
-                                var detail = d(this);
-                                if(detail.find('span.alarm-icon').text()!='Caducado') {
-                                    var productName = detail.find('h3').text().replace("-", "").replace("+", "").replace("\"", "");
 
+                                var detail = d(this);
+
+                                if(detail.find('footer span.text').text()=='Ver oferta.') {
+                                    var productName = detail.find('h3').text().replace("-", "").replace("+", "").replace("\"", "");
                                     var siteEndDate = String(detail.attr('data-end-date'));
                                     var endDate = (Date.parse(siteEndDate) / 1000) + futureTimestamp;
                                     var uid = crypto.createHash('md5').update(productName).digest('hex');
-                                    var MyDate = new Date(parseInt(endDate * 1000));
+                                    var MyDate = new Date();
+                                    MyDate.setMonth(MyDate.getMonth() + 6);
                                     var finalActionExpireDate = ('0' + MyDate.getDate()).slice(-2) + '-'
-                                        + ('0' + (MyDate.getMonth() + 1)).slice(-2) + '-'
+                                        + ('0' + (MyDate.getMonth()+1)).slice(-2) + '-'
                                         + MyDate.getFullYear();
 
 
@@ -109,7 +109,7 @@ var Cuponation = function () {
                                                     lastUpdated: 0
                                                 });
                                                 promise.on('success', function (err, doc) {
-                                                    console.log("essen" + websiteName);
+                                                    console.log("essen" + webshopName.trim().toLowerCase().replace(/ /g, ''));
 
                                                 });
                                             }

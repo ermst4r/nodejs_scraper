@@ -6,7 +6,7 @@ var monk = require('monk');
 var trim = require('trim');
 var db = monk(mongoConnectionString);
 var content = db.get(mongoCollection);
-var websiteName = "flipit_es";
+var websiteName = "zflipit_es";
 var websiteUrl = 'http://www.flipit.com/es/';
 var util = require("util");
 var parsedJSON = require('../shopnames/es_match.json');
@@ -28,8 +28,12 @@ var Flipt_es = function () {
         uriPath[2] = 'todas-las-tiendas-k-o';
         uriPath[3] = 'todas-las-tiendas-p-t';
         uriPath[4] = 'todas-las-tiendas-u-z';
+        content.remove({ "website": 'flipit_es' }, function (err) {
+            if (err) throw err;
+        });
+
+
         for (var z = 0; z<uriPath.length;  z++) {
-            console.log('start' +websiteUrl  +uriPath[z] );
             request({
                 uri: websiteUrl + uriPath[z]
             }, function (error, response, body) {
@@ -37,19 +41,19 @@ var Flipt_es = function () {
                     var p = cheerio.load(body);
                     p('.content-holder ul li a').each(function () {
                         var pDetail = p(this);
-                        var shopName = pDetail.text().replace(/^\s+|\s+$/g, '');
-                        console.log(pDetail.attr('href'));
                         request({
                             uri: pDetail.attr('href')
+
                         }, function (pageError, pageResponse, pageBody) {
                             if (!pageError && pageResponse.statusCode == 200) {
                                 var d = cheerio.load(pageBody);
+                                var shopName = d('.radiusImg').attr('alt');
                                 d('.holder.offer-holder').each(function () {
                                     var detail = d(this);
                                     var productName = detail.find('h3 a').text().replace(/^\s+|\s+$/g, '');
-                                    var isOffer = detail.find('.btn-code').attr('vote');
+                                    var isOffer = detail.find('.btn-code').text();
                                     var uid = crypto.createHash('md5').update(productName).digest('hex');
-                                    if (isOffer != '0') {
+                                    if (isOffer.trim().toLowerCase().replace(/ /g, '') == 'verofertaeiralaweb') {
                                         content.count({uid: uid}, function (error, count) {
                                             if (count == 0) {
                                                 if (jsonFile.indexOf(shopName.trim().toLowerCase().replace(/ /g, '')) > 0) {
@@ -58,17 +62,22 @@ var Flipt_es = function () {
                                                         website: websiteName,
                                                         shopName: shopName.trim().toLowerCase().replace(/ /g, ''),
                                                         productName: productName,
-                                                        orginProductName: crypto.createHash('md5').update(productName).digest('hex'),
-                                                        newProductName: crypto.createHash('md5').update(productName).digest('hex'),
-                                                        orginProductNameUnhashed: productName,
+                                                        orginProductName: crypto.createHash('md5').update(productName + websiteName).digest('hex'),
+                                                        newProductName: crypto.createHash('md5').update(productName + websiteName).digest('hex'),
+                                                        orginProductNameUnhashed: productName + websiteName,
                                                         updated: 0,
                                                         scrapeStartDate: scrapeStartDate,
                                                         deleted: 0,
                                                         lastUpdated: 0,
-                                                        country:"es",
+                                                        country: "es",
                                                     });
                                                     promise.on('success', function (err, doc) {
-                                                        console.log("essen : " + websiteName);
+                                                        console.log("essen : " + shopName.trim().toLowerCase().replace(/ /g, ''));
+
+                                                    });
+
+                                                    promise.on('error', function (err, doc) {
+                                                        console.log("error");
 
                                                     });
                                                 }

@@ -95,7 +95,6 @@ var Cupones = function () {
 
                     if(typeof shopName[1] !== "undefined") {
                         var uid = crypto.createHash('md5').update(websiteName+shopName[1].replace("en","")+coupon.find(".coupon-title-link").text()+baseUrl+coupon.find(".coupon-title-link").attr("href")).digest('hex');
-
                         content.count({uid:uid}, function (error, count) {
                             if(count == 0 ) {
                                     if (jsonFile.indexOf(shopName[1].replace("en", "").slice(0, -1).trim().toLowerCase().replace(/ /g, '')) > 0) {
