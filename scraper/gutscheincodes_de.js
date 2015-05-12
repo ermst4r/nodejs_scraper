@@ -7,6 +7,7 @@ var db = monk(mongoConnectionString);
 var content = db.get(mongoCollection);
 var util = require("util");
 var websiteName = 'gutscheincodes';
+var media_ids = require('../media_ids/germany');
 var date = new Date();
 var scrapeStartDate = ('0' + date.getDate()).slice(-2) + '-'
     + ('0' + (date.getMonth()+1)).slice(-2) + '-'
@@ -17,41 +18,12 @@ var finalActionExpireDate = ('0' + MyDate.getDate()).slice(-2) + '-'
     + ('0' + (MyDate.getMonth()+1)).slice(-2) + '-'
     + MyDate.getFullYear();
 var parsedJSON = require('../shopnames/de');
+var matching = require('../models/matching');
+matching = matching();
 
 var Gutscheincodes = function () {
 
-    var mediaMatching = function(productName)   // Only visible inside Restaurant()
-    {
-        for(var i =0; i<media_ids.length; i++) {
-            var obj = media_ids[i];
-            var str = productName;
-            var numbers = str.match(/\d+/g);
-            if(numbers != null) {
-                for(var x =0; x <numbers.length; x++) {
-                    var re = new RegExp(numbers[x]+'€')
-                    var re2 = new RegExp(numbers[x]+'%')
-                    if(re.test(str.replace(/ /g,'')) == true) {
-                        if(obj.media_title ==numbers[x] +'€') {
-                            return obj.media_id;
-                        }
-                    }
-                    if(re2.test(str.replace(/ /g,'')) == true) {
-                        if(obj.media_title ==numbers[x] +'%') {
-                            return obj.media_id;
-                        }
-                    }
-                }
-            } else {
-                var re = new RegExp('gratis');
-                if(re.test(str.replace(/ /g,'')) == true) {
-                    return 128; // media id
-                }
 
-
-            }
-
-        }
-    }
 
 
     this.fetchData = function () {
@@ -96,6 +68,7 @@ var Gutscheincodes = function () {
                                                     offerExpireDate: finalActionExpireDate,
                                                     deleted: 0,
                                                     lastUpdated: 0,
+                                                    media_id:  matching.mediaMatchingDe(productName,media_ids),
                                                     country: 'de'
                                                 });
                                                 promise.on('success', function (err, doc) {

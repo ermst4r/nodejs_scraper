@@ -61,11 +61,22 @@ var Scraper = function () {
                 gutscheinsammler.fetchData();
             break;
 
+            case "sparwelt":
+                var sparwelt = require('./sparwelt_de.js');
+                var sparwelt = sparwelt('localhost:27017/scrapedcontent');
+                sparwelt.fetchData();
+                break;
 
             case "flipit_de":
                 var flipit_de = require('./flipit_de.js');
                 var flipit_de = flipit_de('localhost:27017/scrapedcontent');
                 flipit_de.fetchData();
+            break;
+
+            case "gutscheinpony_de":
+                var gutscheinpony_de = require('./gutscheinpony_de.js');
+                var gutscheinpony_de = gutscheinpony_de('localhost:27017/scrapedcontent');
+                gutscheinpony_de.fetchData();
             break;
 
 

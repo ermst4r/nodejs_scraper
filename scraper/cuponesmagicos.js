@@ -11,44 +11,12 @@ var websiteUrl = 'http://www.cuponesmagicos.com/';
 var util = require("util");
 var parsedJSON = require('../shopnames/es');
 var jsonFile = parsedJSON;
+var matching = require('../models/matching');
+matching = matching();
 
 var Cuponesmagicos = function () {
 
-    var mediaMatching = function(productName)   // Only visible inside Restaurant()
-    {
-        for(var i =0; i<media_ids.length; i++) {
-            var obj = media_ids[i];
-            var str = productName;
-            var numbers = str.match(/\d+/g);
-            if(numbers != null) {
-                for(var x =0; x <numbers.length; x++) {
-                    var re = new RegExp(numbers[x]+'€')
-                    var re2 = new RegExp(numbers[x]+'%')
-                    if(re.test(str.replace(/ /g,'')) == true) {
-                        if(obj.media_title ==numbers[x] +'€') {
-                            return obj.media_id;
-                        }
-                    }
-                    if(re2.test(str.replace(/ /g,'')) == true) {
-                        if(obj.media_title ==numbers[x] +'%') {
-                            return obj.media_id;
-                        }
-                    }
-                }
-            } else {
-                var re = new RegExp('gratis');
-                if(re.test(str.replace(/ /g,'')) == true) {
-                    return 128; // media id
-                } else {
-                    var RandGeneralTile = [128,122,126,75,70,186];
-                    return RandGeneralTile[Math.floor(Math.random() * RandGeneralTile.length)];
-                }
 
-
-            }
-
-        }
-    }
 
 
     this.fetchData = function () {
@@ -106,7 +74,7 @@ var Cuponesmagicos = function () {
                                                     offerExpireDate: finalActionExpireDate,
                                                     deleted: 0,
                                                     country:"es",
-                                                    media_id: (mediaMatching(productName)==null) ? 182 : mediaMatching(productName),
+                                                    media_id:  matching.mediaMatchingEs(productName,media_ids),
                                                     lastUpdated: 0
                                                 });
                                                 promise.on('success', function (err, doc) {
