@@ -79,6 +79,12 @@ var Scraper = function () {
                 gutscheinpony_de.fetchData();
             break;
 
+            case "cashkaro_in":
+                var cashkaro = require('./cashkaro_in.js');
+                var cashkaro = cashkaro('localhost:27017/scrapedcontent');
+                cashkaro.fetchData();
+            break;
+
 
 
 

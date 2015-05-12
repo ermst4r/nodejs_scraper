@@ -15,14 +15,7 @@ var matching = require('../models/matching');
 matching = matching();
 
 var Cupones_es = function () {
-
-
-
-
     this.fetchData = function () {
-
-
-
         request({
             uri: "http://cupon.es/tiendas"
         }, function(error, response, body) {
