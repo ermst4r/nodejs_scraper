@@ -90,6 +90,11 @@ var Scraper = function () {
                 var cuponation_in = cuponation_in('localhost:27017/scrapedcontent');
                 cuponation_in.fetchData();
             break;
+            case "couponraja_in":
+                var couponraja_in = require('./couponraja_in.js');
+                var couponraja_in = couponraja_in('localhost:27017/scrapedcontent');
+                couponraja_in.fetchData();
+            break;
 
 
 
