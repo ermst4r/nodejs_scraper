@@ -98,6 +98,36 @@ Matching = function () {
     }
 
 
+    this.mediaMatchingIn = function(productName,media_ids)   // Only visible inside Restaurant()
+    {
+        var found = false;
+
+        for(var i =0; i<media_ids.length; i++) {
+            var obj = media_ids[i];
+            var str = productName;
+            var numbers = str.match(/\d+/g);
+
+            if(numbers != null) {
+                for(var x =0; x <numbers.length; x++) {
+                    var re2 = new RegExp(numbers[x]+'%')
+
+                    if(re2.test(str.replace(/ /g,'')) == true) {
+                        if(obj.media_title ==numbers[x] +'%') {
+                            found = true;
+                            return obj.media_id;
+                        }
+                    }
+                }
+            }
+        }
+
+        if(found == false) {
+            var RandGeneralTile = [110,109,91,37,36];
+            return RandGeneralTile[Math.floor(Math.random() * RandGeneralTile.length)];
+        }
+    }
+
+
 
 
 

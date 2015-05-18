@@ -73,6 +73,12 @@ var Scraper = function () {
                 flipit_de.fetchData();
             break;
 
+            case "flipit_in":
+                var flipit_in = require('./flipit_in.js');
+                var flipit_in = flipit_in('localhost:27017/scrapedcontent');
+                flipit_in.fetchData();
+                break;
+
             case "gutscheinpony_de":
                 var gutscheinpony_de = require('./gutscheinpony_de.js');
                 var gutscheinpony_de = gutscheinpony_de('localhost:27017/scrapedcontent');
@@ -94,6 +100,12 @@ var Scraper = function () {
                 var couponraja_in = require('./couponraja_in.js');
                 var couponraja_in = couponraja_in('localhost:27017/scrapedcontent');
                 couponraja_in.fetchData();
+            break;
+
+            case "couponzguru_in":
+                var couponzguru_in = require('./couponzguru_in.js');
+                var couponzguru_in = couponzguru_in('localhost:27017/scrapedcontent');
+                couponzguru_in.fetchData();
             break;
 
 

@@ -7,7 +7,7 @@ var db = monk(mongoConnectionString);
 var content = db.get(mongoCollection);
 var util = require("util");
 var websiteName = 'cashkaro';
-var media_ids = require('../media_ids/germany');
+var media_ids = require('../media_ids/india');
 var websiteUrl  ='http://www.cashkaro.com';
 var date = new Date();
 var scrapeStartDate = ('0' + date.getDate()).slice(-2) + '-'
@@ -70,6 +70,7 @@ var Cashkaro = function () {
                                             updated: 0,
                                             scrapeStartDate: scrapeStartDate,
                                             offerExpireDate: finalActionExpireDate,
+                                            media_id:  matching.mediaMatchingIn(productName,media_ids),
                                             deleted: 0,
                                             lastUpdated: 0,
                                             country: 'in'

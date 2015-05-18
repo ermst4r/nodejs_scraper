@@ -6,46 +6,41 @@ var monk = require('monk');
 var db = monk(mongoConnectionString);
 var content = db.get(mongoCollection);
 var util = require("util");
-var websiteName = 'couponraja';
+var websiteName = 'couponzguru';
 var media_ids = require('../media_ids/india');
-var websiteUrl  ='http://www.couponraja.in/';
+var websiteUrl  ='http://www.couponzguru.com';
 var date = new Date();
 var MyDate = new Date();
 var scrapeStartDate = ('0' + date.getDate()).slice(-2) + '-'
     + ('0' + (date.getMonth()+1)).slice(-2) + '-'
     + date.getFullYear();
-var matching = require('../models/matching');
-matching = matching();
 var finalActionExpireDate = ('0' + MyDate.getDate()).slice(-2) + '-'
     + ('0' + (MyDate.getMonth()+1)).slice(-2) + '-'
     + MyDate.getFullYear();
 
-
-var Couponraja = function () {
-
+var matching = require('../models/matching');
+matching = matching();
+var Couponzguru = function () {
     this.fetchData = function () {
-        var headers = {
-            'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.152 Safari/537.36'
-        }
         request({
-            uri: "http://www.couponraja.in/controls/allstoresproxy.aspx?character=all"
+            uri: "http://www.couponzguru.com/store-list"
         }, function(error, response, body) {
             var c = cheerio.load(body);
-            c("ul li").each(function () {
+            c(".alphabet li").each(function() {
                 var siteCoupon = c(this);
-                var webshopName = siteCoupon.find('a').text().trim();
+                var webshopName = siteCoupon.find('a').text();
                 request({
-                    uri: siteCoupon.find('a').attr('href'),
-                    headers: headers
+                    uri: siteCoupon.find('a').attr('href')
                 }, function(pageError, pageResponse, pageBody) {
-                    console.log(siteCoupon.find('a').attr('href'));
+
                     if(!pageError && pageResponse.statusCode==200) {
                         var d = cheerio.load(pageBody);
-                        d(".coupon-sec").each(function() {
+                        d(".coupon-list").each(function() {
                             var pageDetail = d(this);
-                            if(pageDetail.find('.cpn-code').text() =='Get Deal') {
-                                var productName = pageDetail.find('.ofr-descp').text();
+                            if(pageDetail.find('.btn.btn-info.btn-embossed.btn-block').text()=='Get This Deal') {
+                                var productName = pageDetail.find('.coupon-description p').text();
                                 var uid = crypto.createHash('md5').update(productName).digest('hex');
+                                console.log(productName);
                                 content.count({uid:uid}, function (error, count) {
                                     if(count == 0 ) {
                                         var promise = content.insert({
@@ -69,21 +64,22 @@ var Couponraja = function () {
 
                                         });
                                     }
-                                });
-
-
+                               });
                             }
+
 
                         });
                     }
 
-
                 });
 
 
-            });
-        });
 
+            });
+
+
+
+        });
 
 
 
@@ -96,6 +92,6 @@ var Couponraja = function () {
 };
 
 module.exports = function () {
-    var instance = new Couponraja();
+    var instance = new Couponzguru();
     return instance;
 };

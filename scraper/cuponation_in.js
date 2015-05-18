@@ -6,7 +6,7 @@ var monk = require('monk');
 var db = monk(mongoConnectionString);
 var content = db.get(mongoCollection);
 var websiteName = "cuponation_in";
-var media_ids = require('../media_ids/spain');
+var media_ids = require('../media_ids/india');
 var websiteUrl = 'http://www.cuponation.in';
 var util = require("util");
 var parsedJSON = require('../shopnames');
@@ -71,7 +71,7 @@ var Cuponation_in = function () {
                                                     offerExpireDate: finalActionExpireDate,
                                                     deleted: 0,
                                                     country:"in",
-                                                    media_id:  matching.mediaMatchingEs(productName,media_ids),
+                                                    media_id:  matching.mediaMatchingIn(productName,media_ids),
                                                     lastUpdated: 0
                                                 });
                                                 promise.on('success', function (err, doc) {
