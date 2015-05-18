@@ -28,7 +28,7 @@ var util = require("util");
 //   mongoimport --db scrapedcontent please use dump as a foldr
 // mongo multi update: db.test.update({foo: "bar"}, {$set: {test: "success!"}}, false, true)
 //
-scraper.setScraper('cashkaro_in');
+scraper.setScraper('cuponation_in');
 var done = scraper.parseWebsite();
 
 // ROUTES FOR OUR API

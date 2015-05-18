@@ -85,6 +85,12 @@ var Scraper = function () {
                 cashkaro.fetchData();
             break;
 
+            case "cuponation_in":
+                var cuponation_in = require('./cuponation_in.js');
+                var cuponation_in = cuponation_in('localhost:27017/scrapedcontent');
+                cuponation_in.fetchData();
+            break;
+
 
 
 
