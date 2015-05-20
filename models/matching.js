@@ -12,41 +12,55 @@ Matching = function () {
     };
 
 
+    this.matchingFactory = function(country,productName,mediaIds)
+    {
+        switch(country) {
+            case 'es':
+                return this.mediaMatchingEs(productName,mediaIds)
+            break;
+
+            case 'de':
+                return this.mediaMatchingDe(productName,mediaIds)
+            break;
+
+            case 'in':
+                return this.mediaMatchingIn(productName,mediaIds)
+            break;
+        }
+    },
+
+    this.loadMediaIds = function(country)
+    {
+        switch(country) {
+            case 'es':
+                var media_ids = require('../media_ids/spain');
+            break;
+            case 'de':
+                var media_ids = require('../media_ids/germany');
+            break;
+            case 'in':
+                var media_ids = require('../media_ids/india');
+            break;
+        }
+
+        return media_ids;
+
+    },
+
+
     this.mediaMatchingDe = function(productName,media_ids)   // Only visible inside Restaurant()
     {
         var found = false;
 
         for(var i =0; i<media_ids.length; i++) {
             var obj = media_ids[i];
-            var str = productName;
-            var numbers = str.match(/\d+/g);
-
-            if(numbers != null) {
-                for(var x =0; x <numbers.length; x++) {
-                    var re = new RegExp(numbers[x]+'€')
-                    var re2 = new RegExp(numbers[x]+'%')
-                    if(re.test(str.replace(/ /g,'')) == true) {
-                        if(obj.media_title ==numbers[x] +'€') {
-                            found = true;
-                            return obj.media_id;
-                        }
-                    }
-                    if(re2.test(str.replace(/ /g,'')) == true) {
-                        if(obj.media_title ==numbers[x] +'%') {
-                            found = true;
-                            return obj.media_id;
-                        }
-                    }
-                }
-            } else {
-                var re = new RegExp('gratis');
-                if(re.test(str.replace(/ /g,'')) == true) {
-                    found = true;
-                    return 114; // media id
-                }
+            var re = new RegExp('^(.*?('+String(obj.media_title).toLowerCase()+')[^$]*)$');
+            var result = re.exec(productName.toLowerCase());
+            if(result != null) {
+                found = true;
+                return obj.media_id;
             }
         }
-
         if(found == false) {
             var RandGeneralTile = [117,118,119,120,121,146];
             return RandGeneralTile[Math.floor(Math.random() * RandGeneralTile.length)];
@@ -62,32 +76,11 @@ Matching = function () {
 
         for(var i =0; i<media_ids.length; i++) {
             var obj = media_ids[i];
-            var str = productName;
-            var numbers = str.match(/\d+/g);
-
-            if(numbers != null) {
-                for(var x =0; x <numbers.length; x++) {
-                    var re = new RegExp(numbers[x]+'€')
-                    var re2 = new RegExp(numbers[x]+'%')
-                    if(re.test(str.replace(/ /g,'')) == true) {
-                        if(obj.media_title ==numbers[x] +'€') {
-                            found = true;
-                            return obj.media_id;
-                        }
-                    }
-                    if(re2.test(str.replace(/ /g,'')) == true) {
-                        if(obj.media_title ==numbers[x] +'%') {
-                            found = true;
-                            return obj.media_id;
-                        }
-                    }
-                }
-            } else {
-                var re = new RegExp('gratis');
-                if(re.test(str.replace(/ /g,'')) == true) {
-                    found = true;
-                    return 128; // media id
-                }
+            var re = new RegExp('^(.*?('+String(obj.media_title).toLowerCase()+')[^$]*)$');
+            var result = re.exec(productName.toLowerCase());
+            if(result != null) {
+                found = true;
+                return obj.media_id;
             }
         }
 
@@ -104,23 +97,13 @@ Matching = function () {
 
         for(var i =0; i<media_ids.length; i++) {
             var obj = media_ids[i];
-            var str = productName;
-            var numbers = str.match(/\d+/g);
-
-            if(numbers != null) {
-                for(var x =0; x <numbers.length; x++) {
-                    var re2 = new RegExp(numbers[x]+'%')
-
-                    if(re2.test(str.replace(/ /g,'')) == true) {
-                        if(obj.media_title ==numbers[x] +'%') {
-                            found = true;
-                            return obj.media_id;
-                        }
-                    }
-                }
+            var re = new RegExp('^(.*?('+String(obj.media_title).toLowerCase()+')[^$]*)$');
+            var result = re.exec(productName.toLowerCase());
+            if(result != null) {
+                found = true;
+                return obj.media_id;
             }
         }
-
         if(found == false) {
             var RandGeneralTile = [110,109,91,37,36];
             return RandGeneralTile[Math.floor(Math.random() * RandGeneralTile.length)];

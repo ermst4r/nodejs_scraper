@@ -22,6 +22,20 @@ var exportAuteur = 'Arthur Goldman';
 var scraper = scraper();
 var exportFile = exportFile();
 var util = require("util");
+var matching = require('./models/matching');
+matching = matching();
+
+
+//var myString = "Oferta México desde novedad aap noot mies jood";
+//var myRegexp = /^(.*?(\b\b)[^$]*)$/;
+//var res = myString.match(myRegexp);
+//console.log(res[2])
+
+//var variabl = '20%';
+//var pName = 'Descuento: Hasta 20% en los mejores juguetes infantiles Gran Variedad';
+//var re = new RegExp('^(.*?(20%)[^$]*)$');
+//console.log(re.exec(pName.toLowerCase()));
+
 
 
 // restore mongo dump
@@ -83,11 +97,11 @@ router.route('/delete_code')
     .post(function(req, res) {
         var oldValue = crypto.createHash('md5').update(req.body.oldValue).digest('hex');
         if(req.body.delete == 1) {
-            content.update({newProductName: oldValue}, {$set : {"deleted":0}}, function(err,doc){
+            content.update({newProductName: oldValue}, {$set : {"deleted":1}}, function(err,doc){
                 console.log(err);
             });
         } else {
-            content.update({newProductName: oldValue}, {$set : {"deleted":1}}, function(err,doc){
+            content.update({newProductName: oldValue}, {$set : {"deleted":0}}, function(err,doc){
                 console.log(err);
             });
         }
@@ -235,6 +249,7 @@ router.route('/getdata/:type/:updated/:deleted/:country/:exportDate')
 
         content.find(jsonQuery, { sort:{shopName:1},fields : {productUrl:0,_id:0,orginProductName:0,uid:0,newProductName:0}} , function (error, docs) {
             var jsonFile = new Array;
+            var mediaIds = matching.loadMediaIds(req.params.country);
                 for (var y = 0; y < docs.length; y++) {
                     var obj = docs[y];
                     var shopName  = exportFile.exportShopNames(obj.shopName,orginShopname);
@@ -257,7 +272,7 @@ router.route('/getdata/:type/:updated/:deleted/:country/:exportDate')
                             offline: 0,
                             created_at: today,
                             deeplink: '',
-                            media_id:obj.media_id
+                            media_id:matching.matchingFactory(req.params.country,obj.productName,mediaIds)
                         })
                     }
                 }
@@ -274,9 +289,6 @@ router.route('/getdata/:type/:updated/:deleted/:country/:exportDate')
                 break;
 
             }
-
-
-
         });
 
     });
