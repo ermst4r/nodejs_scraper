@@ -24,12 +24,14 @@ var finalActionExpireDate = ('0' + MyDate.getDate()).slice(-2) + '-'
 var Couponraja = function () {
 
     this.fetchData = function () {
+
         var headers = {
             'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.152 Safari/537.36'
         }
         request({
             uri: "http://www.couponraja.in/controls/allstoresproxy.aspx?character=all"
         }, function(error, response, body) {
+
             var c = cheerio.load(body);
             c("ul li").each(function () {
                 var siteCoupon = c(this);
@@ -38,14 +40,15 @@ var Couponraja = function () {
                     uri: siteCoupon.find('a').attr('href'),
                     headers: headers
                 }, function(pageError, pageResponse, pageBody) {
-                    console.log(siteCoupon.find('a').attr('href'));
+
                     if(!pageError && pageResponse.statusCode==200) {
                         var d = cheerio.load(pageBody);
-                        d(".coupon-sec").each(function() {
+                        d("#pnlwithcoupon").each(function() {
                             var pageDetail = d(this);
-                            if(pageDetail.find('.cpn-code').text() =='Get Deal') {
-                                var productName = pageDetail.find('.ofr-descp').text();
+                            if(pageDetail.find('.coupon-sec.cpn-code').text() =='Get Deal') {
+                                var productName = pageDetail.find('.coupon-sec.ofr-descp').text();
                                 var uid = crypto.createHash('md5').update(productName).digest('hex');
+                                console.log(productName);
                                 content.count({uid:uid}, function (error, count) {
                                     if(count == 0 ) {
                                         var promise = content.insert({

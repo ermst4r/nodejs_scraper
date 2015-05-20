@@ -70,6 +70,7 @@ var Flipt_es = function () {
                                                         deleted: 0,
                                                         lastUpdated: 0,
                                                         country: "es",
+                                                        flipit:1
                                                     });
                                                     promise.on('success', function (err, doc) {
                                                         console.log("essen : " + shopName.trim().toLowerCase().replace(/ /g, ''));
