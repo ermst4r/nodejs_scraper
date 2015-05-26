@@ -92,6 +92,12 @@ var Scraper = function () {
                 flipit_in.fetchData();
             break;
 
+            case "flipit_sg":
+                var flipit_sg = require('./flipit_sg.js');
+                var flipit_sg = flipit_in('localhost:27017/scrapedcontent');
+                 flipit_sg.fetchData();
+            break;
+
             case "gutscheinpony_de":
                 var gutscheinpony_de = require('./gutscheinpony_de.js');
                 var gutscheinpony_de = gutscheinpony_de('localhost:27017/scrapedcontent');
@@ -124,6 +130,13 @@ var Scraper = function () {
                 var couponzguru_in = couponzguru_in('localhost:27017/scrapedcontent');
                 couponzguru_in.fetchData();
                 parseFlitItWebsite('flipit_in');
+            break;
+
+            case "cuponation_sg":
+                var cuponation_sg = require('./cuponation_sg.js');
+                var cuponation_sg = cuponation_sg('localhost:27017/scrapedcontent');
+                cuponation_sg.fetchData();
+                parseFlitItWebsite('flipit_sg');
             break;
 
 

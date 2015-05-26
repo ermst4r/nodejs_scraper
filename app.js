@@ -26,15 +26,6 @@ var matching = require('./models/matching');
 matching = matching();
 
 
-//var myString = "Oferta México desde novedad aap noot mies jood";
-//var myRegexp = /^(.*?(\b\b)[^$]*)$/;
-//var res = myString.match(myRegexp);
-//console.log(res[2])
-
-//var variabl = '20%';
-//var pName = 'Descuento: Hasta 20% en los mejores juguetes infantiles Gran Variedad';
-//var re = new RegExp('^(.*?(20%)[^$]*)$');
-//console.log(re.exec(pName.toLowerCase()));
 
 
 
@@ -42,8 +33,8 @@ matching = matching();
 //   mongoimport --db scrapedcontent please use dump as a foldr
 // mongo multi update: db.test.update({foo: "bar"}, {$set: {test: "success!"}}, false, true)
 //
-//scraper.setScraper('couponraja_in');
-//var done = scraper.parseWebsite();
+scraper.setScraper('cuponation_sg');
+var done = scraper.parseWebsite();
 
 // ROUTES FOR OUR API
 // =============================================================================

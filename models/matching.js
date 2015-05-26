@@ -26,6 +26,10 @@ Matching = function () {
             case 'in':
                 return this.mediaMatchingIn(productName,mediaIds)
             break;
+
+            case 'sg':
+                return this.mediaMatchingSg(productName,mediaIds)
+            break;
         }
     },
 
@@ -69,7 +73,6 @@ Matching = function () {
 
 
 
-
     this.mediaMatchingEs = function(productName,media_ids)   // Only visible inside Restaurant()
     {
         var found = false;
@@ -106,6 +109,25 @@ Matching = function () {
         }
         if(found == false) {
             var RandGeneralTile = [110,109,91,37,36];
+            return RandGeneralTile[Math.floor(Math.random() * RandGeneralTile.length)];
+        }
+    }
+
+
+    this.mediaMatchingSg = function(productName,media_ids)   // Only visible inside Restaurant()
+    {
+        var found = false;
+        for(var i =0; i<media_ids.length; i++) {
+            var obj = media_ids[i];
+            var re = new RegExp('^(.*?('+String(obj.media_title).toLowerCase()+')[^$]*)$');
+            var result = re.exec(productName.toLowerCase());
+            if(result != null) {
+                found = true;
+                return obj.media_id;
+            }
+        }
+        if(found == false) {
+            var RandGeneralTile = [76,60,91,37,36];
             return RandGeneralTile[Math.floor(Math.random() * RandGeneralTile.length)];
         }
     }
