@@ -58,8 +58,8 @@ Matching = function () {
 
         for(var i =0; i<media_ids.length; i++) {
             var obj = media_ids[i];
-            var re = new RegExp('^(.*?('+String(obj.media_title).toLowerCase()+')[^$]*)$');
-            var result = re.exec(productName.toLowerCase());
+            var re = new RegExp("\\b("+String(obj.media_title).toLowerCase()+")\\b");
+            var result = re.exec(String(productName).replace("€","euro").replace("%","percent").toLowerCase().replace(/(-?\d*\,\d+|\d*\.\d+)/, ""));
             if(result != null) {
                 found = true;
                 return obj.media_id;
@@ -77,10 +77,11 @@ Matching = function () {
     {
         var found = false;
 
+
         for(var i =0; i<media_ids.length; i++) {
             var obj = media_ids[i];
-            var re = new RegExp('^(.*?('+String(obj.media_title).toLowerCase()+')[^$]*)$');
-            var result = re.exec(productName.toLowerCase());
+            var re = new RegExp("\\b("+String(obj.media_title).toLowerCase()+")\\b");
+            var result = re.exec(String(productName).replace("€","euro").replace("%","percent").toLowerCase().replace(/(-?\d*\,\d+|\d*\.\d+)/, ""));
             if(result != null) {
                 found = true;
                 return obj.media_id;
@@ -94,14 +95,17 @@ Matching = function () {
     }
 
 
+
+
+
     this.mediaMatchingIn = function(productName,media_ids)   // Only visible inside Restaurant()
     {
         var found = false;
 
         for(var i =0; i<media_ids.length; i++) {
             var obj = media_ids[i];
-            var re = new RegExp('^(.*?('+String(obj.media_title).toLowerCase()+')[^$]*)$');
-            var result = re.exec(productName.toLowerCase());
+            var re = new RegExp("\\b("+String(obj.media_title).toLowerCase()+")\\b");
+            var result = re.exec(String(productName).replace("€","euro").replace("%","percent").toLowerCase().replace(/(-?\d*\,\d+|\d*\.\d+)/, ""));
             if(result != null) {
                 found = true;
                 return obj.media_id;
@@ -119,8 +123,8 @@ Matching = function () {
         var found = false;
         for(var i =0; i<media_ids.length; i++) {
             var obj = media_ids[i];
-            var re = new RegExp('^(.*?('+String(obj.media_title).toLowerCase()+')[^$]*)$');
-            var result = re.exec(productName.toLowerCase());
+            var re = new RegExp("\\b("+String(obj.media_title).toLowerCase()+")\\b");
+            var result = re.exec(String(productName).replace("€","euro").replace("%","percent").toLowerCase().replace(/(-?\d*\,\d+|\d*\.\d+)/, ""));
             if(result != null) {
                 found = true;
                 return obj.media_id;

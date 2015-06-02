@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4970e438-6bc3-443b-ba85-8dd92a1a3842" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scraper/cuponation_sg.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scraper/flipit_sg.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/shopnames/sg.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/shopnames/sg_match.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/media_ids/singapore.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scraper/index.js" afterPath="$PROJECT_DIR$/scraper/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/media_ids/germany.json" afterPath="$PROJECT_DIR$/media_ids/germany.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/media_ids/india.json" afterPath="$PROJECT_DIR$/media_ids/india.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/matching.js" afterPath="$PROJECT_DIR$/models/matching.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/media_ids/singapore.json" afterPath="$PROJECT_DIR$/media_ids/singapore.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/media_ids/spain.json" afterPath="$PROJECT_DIR$/media_ids/spain.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -39,18 +36,28 @@
       <file leaf-file-name="cuponation_sg.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scraper/cuponation_sg.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1650">
+            <state vertical-scroll-proportion="0.0" vertical-offset="480" max-vertical-offset="1650">
               <caret line="32" column="31" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="flipit_sg.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="flipit_sg.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scraper/flipit_sg.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.82497084" vertical-offset="898" max-vertical-offset="1755">
-              <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="680" max-vertical-offset="1755">
+              <caret line="68" column="108" selection-start-line="68" selection-start-column="108" selection-end-line="68" selection-end-column="108" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="matching.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/matching.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="735" max-vertical-offset="2505">
+              <caret line="66" column="9" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -69,8 +76,18 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4845">
-              <caret line="34" column="2" selection-start-line="34" selection-start-column="2" selection-end-line="34" selection-end-column="2" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="4785">
+              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="spain.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/media_ids/spain.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.0" vertical-offset="0" max-vertical-offset="615">
+              <caret line="16" column="48" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -79,8 +96,28 @@
       <file leaf-file-name="singapore.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/media_ids/singapore.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.75" vertical-offset="0" max-vertical-offset="435">
-              <caret line="22" column="3" selection-start-line="22" selection-start-column="3" selection-end-line="22" selection-end-column="3" />
+            <state vertical-scroll-proportion="-1.3125" vertical-offset="0" max-vertical-offset="435">
+              <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="india.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/media_ids/india.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.9375" vertical-offset="0" max-vertical-offset="405">
+              <caret line="5" column="41" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="germany.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/media_ids/germany.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3080873" vertical-offset="0" max-vertical-offset="779">
+              <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -113,7 +150,6 @@
         <option value="$PROJECT_DIR$/models/export.js" />
         <option value="$PROJECT_DIR$/scraper/sparwelt.js" />
         <option value="$PROJECT_DIR$/scraper/gutscheinpony.js" />
-        <option value="$PROJECT_DIR$/media_ids/germany.json" />
         <option value="$PROJECT_DIR$/models/functions.js" />
         <option value="$PROJECT_DIR$/scraper/sparwelt_de.js" />
         <option value="$PROJECT_DIR$/scraper/gutscheincodes_de.js" />
@@ -128,7 +164,6 @@
         <option value="$PROJECT_DIR$/shopnames/in.json" />
         <option value="$PROJECT_DIR$/shopnames/in_match.js" />
         <option value="$PROJECT_DIR$/shopnames/in_match.json" />
-        <option value="$PROJECT_DIR$/media_ids/india.json" />
         <option value="$PROJECT_DIR$/scraper/cashkaro_in.js" />
         <option value="$PROJECT_DIR$/scraper/couponzguru_in.js" />
         <option value="$PROJECT_DIR$/scraper/cuponation_in.js" />
@@ -138,13 +173,15 @@
         <option value="$PROJECT_DIR$/scraper/flipit_in.js" />
         <option value="$PROJECT_DIR$/shopnames/sg.json" />
         <option value="$PROJECT_DIR$/shopnames/sg_match.json" />
-        <option value="$PROJECT_DIR$/media_ids/spain.json" />
-        <option value="$PROJECT_DIR$/models/matching.js" />
         <option value="$PROJECT_DIR$/scraper/flipit_sg.js" />
         <option value="$PROJECT_DIR$/scraper/index.js" />
-        <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/media_ids/singapore.json" />
         <option value="$PROJECT_DIR$/scraper/cuponation_sg.js" />
+        <option value="$PROJECT_DIR$/media_ids/spain.json" />
+        <option value="$PROJECT_DIR$/models/matching.js" />
+        <option value="$PROJECT_DIR$/media_ids/singapore.json" />
+        <option value="$PROJECT_DIR$/media_ids/india.json" />
+        <option value="$PROJECT_DIR$/media_ids/germany.json" />
+        <option value="$PROJECT_DIR$/app.js" />
       </list>
     </option>
   </component>
@@ -502,7 +539,13 @@
       <option name="project" value="LOCAL" />
       <updated>1432133585629</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="TODO create one scraper for SG">
+      <created>1432638053621</created>
+      <option name="number" value="00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1432638053621</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -511,23 +554,23 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21618743" sideWeight="0.50282484" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33599573" sideWeight="0.49717513" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3434505" sideWeight="0.49717513" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21618743" sideWeight="0.50282484" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32881355" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
     </layout>
@@ -547,7 +590,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="added some api calls" />
     <MESSAGE value="added redo options" />
     <MESSAGE value="added matching algo&#10;" />
     <MESSAGE value="added another country, but now encoding issue with &amp; and +" />
@@ -572,7 +614,8 @@
     <MESSAGE value="added new scrapers" />
     <MESSAGE value="fixed some small issues" />
     <MESSAGE value="fixed some issues" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed some issues" />
+    <MESSAGE value="TODO create one scraper for SG" />
+    <option name="LAST_COMMIT_MESSAGE" value="TODO create one scraper for SG" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -813,25 +856,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/media_ids/india.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37815127" vertical-offset="0" max-vertical-offset="833">
-          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/media_ids/germany.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25210086" vertical-offset="0" max-vertical-offset="833">
-          <caret line="14" column="22" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="570">
           <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -839,15 +867,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="1725">
           <caret line="72" column="64" selection-start-line="72" selection-start-column="64" selection-end-line="72" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/media_ids/spain.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6302521" vertical-offset="0" max-vertical-offset="833">
-          <caret line="35" column="1" selection-start-line="0" selection-start-column="0" selection-end-line="35" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -855,7 +874,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2977191" vertical-offset="3922" max-vertical-offset="4755">
           <caret line="278" column="20" selection-start-line="278" selection-start-column="20" selection-end-line="278" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -863,7 +881,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5024814" vertical-offset="0" max-vertical-offset="4755">
           <caret line="27" column="11" selection-start-line="27" selection-start-column="11" selection-end-line="27" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -871,7 +888,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.87514585" vertical-offset="345" max-vertical-offset="1635">
           <caret line="73" column="37" selection-start-line="73" selection-start-column="37" selection-end-line="73" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -879,7 +895,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15995261" vertical-offset="0" max-vertical-offset="1485">
           <caret line="9" column="32" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -887,7 +902,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.24737456" vertical-offset="868" max-vertical-offset="1725">
           <caret line="72" column="56" selection-start-line="72" selection-start-column="56" selection-end-line="72" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -895,7 +909,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.38506418" vertical-offset="510" max-vertical-offset="1755">
           <caret line="56" column="14" selection-start-line="0" selection-start-column="0" selection-end-line="111" selection-end-column="2" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -903,31 +916,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.45507586" vertical-offset="315" max-vertical-offset="1650">
           <caret line="47" column="44" selection-start-line="0" selection-start-column="0" selection-end-line="104" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/matching.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52508754" vertical-offset="0" max-vertical-offset="2445">
-          <caret line="30" column="65" selection-start-line="30" selection-start-column="65" selection-end-line="30" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4845">
-          <caret line="34" column="2" selection-start-line="34" selection-start-column="2" selection-end-line="34" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/media_ids/singapore.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.75" vertical-offset="0" max-vertical-offset="435">
-          <caret line="22" column="3" selection-start-line="22" selection-start-column="3" selection-end-line="22" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -949,8 +937,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scraper/flipit_sg.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.82497084" vertical-offset="898" max-vertical-offset="1755">
-          <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="680" max-vertical-offset="1755">
+          <caret line="68" column="108" selection-start-line="68" selection-start-column="108" selection-end-line="68" selection-end-column="108" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/matching.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="735" max-vertical-offset="2505">
+          <caret line="66" column="9" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media_ids/spain.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.0" vertical-offset="0" max-vertical-offset="615">
+          <caret line="16" column="48" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media_ids/singapore.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.3125" vertical-offset="0" max-vertical-offset="435">
+          <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media_ids/india.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.9375" vertical-offset="0" max-vertical-offset="405">
+          <caret line="5" column="41" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="4785">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media_ids/germany.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3080873" vertical-offset="0" max-vertical-offset="779">
+          <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
           <folding />
         </state>
       </provider>
