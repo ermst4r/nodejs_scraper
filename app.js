@@ -29,7 +29,7 @@ matching = matching();
 //   mongoimport --db scrapedcontent please use dump as a foldr
 // mongo multi update: db.test.update({foo: "bar"}, {$set: {test: "success!"}}, false, true)
 //
-scraper.setScraper('gutscheine_blick_ch');
+scraper.setScraper('saveup_ch');
 var done = scraper.parseWebsite();
 
 // ROUTES FOR OUR API

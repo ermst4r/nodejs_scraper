@@ -172,6 +172,8 @@ var Scraper = function () {
                 gutscheine_blick_ch.fetchData();
                 parseFlitItWebsite('flipit_ch');
             break;
+
+
         }
     };
 

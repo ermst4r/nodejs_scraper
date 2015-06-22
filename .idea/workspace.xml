@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4970e438-6bc3-443b-ba85-8dd92a1a3842" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scraper/gutscheine_blick_ch.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scraper/gutschein_ch.js" afterPath="$PROJECT_DIR$/scraper/gutschein_ch.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scraper/index.js" afterPath="$PROJECT_DIR$/scraper/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -31,71 +29,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="flipit_de.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scraper/flipit_de.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="1725">
-              <caret line="72" column="64" selection-start-line="0" selection-start-column="0" selection-end-line="109" selection-end-column="2" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="flipit_ch.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scraper/flipit_ch.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1725">
-              <caret line="50" column="76" selection-start-line="50" selection-start-column="76" selection-end-line="50" selection-end-column="76" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cuponesmagicos.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scraper/cuponesmagicos.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="553" max-vertical-offset="1755">
-              <caret line="60" column="37" selection-start-line="60" selection-start-column="37" selection-end-line="87" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scraper/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1843" max-vertical-offset="2880">
-              <caret line="172" column="16" selection-start-line="172" selection-start-column="16" selection-end-line="172" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gutscheine_blick_ch.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/scraper/gutscheine_blick_ch.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.43757293" vertical-offset="0" max-vertical-offset="1440">
-              <caret line="25" column="22" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gutschein_ch.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scraper/gutschein_ch.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="298" max-vertical-offset="1455">
-              <caret line="49" column="31" selection-start-line="49" selection-start-column="31" selection-end-line="75" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4785">
-              <caret line="31" column="39" selection-start-line="31" selection-start-column="39" selection-end-line="31" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.55094784" vertical-offset="0" max-vertical-offset="4785">
+              <caret line="31" column="29" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -109,7 +47,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/routes/todos.js" />
         <option value="$PROJECT_DIR$/shopnames.js" />
         <option value="$PROJECT_DIR$/scraper/media_ids/spain.json" />
         <option value="$PROJECT_DIR$/README.md" />
@@ -157,9 +94,10 @@
         <option value="$PROJECT_DIR$/scraper/cuponation_ch.js" />
         <option value="$PROJECT_DIR$/scraper/gutschein.js" />
         <option value="$PROJECT_DIR$/scraper/gutschein_ch.js" />
-        <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/scraper/index.js" />
         <option value="$PROJECT_DIR$/scraper/gutscheine_blick_ch.js" />
+        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/scraper/saveup_ch.js" />
+        <option value="$PROJECT_DIR$/scraper/index.js" />
       </list>
     </option>
   </component>
@@ -569,7 +507,13 @@
       <option name="project" value="LOCAL" />
       <updated>1434973150488</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="added Gutschein_blick_ch">
+      <created>1434976654257</created>
+      <option name="number" value="00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1434976654257</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -614,7 +558,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="added 2 spiders" />
     <MESSAGE value="added indexof to json file in order to search" />
     <MESSAGE value="added another scraper" />
     <MESSAGE value="fixed cuponation spider&#10;" />
@@ -639,20 +582,14 @@
     <MESSAGE value="fixed matching issue Hi!&#10;                     &#10;                     Could you have a look to this? When there is a price such us 6,50€ the tile of 50€ will be assigned. &#10;" />
     <MESSAGE value="added singapore scrapers" />
     <MESSAGE value="added gutschein" />
-    <option name="LAST_COMMIT_MESSAGE" value="added gutschein" />
+    <MESSAGE value="added Gutschein_blick_ch" />
+    <option name="LAST_COMMIT_MESSAGE" value="added Gutschein_blick_ch" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/index.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="225">
@@ -948,34 +885,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scraper/flipit_de.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="1725">
-          <caret line="72" column="64" selection-start-line="0" selection-start-column="0" selection-end-line="109" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scraper/cuponation_ch.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35005835" vertical-offset="0" max-vertical-offset="1620">
           <caret line="20" column="34" selection-start-line="0" selection-start-column="0" selection-end-line="102" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scraper/flipit_ch.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1725">
-          <caret line="50" column="76" selection-start-line="50" selection-start-column="76" selection-end-line="50" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scraper/cuponesmagicos.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="553" max-vertical-offset="1755">
-          <caret line="60" column="37" selection-start-line="60" selection-start-column="37" selection-end-line="87" selection-end-column="39" />
           <folding />
         </state>
       </provider>
@@ -988,14 +901,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4785">
-          <caret line="31" column="39" selection-start-line="31" selection-start-column="39" selection-end-line="31" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scraper/gutscheincodes_de.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.47257876" vertical-offset="15" max-vertical-offset="1680">
@@ -1004,26 +909,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scraper/gutschein_ch.js">
+    <entry file="file://$PROJECT_DIR$/scraper/gutscheine_blick_ch.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="298" max-vertical-offset="1455">
-          <caret line="49" column="31" selection-start-line="49" selection-start-column="31" selection-end-line="75" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.28004667" vertical-offset="0" max-vertical-offset="1440">
+          <caret line="16" column="22" selection-start-line="0" selection-start-column="0" selection-end-line="90" selection-end-column="2" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scraper/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1843" max-vertical-offset="2880">
-          <caret line="172" column="16" selection-start-line="172" selection-start-column="16" selection-end-line="172" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.43757293" vertical-offset="0" max-vertical-offset="2910">
+          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scraper/gutscheine_blick_ch.js">
+    <entry file="file://$PROJECT_DIR$/scraper/cuponesmagicos.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43757293" vertical-offset="0" max-vertical-offset="1440">
-          <caret line="25" column="22" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.40490082" vertical-offset="553" max-vertical-offset="1755">
+          <caret line="60" column="37" selection-start-line="60" selection-start-column="37" selection-end-line="87" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scraper/flipit_ch.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.87514585" vertical-offset="0" max-vertical-offset="1725">
+          <caret line="50" column="76" selection-start-line="50" selection-start-column="76" selection-end-line="50" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scraper/flipit_de.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8051342" vertical-offset="390" max-vertical-offset="1725">
+          <caret line="72" column="64" selection-start-line="0" selection-start-column="0" selection-end-line="109" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scraper/gutschein_ch.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.50991833" vertical-offset="298" max-vertical-offset="1455">
+          <caret line="49" column="31" selection-start-line="49" selection-start-column="31" selection-end-line="75" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.55094784" vertical-offset="0" max-vertical-offset="4785">
+          <caret line="31" column="29" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
           <folding />
         </state>
       </provider>
