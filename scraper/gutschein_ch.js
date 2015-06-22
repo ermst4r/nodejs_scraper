@@ -83,11 +83,6 @@ var Gutschein_ch = function () {
 
         });
 
-
-
-
-
-
     };
 };
 

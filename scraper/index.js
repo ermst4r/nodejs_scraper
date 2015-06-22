@@ -156,14 +156,21 @@ var Scraper = function () {
                 var cuponation_ch = require('./cuponation_ch.js');
                 var cuponation_ch = cuponation_ch('localhost:27017/scrapedcontent');
                 cuponation_ch.fetchData();
-                parseFlitItWebsite('flipit_sg');
+                parseFlitItWebsite('flipit_ch');
             break;
 
             case "gutschein_ch":
                 var gutschein_ch = require('./gutschein_ch.js');
                 var gutschein_ch = gutschein_ch('localhost:27017/scrapedcontent');
                 gutschein_ch.fetchData();
-                //parseFlitItWebsite('flipit_sg');
+                parseFlitItWebsite('flipit_ch');
+            break;
+
+            case "gutscheine_blick_ch":
+                var gutscheine_blick_ch = require('./gutscheine_blick_ch.js');
+                var gutscheine_blick_ch = gutscheine_blick_ch('localhost:27017/scrapedcontent');
+                gutscheine_blick_ch.fetchData();
+                parseFlitItWebsite('flipit_ch');
             break;
         }
     };
