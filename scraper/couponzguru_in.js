@@ -11,9 +11,7 @@ var media_ids = require('../media_ids/india');
 var websiteUrl  ='http://www.couponzguru.com';
 var date = new Date();
 var MyDate = new Date();
-var scrapeStartDate = ('0' + date.getDate()).slice(-2) + '-'
-    + ('0' + (date.getMonth()+1)).slice(-2) + '-'
-    + date.getFullYear();
+MyDate.setMonth(MyDate.getMonth() + 6);
 var finalActionExpireDate = ('0' + MyDate.getDate()).slice(-2) + '-'
     + ('0' + (MyDate.getMonth()+1)).slice(-2) + '-'
     + MyDate.getFullYear();

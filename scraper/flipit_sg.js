@@ -16,7 +16,7 @@ var matching = matching();
 
 
 
-var Flipit_in = function () {
+var Flipit_sg = function () {
     this.fetchData = function () {
         var date = new Date();
         var scrapeStartDate = ('0' + date.getDate()).slice(-2) + '-'
@@ -36,13 +36,16 @@ var Flipit_in = function () {
 
 
         for (var z = 0; z<uriPath.length;  z++) {
+
             request({
                 uri: websiteUrl + uriPath[z]
             }, function (error, response, body) {
+
                 if (!error && response.statusCode == 200) {
                     var p = cheerio.load(body);
                     p('.content-holder ul li a').each(function () {
                         var pDetail = p(this);
+
                         request({
                             uri: pDetail.attr('href')
 
@@ -55,7 +58,7 @@ var Flipit_in = function () {
                                     var productName = detail.find('h3 a').text().replace(/^\s+|\s+$/g, '');
                                     var isOffer = detail.find('.btn-code').text();
                                     var uid = crypto.createHash('md5').update(productName).digest('hex');
-                                    if (isOffer.trim().toLowerCase().replace(/ /g, '') == 'clicktovisitsale') {
+                                    if (isOffer.trim().toLowerCase().replace(/ /g, '') == 'takemetothesale') {
                                         content.count({uid: uid}, function (error, count) {
                                             if (count == 0) {
                                                 if (jsonFile.indexOf(shopName.trim().toLowerCase().replace(/ /g, '')) > 0) {
@@ -75,7 +78,7 @@ var Flipit_in = function () {
 
                                                     });
                                                     promise.on('success', function (err, doc) {
-                                                        //console.log("essen : " + shopName.trim().toLowerCase().replace(/ /g, ''));
+                                                        console.log("essen : " + shopName.trim().toLowerCase().replace(/ /g, ''));
 
                                                     });
 
@@ -107,6 +110,6 @@ var Flipit_in = function () {
 };
 
 module.exports = function () {
-    var instance = new Flipit_in();
+    var instance = new Flipit_sg();
     return instance;
 };

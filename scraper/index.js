@@ -94,7 +94,7 @@ var Scraper = function () {
 
             case "flipit_sg":
                 var flipit_sg = require('./flipit_sg.js');
-                var flipit_sg = flipit_in('localhost:27017/scrapedcontent');
+                var flipit_sg = flipit_sg('localhost:27017/scrapedcontent');
                  flipit_sg.fetchData();
             break;
 
@@ -136,7 +136,14 @@ var Scraper = function () {
                 var cuponation_sg = require('./cuponation_sg.js');
                 var cuponation_sg = cuponation_sg('localhost:27017/scrapedcontent');
                 cuponation_sg.fetchData();
-                parseFlitItWebsite('flipit_sg');
+               // parseFlitItWebsite('flipit_sg');
+            break;
+
+            case "iprice_sg":
+                var iprice_sg = require('./iprice_sg.js');
+                var iprice_sg = iprice_sg('localhost:27017/scrapedcontent');
+                iprice_sg.fetchData();
+               // parseFlitItWebsite('flipit_sg');
             break;
 
 

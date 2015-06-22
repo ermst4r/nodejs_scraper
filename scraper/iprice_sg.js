@@ -5,28 +5,32 @@ var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk(mongoConnectionString);
 var content = db.get(mongoCollection);
-var websiteName = "cuponation_sg";
+var websiteName = "iprice_sg";
 var media_ids = require('../media_ids/singapore');
-var websiteUrl = 'http://www.cuponation.com.sg';
+var websiteUrl = 'http://www.iprice.sg';
 var util = require("util");
 var parsedJSON = require('../shopnames');
 var jsonFile = parsedJSON;
+var MyDate = new Date();
 var matching = require('../models/matching');
+var MyDate = new Date();
+MyDate.setMonth(MyDate.getMonth() + 6);
+var finalActionExpireDate = ('0' + MyDate.getDate()).slice(-2) + '-'
+    + ('0' + (MyDate.getMonth()+1)).slice(-2) + '-'
+    + MyDate.getFullYear();
+
 matching = matching();
-var Cuponation_sg = function () {
+var Iprice_sg = function () {
     this.fetchData = function () {
         request({
-            uri: "http://www.cuponation.com.sg/allshop"
+            uri: "http://iprice.sg/stores/"
         }, function(error, response, body) {
             var c = cheerio.load(body);
-
-            c(".cn-alphabet-list ul li a").each(function() {
+            c("#stores a").each(function() {
                 var coupon = c(this);
-
                 if (!error && response.statusCode == 200) {
-                    var pageUrl =  websiteUrl+coupon.attr('href');
-                    var webshopName = coupon.text();
-
+                   var webshopName =  String(coupon.find('img').attr('alt')).replace(' Coupons & Discount Codes','');
+                   var pageUrl = websiteUrl+coupon.attr('href');
                     request({
                         url:pageUrl
                     }, function(pageErr,pageRes,pageBody) {
@@ -34,30 +38,21 @@ var Cuponation_sg = function () {
                             var date = new Date();
                             var d = cheerio.load(pageBody);
                             var futureTimestamp =86400 * 60;
-                            d('.cn-voucher.deal.action-btn-on-right').each(function() {
+                            d('.item.active').each(function() {
                                 var scrapeStartDate = ('0' + date.getDate()).slice(-2) + '-'
                                     + ('0' + (date.getMonth()+1)).slice(-2) + '-'
                                     + date.getFullYear();
-
                                 var detail = d(this);
-                                if(detail.find('footer span.text').text()=='View Deal') {
-                                    var productName = detail.find('h3').text().replace("-", "").replace("+", "").replace("\"", "");
-                                    var siteEndDate = String(detail.attr('data-end-date'));
-                                    var endDate = (Date.parse(siteEndDate) / 1000) + futureTimestamp;
+                                if(detail.find('footer a').text().trim() == "Get this Offer") {
+                                    var productName =  detail.find('h3').text().trim();
                                     var uid = crypto.createHash('md5').update(productName).digest('hex');
-                                    var MyDate = new Date();
-                                    MyDate.setMonth(MyDate.getMonth() + 6);
-                                    var finalActionExpireDate = ('0' + MyDate.getDate()).slice(-2) + '-'
-                                        + ('0' + (MyDate.getMonth()+1)).slice(-2) + '-'
-                                        + MyDate.getFullYear();
-                                    content.count({uid: uid}, function (error, count) {
-                                        console.log(websiteName);
-                                        if (count == 0) {
+                                    content.count({uid:uid}, function (error, count) {
+                                        if(count == 0 ) {
                                             var promise = content.insert({
                                                 uid: uid,
                                                 website: websiteName,
                                                 shopName: webshopName.trim().toLowerCase().replace(/ /g, ''),
-                                                productName: productName.toString('UTF-8'),
+                                                productName: productName,
                                                 orginProductName: crypto.createHash('md5').update(productName).digest('hex'),
                                                 newProductName: crypto.createHash('md5').update(productName).digest('hex'),
                                                 orginProductNameUnhashed: productName,
@@ -65,18 +60,15 @@ var Cuponation_sg = function () {
                                                 scrapeStartDate: scrapeStartDate,
                                                 offerExpireDate: finalActionExpireDate,
                                                 deleted: 0,
-                                                country:"sg",
                                                 media_id:  matching.mediaMatchingSg(productName,media_ids),
-                                                lastUpdated: 0
+                                                lastUpdated: 0,
+                                                country: 'sg'
                                             });
                                             promise.on('success', function (err, doc) {
-                                                console.log("essen " + webshopName.trim().toLowerCase().replace(/ /g, ''));
+                                                console.log("essen : " + websiteName);
 
                                             });
                                         }
-
-
-
                                     });
                                 }
 
@@ -84,17 +76,19 @@ var Cuponation_sg = function () {
 
                         }
                     });
-
                 }
 
             });
 
         });
 
+
+
+
     };
 };
 
 module.exports = function () {
-    var instance = new Cuponation_sg();
+    var instance = new Iprice_sg();
     return instance;
 };
