@@ -98,6 +98,12 @@ var Scraper = function () {
                  flipit_sg.fetchData();
             break;
 
+            case "flipit_ch":
+                var flipit_ch = require('./flipit_ch.js');
+                var flipit_ch = flipit_ch('localhost:27017/scrapedcontent');
+                flipit_ch.fetchData();
+            break;
+
             case "gutscheinpony_de":
                 var gutscheinpony_de = require('./gutscheinpony_de.js');
                 var gutscheinpony_de = gutscheinpony_de('localhost:27017/scrapedcontent');
@@ -136,22 +142,30 @@ var Scraper = function () {
                 var cuponation_sg = require('./cuponation_sg.js');
                 var cuponation_sg = cuponation_sg('localhost:27017/scrapedcontent');
                 cuponation_sg.fetchData();
-               // parseFlitItWebsite('flipit_sg');
+                parseFlitItWebsite('flipit_sg');
             break;
 
             case "iprice_sg":
                 var iprice_sg = require('./iprice_sg.js');
                 var iprice_sg = iprice_sg('localhost:27017/scrapedcontent');
                 iprice_sg.fetchData();
-               // parseFlitItWebsite('flipit_sg');
+                 parseFlitItWebsite('flipit_sg');
             break;
 
+            case "cuponation_ch":
+                var cuponation_ch = require('./cuponation_ch.js');
+                var cuponation_ch = cuponation_ch('localhost:27017/scrapedcontent');
+                cuponation_ch.fetchData();
+                parseFlitItWebsite('flipit_sg');
+            break;
 
-
-
+            case "gutschein_ch":
+                var gutschein_ch = require('./gutschein_ch.js');
+                var gutschein_ch = gutschein_ch('localhost:27017/scrapedcontent');
+                gutschein_ch.fetchData();
+                //parseFlitItWebsite('flipit_sg');
+            break;
         }
-
-
     };
 
 
