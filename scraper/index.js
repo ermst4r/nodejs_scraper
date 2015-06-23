@@ -173,6 +173,13 @@ var Scraper = function () {
                 parseFlitItWebsite('flipit_ch');
             break;
 
+            case 'infograz_at':
+                var infograz_at = require('./infograz_at.js');
+                var infograz_at = infograz_at('localhost:27017/scrapedcontent');
+                infograz_at.fetchData();
+            break;
+
+
 
         }
     };
