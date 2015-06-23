@@ -92,6 +92,12 @@ var Scraper = function () {
                 flipit_in.fetchData();
             break;
 
+            case "flipit_at":
+                var flipit_at = require('./flipit_at.js');
+                var flipit_at = flipit_at('localhost:27017/scrapedcontent');
+                flipit_at.fetchData();
+            break;
+
             case "flipit_sg":
                 var flipit_sg = require('./flipit_sg.js');
                 var flipit_sg = flipit_sg('localhost:27017/scrapedcontent');
@@ -177,6 +183,12 @@ var Scraper = function () {
                 var infograz_at = require('./infograz_at.js');
                 var infograz_at = infograz_at('localhost:27017/scrapedcontent');
                 infograz_at.fetchData();
+            break;
+
+            case 'cuponation_at':
+                var cuponation_at = require('./cuponation_at.js');
+                var cuponation_at = cuponation_at('localhost:27017/scrapedcontent');
+                 cuponation_at.fetchData();
             break;
 
 

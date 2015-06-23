@@ -5,29 +5,22 @@ var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk(mongoConnectionString);
 var content = db.get(mongoCollection);
-var websiteName = "cuponation_ch";
+var websiteName = "cuponation_at";
 var media_ids = require('../media_ids/india');
-var websiteUrl = 'http://www.cuponation.ch';
+var websiteUrl = 'http://www.cuponation.at';
 var util = require("util");
 var parsedJSON = require('../shopnames');
 var jsonFile = parsedJSON;
 var matching = require('../models/matching');
 matching = matching();
-var Cuponation_ch = function () {
-
-
-
-
+var Cuponation_at = function () {
     this.fetchData = function () {
-
         request({
-            uri: "http://www.cuponation.ch/alleshops"
+            uri: "http://www.cuponation.at/alleshops"
         }, function(error, response, body) {
             var c = cheerio.load(body);
-
             c(".cn-alphabet-list ul li a").each(function() {
                 var coupon = c(this);
-
                 if (!error && response.statusCode == 200) {
                     var pageUrl =  websiteUrl+coupon.attr('href');
                     var webshopName = coupon.text();
@@ -69,7 +62,7 @@ var Cuponation_ch = function () {
                                                 scrapeStartDate: scrapeStartDate,
                                                 offerExpireDate: finalActionExpireDate,
                                                 deleted: 0,
-                                                country:"ch",
+                                                country:"at",
                                                 lastUpdated: 0
                                             });
                                             promise.on('success', function (err, doc) {
@@ -98,6 +91,6 @@ var Cuponation_ch = function () {
 };
 
 module.exports = function () {
-    var instance = new Cuponation_ch();
+    var instance = new Cuponation_at();
     return instance;
 };
