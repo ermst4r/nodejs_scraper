@@ -29,7 +29,7 @@ matching = matching();
 //   mongoimport --db scrapedcontent please use dump as a foldr
 // mongo multi update: db.test.update({foo: "bar"}, {$set: {test: "success!"}}, false, true)
 //
-scraper.setScraper('valpak_ca');
+scraper.setScraper('bargainmoose_ca');
 var done = scraper.parseWebsite();
 // ROUTES FOR OUR API
 // =============================================================================

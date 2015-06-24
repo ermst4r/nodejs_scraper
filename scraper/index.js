@@ -211,6 +211,12 @@ var Scraper = function () {
                 valpak_ca.fetchData();
             break;
 
+            case 'bargainmoose_ca':
+                var bargainmoose_ca = require('./bargainmoose_ca.js');
+                var bargainmoose_ca = bargainmoose_ca('localhost:27017/scrapedcontent');
+                bargainmoose_ca.fetchData();
+            break;
+
         }
     };
 
