@@ -6,7 +6,7 @@ var monk = require('monk');
 var db = monk(mongoConnectionString);
 var content = db.get(mongoCollection);
 var websiteName = "infograz_at";
-var media_ids = require('../media_ids/singapore');
+var media_ids = require('../media_ids/austria');
 var websiteUrl = 'http://www.info-graz.at';
 var util = require("util");
 var parsedJSON = require('../shopnames');
@@ -60,6 +60,7 @@ var Infograz_at = function () {
                                                 updated: 0,
                                                 scrapeStartDate: scrapeStartDate,
                                                 offerExpireDate: finalActionExpireDate,
+                                                media_id:  matching.mediaMatchingAt(productName,media_ids),
                                                 deleted: 0,
                                                 lastUpdated: 0,
                                                 country: 'at'

@@ -71,11 +71,11 @@ var Flipit_in = function () {
                                                         scrapeStartDate: scrapeStartDate,
                                                         deleted: 0,
                                                         lastUpdated: 0,
-                                                        country: "in",
+                                                        country: "in"
 
                                                     });
                                                     promise.on('success', function (err, doc) {
-                                                        //console.log("essen : " + shopName.trim().toLowerCase().replace(/ /g, ''));
+                                                        console.log("essen : " + shopName.trim().toLowerCase().replace(/ /g, ''));
 
                                                     });
 

@@ -9,7 +9,7 @@ var content = db.get(mongoCollection);
 var websiteName = "zflipit_ch";
 var websiteUrl = 'http://www.flipit.com/ch/';
 var util = require("util");
-var parsedJSON = require('../shopnames/de_match.json');
+var parsedJSON = require('../shopnames/ch_match.json');
 var jsonFile = parsedJSON;
 var matching = require('./../models/matching');
 var matching = matching();
@@ -17,6 +17,7 @@ var matching = matching();
 
 
 var Flipit_ch = function () {
+    console.log('start: ' + websiteName);
     this.fetchData = function () {
         var date = new Date();
         var scrapeStartDate = ('0' + date.getDate()).slice(-2) + '-'
@@ -28,22 +29,21 @@ var Flipit_ch = function () {
         uriPath[2] = 'alle-shops-k-o';
         uriPath[3] = 'alle-shops-p-t';
         uriPath[4] = 'alle-shops-u-z';
-
         content.remove({ "website": websiteName }, function (err) {
             if (err) throw err;
         });
-
         for (var z = 0; z<uriPath.length;  z++) {
             request({
                 uri: websiteUrl + uriPath[z]
             }, function (error, response, body) {
+                console.log(response.statusCode);
                 if (!error && response.statusCode == 200) {
+
                     var p = cheerio.load(body);
                     p('.content-holder ul li a').each(function () {
                         var pDetail = p(this);
                         request({
                             uri: pDetail.attr('href')
-
                         }, function (pageError, pageResponse, pageBody) {
                             if (!pageError && pageResponse.statusCode == 200) {
                                 var d = cheerio.load(pageBody);
@@ -74,9 +74,7 @@ var Flipit_ch = function () {
                                                     });
                                                     promise.on('success', function (err, doc) {
                                                         console.log("essen : " + shopName.trim().toLowerCase().replace(/ /g, ''));
-
                                                     });
-
                                                     promise.on('error', function (err, doc) {
                                                         console.log("error");
 

@@ -13,8 +13,6 @@ var date = new Date();
 var scrapeStartDate = ('0' + date.getDate()).slice(-2) + '-'
     + ('0' + (date.getMonth()+1)).slice(-2) + '-'
     + date.getFullYear();
-
-
 var matching = require('../models/matching');
 matching = matching();
 

@@ -148,7 +148,7 @@ var Scraper = function () {
                 var cuponation_sg = require('./cuponation_sg.js');
                 var cuponation_sg = cuponation_sg('localhost:27017/scrapedcontent');
                 cuponation_sg.fetchData();
-                parseFlitItWebsite('flipit_sg');
+                //arseFlitItWebsite('flipit_sg');
             break;
 
             case "iprice_sg":
@@ -162,7 +162,7 @@ var Scraper = function () {
                 var cuponation_ch = require('./cuponation_ch.js');
                 var cuponation_ch = cuponation_ch('localhost:27017/scrapedcontent');
                 cuponation_ch.fetchData();
-                parseFlitItWebsite('flipit_ch');
+                 parseFlitItWebsite('flipit_ch');
             break;
 
             case "gutschein_ch":
@@ -172,7 +172,7 @@ var Scraper = function () {
                 parseFlitItWebsite('flipit_ch');
             break;
 
-            case "gutscheine_blick_ch":
+            case "gutschein_blick_ch":
                 var gutscheine_blick_ch = require('./gutscheine_blick_ch.js');
                 var gutscheine_blick_ch = gutscheine_blick_ch('localhost:27017/scrapedcontent');
                 gutscheine_blick_ch.fetchData();
@@ -183,12 +183,13 @@ var Scraper = function () {
                 var infograz_at = require('./infograz_at.js');
                 var infograz_at = infograz_at('localhost:27017/scrapedcontent');
                 infograz_at.fetchData();
+                parseFlitItWebsite('flipit_at');
             break;
 
             case 'cuponation_at':
                 var cuponation_at = require('./cuponation_at.js');
                 var cuponation_at = cuponation_at('localhost:27017/scrapedcontent');
-                 cuponation_at.fetchData();
+                parseFlitItWebsite('flipit_at');
             break;
 
 

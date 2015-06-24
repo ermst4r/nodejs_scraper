@@ -6,7 +6,7 @@ var monk = require('monk');
 var db = monk(mongoConnectionString);
 var content = db.get(mongoCollection);
 var websiteName = "gutschein_blick_ch";
-var media_ids = require('../media_ids/india');
+var media_ids = require('../media_ids/swiss');
 var websiteUrl = 'http://gutscheine.blick.ch';
 var util = require("util");
 var parsedJSON = require('../shopnames');
@@ -24,6 +24,7 @@ var finalActionExpireDate = ('0' + MyDate.getDate()).slice(-2) + '-'
     + MyDate.getFullYear();
 
 var Gutschein_blick_ch = function () {
+    console.log('start: ' + websiteName);
     this.fetchData = function () {
         request({
             uri: "http://gutscheine.blick.ch/alle-shops/"
@@ -33,7 +34,6 @@ var Gutschein_blick_ch = function () {
                 var detail = d(this);
                 var shopName = detail.text();
                 var pageUrl = websiteUrl+detail.attr('href');
-                console.log(pageUrl);
                 request({
                     uri: pageUrl
                 }, function(pageError, pageResponse, pageBody) {
@@ -42,11 +42,9 @@ var Gutschein_blick_ch = function () {
                         p('.large-12.columns.retailer article.deal').each(function() {
                             var pDetail = p(this);
                             var productName = pDetail.find('.title').text();
-                            console.log(productName);
                             var uid = crypto.createHash('md5').update(productName).digest('hex');
                             content.count({uid:uid}, function (error, count) {
                                 if(count == 0 ) {
-                                    if (jsonFile.indexOf(shopName.trim().toLowerCase().replace(/ /g, '')) > 0) {
                                         var promise = content.insert({
                                             uid: uid,
                                             website: websiteName,
@@ -67,7 +65,7 @@ var Gutschein_blick_ch = function () {
 
                                         });
                                     }
-                                }
+
 
                             });
                         });

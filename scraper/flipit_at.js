@@ -9,7 +9,7 @@ var content = db.get(mongoCollection);
 var websiteName = "zflipit_at";
 var websiteUrl = 'http://www.flipit.com/at/';
 var util = require("util");
-var parsedJSON = require('../shopnames/de_match.json');
+var parsedJSON = require('../shopnames/at_match.json');
 var jsonFile = parsedJSON;
 var matching = require('./../models/matching');
 var matching = matching();
@@ -41,6 +41,7 @@ var Flipit_at = function () {
                     var p = cheerio.load(body);
                     p('.content-holder ul li a').each(function () {
                         var pDetail = p(this);
+
                         request({
                             uri: pDetail.attr('href')
 

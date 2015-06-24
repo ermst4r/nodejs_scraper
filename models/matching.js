@@ -1,5 +1,4 @@
 var levenshtein = require('levenshtein');
-var parsedJSON = require('../shopnames/es.json');
 Matching = function () {
 
 
@@ -30,6 +29,14 @@ Matching = function () {
             case 'sg':
                 return this.mediaMatchingSg(productName,mediaIds)
             break;
+
+            case 'at':
+                return this.mediaMatchingAt(productName,mediaIds)
+            break;
+
+            case 'ch':
+                return this.mediaMatchingCh(productName,mediaIds)
+            break;
         }
     },
 
@@ -44,6 +51,15 @@ Matching = function () {
             break;
             case 'in':
                 var media_ids = require('../media_ids/india');
+            break;
+            case 'sg':
+                var media_ids = require('../media_ids/singapore');
+            break;
+            case 'at':
+                var media_ids = require('../media_ids/austria');
+            break;
+            case 'ch':
+                var media_ids = require('../media_ids/swiss');
             break;
         }
 
@@ -95,6 +111,27 @@ Matching = function () {
     }
 
 
+    this.mediaMatchingAt = function(productName,media_ids)   // Only visible inside Restaurant()
+    {
+        var found = false;
+
+
+        for(var i =0; i<media_ids.length; i++) {
+            var obj = media_ids[i];
+            var re = new RegExp("\\b("+String(obj.media_title).toLowerCase()+")\\b");
+            var result = re.exec(String(productName).replace("€","euro").replace("%","percent").toLowerCase().replace(/(-?\d*\,\d+|\d*\.\d+)/, ""));
+            if(result != null) {
+                found = true;
+                return obj.media_id;
+            }
+        }
+
+        if(found == false) {
+            var RandGeneralTile = [63,49,47];
+            return RandGeneralTile[Math.floor(Math.random() * RandGeneralTile.length)];
+        }
+    }
+
 
 
 
@@ -132,6 +169,25 @@ Matching = function () {
         }
         if(found == false) {
             var RandGeneralTile = [76,60,91,37,36];
+            return RandGeneralTile[Math.floor(Math.random() * RandGeneralTile.length)];
+        }
+    }
+
+
+    this.mediaMatchingCh = function(productName,media_ids)   // Only visible inside Restaurant()
+    {
+        var found = false;
+        for(var i =0; i<media_ids.length; i++) {
+            var obj = media_ids[i];
+            var re = new RegExp("\\b("+String(obj.media_title).toLowerCase()+")\\b");
+            var result = re.exec(String(productName).replace("€","euro").replace("%","percent").toLowerCase().replace(/(-?\d*\,\d+|\d*\.\d+)/, ""));
+            if(result != null) {
+                found = true;
+                return obj.media_id;
+            }
+        }
+        if(found == false) {
+            var RandGeneralTile = [97,39,35];
             return RandGeneralTile[Math.floor(Math.random() * RandGeneralTile.length)];
         }
     }

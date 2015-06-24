@@ -6,7 +6,7 @@ var monk = require('monk');
 var db = monk(mongoConnectionString);
 var content = db.get(mongoCollection);
 var websiteName = "gutschein_ch";
-var media_ids = require('../media_ids/india');
+var media_ids = require('../media_ids/swiss');
 var websiteUrl = 'http://www.gutschein.ch/';
 var util = require("util");
 var parsedJSON = require('../shopnames');
@@ -28,6 +28,7 @@ var finalActionExpireDate = ('0' + MyDate.getDate()).slice(-2) + '-'
 
 var Gutschein_ch = function () {
     this.fetchData = function () {
+        console.log('start: ' + websiteName);
         request({
             uri: "http://www.gutschein.ch/alle-anbieter/"
         }, function(error, response, body) {
@@ -49,7 +50,7 @@ var Gutschein_ch = function () {
                                 var uid = crypto.createHash('md5').update(productName).digest('hex');
                                 content.count({uid:uid}, function (error, count) {
                                     if(count == 0 ) {
-                                        if (jsonFile.indexOf(shopName.trim().toLowerCase().replace(/ /g, '')) > 0) {
+
                                             var promise = content.insert({
                                                 uid: uid,
                                                 website: websiteName,
@@ -69,7 +70,7 @@ var Gutschein_ch = function () {
                                                 console.log("essen : " + websiteName);
 
                                             });
-                                        }
+
 
                                     }
 

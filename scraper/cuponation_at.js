@@ -6,7 +6,7 @@ var monk = require('monk');
 var db = monk(mongoConnectionString);
 var content = db.get(mongoCollection);
 var websiteName = "cuponation_at";
-var media_ids = require('../media_ids/india');
+var media_ids = require('../media_ids/austria');
 var websiteUrl = 'http://www.cuponation.at';
 var util = require("util");
 var parsedJSON = require('../shopnames');
@@ -36,7 +36,6 @@ var Cuponation_at = function () {
                                 var scrapeStartDate = ('0' + date.getDate()).slice(-2) + '-'
                                     + ('0' + (date.getMonth()+1)).slice(-2) + '-'
                                     + date.getFullYear();
-
                                 var detail = d(this);
                                 if(detail.find('footer span.text').text()=='Deal anzeigen') {
                                     var productName = detail.find('h3').text().replace("-", "").replace("+", "").replace("\"", "");
@@ -50,25 +49,27 @@ var Cuponation_at = function () {
                                         + MyDate.getFullYear();
                                     content.count({uid: uid}, function (error, count) {
                                         if (count == 0) {
-                                            var promise = content.insert({
-                                                uid: uid,
-                                                website: websiteName,
-                                                shopName: webshopName.trim().toLowerCase().replace(/ /g, ''),
-                                                productName: productName.toString('UTF-8'),
-                                                orginProductName: crypto.createHash('md5').update(productName).digest('hex'),
-                                                newProductName: crypto.createHash('md5').update(productName).digest('hex'),
-                                                orginProductNameUnhashed: productName,
-                                                updated: 0,
-                                                scrapeStartDate: scrapeStartDate,
-                                                offerExpireDate: finalActionExpireDate,
-                                                deleted: 0,
-                                                country:"at",
-                                                lastUpdated: 0
-                                            });
-                                            promise.on('success', function (err, doc) {
-                                                console.log("essen " + webshopName.trim().toLowerCase().replace(/ /g, ''));
+                                                var promise = content.insert({
+                                                    uid: uid,
+                                                    website: websiteName,
+                                                    shopName: webshopName.trim().toLowerCase().replace(/ /g, ''),
+                                                    productName: productName.toString('UTF-8'),
+                                                    orginProductName: crypto.createHash('md5').update(productName).digest('hex'),
+                                                    newProductName: crypto.createHash('md5').update(productName).digest('hex'),
+                                                    orginProductNameUnhashed: productName,
+                                                    updated: 0,
+                                                    scrapeStartDate: scrapeStartDate,
+                                                    offerExpireDate: finalActionExpireDate,
+                                                    deleted: 0,
+                                                    country: "at",
+                                                    media_id:  matching.mediaMatchingAt(productName,media_ids),
+                                                    lastUpdated: 0
+                                                });
+                                                promise.on('success', function (err, doc) {
+                                                    console.log("essen " + webshopName.trim().toLowerCase().replace(/ /g, ''));
 
-                                            });
+                                                });
+
                                         }
 
 

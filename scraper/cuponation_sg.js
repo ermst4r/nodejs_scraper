@@ -51,7 +51,6 @@ var Cuponation_sg = function () {
                                         + ('0' + (MyDate.getMonth()+1)).slice(-2) + '-'
                                         + MyDate.getFullYear();
                                     content.count({uid: uid}, function (error, count) {
-                                        console.log(websiteName);
                                         if (count == 0) {
                                             var promise = content.insert({
                                                 uid: uid,
@@ -74,8 +73,6 @@ var Cuponation_sg = function () {
 
                                             });
                                         }
-
-
 
                                     });
                                 }
