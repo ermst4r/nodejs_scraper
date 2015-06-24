@@ -54,7 +54,7 @@ var Gutscheincodes = function () {
                                     var uid = crypto.createHash('md5').update(productName).digest('hex');
                                     content.count({uid:uid}, function (error, count) {
                                         if(count == 0 ) {
-                                            if (parsedJSON.indexOf(webshopName.toLowerCase().replace(/ /g, '')) > 0) {
+
                                                 var promise = content.insert({
                                                     uid: uid,
                                                     website: websiteName,
@@ -77,7 +77,7 @@ var Gutscheincodes = function () {
                                                 });
                                             }
 
-                                        }
+
 
                                     });
 

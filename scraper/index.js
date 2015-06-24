@@ -98,6 +98,12 @@ var Scraper = function () {
                 flipit_at.fetchData();
             break;
 
+            case "flipit_us":
+                var flipit_us = require('./flipit_us.js');
+                var flipit_us = flipit_at('localhost:27017/scrapedcontent');
+                flipit_us.fetchData();
+            break;
+
             case "flipit_sg":
                 var flipit_sg = require('./flipit_sg.js');
                 var flipit_sg = flipit_sg('localhost:27017/scrapedcontent');
@@ -189,10 +195,21 @@ var Scraper = function () {
             case 'cuponation_at':
                 var cuponation_at = require('./cuponation_at.js');
                 var cuponation_at = cuponation_at('localhost:27017/scrapedcontent');
+                cuponation_at.fetchData();
                 parseFlitItWebsite('flipit_at');
             break;
 
+            case 'coupons_us':
+                var coupons_us = require('./coupons_us.js');
+                var coupons_us = coupons_us('localhost:27017/scrapedcontent');
+                retailmenot_us.fetchData();
+            break;
 
+            case 'valpak_ca':
+                var valpak_ca = require('./valpak_ca.js');
+                var valpak_ca = valpak_ca('localhost:27017/scrapedcontent');
+                valpak_ca.fetchData();
+            break;
 
         }
     };

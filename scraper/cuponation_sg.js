@@ -38,7 +38,6 @@ var Cuponation_sg = function () {
                                 var scrapeStartDate = ('0' + date.getDate()).slice(-2) + '-'
                                     + ('0' + (date.getMonth()+1)).slice(-2) + '-'
                                     + date.getFullYear();
-
                                 var detail = d(this);
                                 if(detail.find('footer span.text').text()=='View Deal') {
                                     var productName = detail.find('h3').text().replace("-", "").replace("+", "").replace("\"", "");
