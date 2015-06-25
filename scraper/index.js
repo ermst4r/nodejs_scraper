@@ -212,6 +212,18 @@ var Scraper = function () {
                 coupons_us.fetchData();
             break;
 
+            case 'coupons_us':
+                var coupons_us = require('./coupons_us.js');
+                var coupons_us = coupons_us('localhost:27017/scrapedcontent');
+                coupons_us.fetchData();
+            break;
+
+            case 'braddeals_us':
+                var braddeals_us = require('./braddeals_us.js');
+                var braddeals_us = braddeals_us('localhost:27017/scrapedcontent');
+                braddeals_us.fetchData();
+            break;
+
             case 'valpak_ca':
                 var valpak_ca = require('./valpak_ca.js');
                 var valpak_ca = valpak_ca('localhost:27017/scrapedcontent');

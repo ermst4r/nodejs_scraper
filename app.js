@@ -29,8 +29,8 @@ matching = matching();
 //   mongoimport --db scrapedcontent please use dump as a foldr
 // mongo multi update: db.test.update({foo: "bar"}, {$set: {test: "success!"}}, false, true)
 //
-//scraper.setScraper('bargainmoose_ca');
-//var done = scraper.parseWebsite();
+scraper.setScraper('braddeals_us');
+var done = scraper.parseWebsite();
 // ROUTES FOR OUR API
 // =============================================================================
 var router = express.Router();              // get an instance of the express Router
