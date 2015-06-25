@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4970e438-6bc3-443b-ba85-8dd92a1a3842" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scraper/braddeals_us.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scraper/fatwallet_us.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scraper/valpak_us.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scraper/index.js" afterPath="$PROJECT_DIR$/scraper/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -30,11 +31,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="braddeals_us.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="braddeals_us.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scraper/braddeals_us.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7176196" vertical-offset="240" max-vertical-offset="1350">
-              <caret line="57" column="26" selection-start-line="57" selection-start-column="26" selection-end-line="57" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="1350">
+              <caret line="43" column="28" selection-start-line="43" selection-start-column="28" selection-end-line="65" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -43,8 +44,68 @@
       <file leaf-file-name="coupons_us.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scraper/coupons_us.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="1425">
-              <caret line="44" column="28" selection-start-line="44" selection-start-column="28" selection-end-line="68" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="345" max-vertical-offset="1425">
+              <caret line="35" column="15" selection-start-line="35" selection-start-column="15" selection-end-line="75" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fatwallet_us.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/scraper/fatwallet_us.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6331878" vertical-offset="285" max-vertical-offset="1410">
+              <caret line="48" column="53" selection-start-line="48" selection-start-column="53" selection-end-line="48" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="singapore.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/media_ids/singapore.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.625" vertical-offset="0" max-vertical-offset="435">
+              <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="austria.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/media_ids/austria.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.0" vertical-offset="0" max-vertical-offset="330">
+              <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="flipit_us.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scraper/flipit_us.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="750" max-vertical-offset="1665">
+              <caret line="8" column="29" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="valpak_ca.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scraper/valpak_ca.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1545">
+              <caret line="6" column="38" selection-start-line="0" selection-start-column="0" selection-end-line="97" selection-end-column="2" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="valpak_us.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scraper/valpak_us.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1545">
+              <caret line="13" column="44" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -53,8 +114,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scraper/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2653" max-vertical-offset="3840">
-              <caret line="220" column="30" selection-start-line="220" selection-start-column="18" selection-end-line="220" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2983" max-vertical-offset="4020">
+              <caret line="232" column="27" selection-start-line="232" selection-start-column="18" selection-end-line="232" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -64,7 +125,7 @@
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="4770">
-              <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
+              <caret line="31" column="29" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -78,8 +139,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/shopnames/in.json" />
-        <option value="$PROJECT_DIR$/shopnames/in_match.js" />
         <option value="$PROJECT_DIR$/shopnames/in_match.json" />
         <option value="$PROJECT_DIR$/scraper/cuponation_in.js" />
         <option value="$PROJECT_DIR$/scraper/flipit_es.js" />
@@ -126,9 +185,11 @@
         <option value="$PROJECT_DIR$/scraper/flipit_us.js" />
         <option value="$PROJECT_DIR$/media_ids/unitedstates.json" />
         <option value="$PROJECT_DIR$/scraper/flipit_ca.js" />
+        <option value="$PROJECT_DIR$/scraper/braddeals_us.js" />
+        <option value="$PROJECT_DIR$/scraper/fatwallet_us.js" />
         <option value="$PROJECT_DIR$/scraper/index.js" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/scraper/braddeals_us.js" />
+        <option value="$PROJECT_DIR$/scraper/valpak_us.js" />
       </list>
     </option>
   </component>
@@ -138,8 +199,8 @@
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
-    <option name="width" value="1920" />
-    <option name="height" value="977" />
+    <option name="width" value="1440" />
+    <option name="height" value="807" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -572,11 +633,17 @@
       <option name="project" value="LOCAL" />
       <updated>1435222786684</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="added braddeals scraper">
+      <created>1435225428957</created>
+      <option name="number" value="00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1435225428957</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="977" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="807" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -587,7 +654,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36208734" sideWeight="0.49717513" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29756796" sideWeight="0.49717513" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21618743" sideWeight="0.50282484" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -617,7 +684,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="fixed the flipit es scraper" />
     <MESSAGE value="fixed latest issues" />
     <MESSAGE value="making a start to fix shopNames" />
     <MESSAGE value="fixed some media id's" />
@@ -642,27 +708,14 @@
     <MESSAGE value="add valpak_ca" />
     <MESSAGE value="added bargainmoose" />
     <MESSAGE value="canada / us operational" />
-    <option name="LAST_COMMIT_MESSAGE" value="canada / us operational" />
+    <MESSAGE value="added braddeals scraper" />
+    <option name="LAST_COMMIT_MESSAGE" value="added braddeals scraper" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/layout.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10477299" vertical-offset="0" max-vertical-offset="859">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/error.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.017964073" vertical-offset="0" max-vertical-offset="835">
-          <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shopnames/in.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.06347305" vertical-offset="2557" max-vertical-offset="4020">
@@ -723,13 +776,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.89221555" vertical-offset="2570" max-vertical-offset="3405">
           <caret line="221" column="1" selection-start-line="221" selection-start-column="1" selection-end-line="221" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/media_ids/singapore.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.625" vertical-offset="0" max-vertical-offset="435">
-          <caret line="17" column="40" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -819,13 +865,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/media_ids/austria.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28811523" vertical-offset="0" max-vertical-offset="833">
-          <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shopnames/in_match.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-30.958334" vertical-offset="2677" max-vertical-offset="4020">
@@ -880,13 +919,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5313253" vertical-offset="204" max-vertical-offset="1470">
           <caret line="43" column="55" selection-start-line="43" selection-start-column="55" selection-end-line="43" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scraper/valpak_ca.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4025671" vertical-offset="0" max-vertical-offset="1545">
-          <caret line="23" column="27" selection-start-line="0" selection-start-column="0" selection-end-line="97" selection-end-column="2" />
         </state>
       </provider>
     </entry>
@@ -961,14 +993,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scraper/flipit_us.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6826138" vertical-offset="210" max-vertical-offset="1665">
-          <caret line="53" column="106" selection-start-line="53" selection-start-column="91" selection-end-line="53" selection-end-column="106" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/media_ids/unitedstates.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.28811523" vertical-offset="0" max-vertical-offset="833">
@@ -996,34 +1020,82 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="4770">
-          <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scraper/coupons_us.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="1425">
-          <caret line="44" column="28" selection-start-line="44" selection-start-column="28" selection-end-line="68" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scraper/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2653" max-vertical-offset="3840">
-          <caret line="220" column="30" selection-start-line="220" selection-start-column="18" selection-end-line="220" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="345" max-vertical-offset="1425">
+          <caret line="35" column="15" selection-start-line="35" selection-start-column="15" selection-end-line="75" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scraper/braddeals_us.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7176196" vertical-offset="240" max-vertical-offset="1350">
-          <caret line="57" column="26" selection-start-line="57" selection-start-column="26" selection-end-line="57" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="1350">
+          <caret line="43" column="28" selection-start-line="43" selection-start-column="28" selection-end-line="65" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scraper/valpak_ca.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1545">
+          <caret line="6" column="38" selection-start-line="0" selection-start-column="0" selection-end-line="97" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scraper/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2983" max-vertical-offset="4020">
+          <caret line="232" column="27" selection-start-line="232" selection-start-column="18" selection-end-line="232" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="4770">
+          <caret line="31" column="29" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scraper/valpak_us.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1545">
+          <caret line="13" column="44" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media_ids/singapore.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.625" vertical-offset="0" max-vertical-offset="435">
+          <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media_ids/austria.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.0" vertical-offset="0" max-vertical-offset="330">
+          <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scraper/flipit_us.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="750" max-vertical-offset="1665">
+          <caret line="8" column="29" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scraper/fatwallet_us.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6331878" vertical-offset="285" max-vertical-offset="1410">
+          <caret line="48" column="53" selection-start-line="48" selection-start-column="53" selection-end-line="48" selection-end-column="53" />
           <folding />
         </state>
       </provider>

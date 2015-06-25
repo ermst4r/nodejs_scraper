@@ -224,6 +224,18 @@ var Scraper = function () {
                 braddeals_us.fetchData();
             break;
 
+            case 'fatwallet_us':
+                var fatwallet_us = require('./fatwallet_us.js');
+                var fatwallet_us = fatwallet_us('localhost:27017/scrapedcontent');
+                fatwallet_us.fetchData();
+            break;
+
+            case 'valpak_us':
+                var valpak_us = require('./valpak_us.js');
+                var valpak_us = valpak_us('localhost:27017/scrapedcontent');
+                valpak_us.fetchData();
+            break;
+
             case 'valpak_ca':
                 var valpak_ca = require('./valpak_ca.js');
                 var valpak_ca = valpak_ca('localhost:27017/scrapedcontent');
