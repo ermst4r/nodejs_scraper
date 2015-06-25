@@ -6,17 +6,17 @@ var monk = require('monk');
 var trim = require('trim');
 var db = monk(mongoConnectionString);
 var content = db.get(mongoCollection);
-var websiteName = "zflipit_us";
-var websiteUrl = 'http://www.flipit.com/us/';
+var websiteName = "zflipit_ca";
+var websiteUrl = 'http://www.flipit.com/ca/';
 var util = require("util");
-var parsedJSON = require('../shopnames/us_match.json');
+var parsedJSON = require('../shopnames/ca_match.json');
 var jsonFile = parsedJSON;
 var matching = require('./../models/matching');
 var matching = matching();
 
 
 
-var Flipit_us = function () {
+var Flipit_ca = function () {
     console.log('start: ' + websiteName);
     this.fetchData = function () {
         var date = new Date();
@@ -33,10 +33,13 @@ var Flipit_us = function () {
             if (err) throw err;
         });
         for (var z = 0; z<uriPath.length;  z++) {
+
             request({
                 uri: websiteUrl + uriPath[z]
             }, function (error, response, body) {
+                console.log(response.statusCode);
                 if (!error && response.statusCode == 200) {
+
                     var p = cheerio.load(body);
                     p('.content-holder ul li a').each(function () {
                         var pDetail = p(this);
@@ -51,7 +54,8 @@ var Flipit_us = function () {
                                     var productName = detail.find('h3 a').text().replace(/^\s+|\s+$/g, '');
                                     var isOffer = detail.find('.btn-code').text();
                                     var uid = crypto.createHash('md5').update(productName).digest('hex');
-                                    if (isOffer.trim().toLowerCase().replace(/ /g, '') == 'takemetothesale') {
+
+                                    if (isOffer.trim().toLowerCase().replace(/ /g, '') == 'clicktovisitsale') {
                                         content.count({uid: uid}, function (error, count) {
                                             if (count == 0) {
                                                 if (jsonFile.indexOf(shopName.trim().toLowerCase().replace(/ /g, '')) > 0) {
@@ -67,7 +71,7 @@ var Flipit_us = function () {
                                                         scrapeStartDate: scrapeStartDate,
                                                         deleted: 0,
                                                         lastUpdated: 0,
-                                                        country: "us",
+                                                        country: "ca",
                                                         flipit:1
                                                     });
                                                     promise.on('success', function (err, doc) {
@@ -101,6 +105,6 @@ var Flipit_us = function () {
 };
 
 module.exports = function () {
-    var instance = new Flipit_us();
+    var instance = new Flipit_ca();
     return instance;
 };

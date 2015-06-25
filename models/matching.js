@@ -17,25 +17,26 @@ Matching = function () {
             case 'es':
                 return this.mediaMatchingEs(productName,mediaIds)
             break;
-
             case 'de':
                 return this.mediaMatchingDe(productName,mediaIds)
             break;
-
             case 'in':
                 return this.mediaMatchingIn(productName,mediaIds)
             break;
-
             case 'sg':
                 return this.mediaMatchingSg(productName,mediaIds)
             break;
-
             case 'at':
                 return this.mediaMatchingAt(productName,mediaIds)
             break;
-
             case 'ch':
                 return this.mediaMatchingCh(productName,mediaIds)
+            break;
+            case 'us':
+                return this.mediaMatchingUs(productName,mediaIds)
+            break;
+            case 'ca':
+                return this.mediaMatchingCa(productName,mediaIds)
             break;
         }
     },
@@ -60,6 +61,12 @@ Matching = function () {
             break;
             case 'ch':
                 var media_ids = require('../media_ids/swiss');
+            break;
+            case 'us':
+                var media_ids = require('../media_ids/unitedstates');
+            break;
+            case 'ca':
+                var media_ids = require('../media_ids/canada');
             break;
         }
 
@@ -88,8 +95,48 @@ Matching = function () {
     }
 
 
+    this.mediaMatchingUs = function(productName,media_ids)   // Only visible inside Restaurant()
+    {
+        var found = false;
 
-    this.mediaMatchingEs = function(productName,media_ids)   // Only visible inside Restaurant()
+        for(var i =0; i<media_ids.length; i++) {
+            var obj = media_ids[i];
+            var re = new RegExp("\\b("+String(obj.media_title).toLowerCase()+")\\b");
+            var result = re.exec(String(productName).replace("$","dollar").replace("%","percent").toLowerCase().replace(/(-?\d*\,\d+|\d*\.\d+)/, ""));
+            if(result != null) {
+                found = true;
+                return obj.media_id;
+            }
+        }
+        if(found == false) {
+            var RandGeneralTile = [73];
+            return RandGeneralTile[Math.floor(Math.random() * RandGeneralTile.length)];
+        }
+    }
+
+
+    this.mediaMatchingCa = function(productName,media_ids)   // Only visible inside Restaurant()
+    {
+        var found = false;
+        for (var i = 0; i < media_ids.length; i++) {
+            var obj = media_ids[i];
+            var re = new RegExp("\\b(" + String(obj.media_title).toLowerCase() + ")\\b");
+            var result = re.exec(String(productName).replace("$", "dollar").replace("%", "percent").toLowerCase().replace(/(-?\d*\,\d+|\d*\.\d+)/, ""));
+            if (result != null) {
+                found = true;
+                return obj.media_id;
+            }
+        }
+        if (found == false) {
+            var RandGeneralTile = [94];
+            return RandGeneralTile[Math.floor(Math.random() * RandGeneralTile.length)];
+        }
+
+
+    }
+
+
+        this.mediaMatchingEs = function(productName,media_ids)   // Only visible inside Restaurant()
     {
         var found = false;
 

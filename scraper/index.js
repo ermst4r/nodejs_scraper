@@ -100,9 +100,16 @@ var Scraper = function () {
 
             case "flipit_us":
                 var flipit_us = require('./flipit_us.js');
-                var flipit_us = flipit_at('localhost:27017/scrapedcontent');
+                var flipit_us = flipit_us('localhost:27017/scrapedcontent');
                 flipit_us.fetchData();
             break;
+
+            case "flipit_ca":
+                var flipit_ca = require('./flipit_ca.js');
+                var flipit_ca = flipit_ca('localhost:27017/scrapedcontent');
+                flipit_ca.fetchData();
+            break;
+
 
             case "flipit_sg":
                 var flipit_sg = require('./flipit_sg.js');
@@ -202,7 +209,7 @@ var Scraper = function () {
             case 'coupons_us':
                 var coupons_us = require('./coupons_us.js');
                 var coupons_us = coupons_us('localhost:27017/scrapedcontent');
-                retailmenot_us.fetchData();
+                coupons_us.fetchData();
             break;
 
             case 'valpak_ca':
