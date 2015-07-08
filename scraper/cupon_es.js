@@ -51,8 +51,6 @@ var Cupones_es = function () {
                                         var finalActionExpireDate = ('0' + MyDate.getDate()).slice(-2) + '-'
                                             + ('0' + (MyDate.getMonth()+1)).slice(-2) + '-'
                                             + MyDate.getFullYear();
-
-
                                         var theWebshop = webshopName.replace(/ *\([^)]*\) */g, "");
                                         var uid = crypto.createHash('md5').update(productName).digest('hex');
                                         content.count({uid:uid}, function (error, count) {
@@ -72,7 +70,8 @@ var Cupones_es = function () {
                                                         orginProductNameUnhashed: productName,
                                                         lastUpdated: 0,
                                                         country:"es",
-                                                        media_id:  matching.mediaMatchingEs(productName,media_ids)
+                                                        media_id:  matching.mediaMatchingEs(productName,media_ids),
+                                                        hasCode:0
                                                     });
                                                     promise.on('success', function (err, doc) {
                                                         console.log("essen" + websiteName);
@@ -89,6 +88,11 @@ var Cupones_es = function () {
 
 
                                     }
+                                } else {
+                                    if(offertas=='vercupón') {
+                                        console.log('insert code');
+                                    }
+
                                 }
 
                             });

@@ -44,6 +44,7 @@ var Cuponesmagicos = function () {
                             var p = cheerio.load(pageBody);
                             p('.coupons-list article').each(function() {
                                 var pDetail = p(this);
+                                console.log(pDetail.find('span.clickoutlink').attr('isoffer'));
                                 if(pDetail.find('span.clickoutlink').attr('isoffer')=='true') {
                                     var productName = pDetail.find('span.clickoutlink').attr('data-couponname').trim().replace(/\r?\n|\r/g, " ");
                                     var scrapeStartDate = ('0' + date.getDate()).slice(-2) + '-'
@@ -56,8 +57,6 @@ var Cuponesmagicos = function () {
                                         + ('0' + (MyDate.getMonth()+1)).slice(-2) + '-'
                                         + MyDate.getFullYear();
                                      var uid = crypto.createHash('md5').update(productName).digest('hex');
-                                    console.log(productName);
-
                                      content.count({uid:uid}, function (error, count) {
                                         if(count == 0 ) {
                                             if (jsonFile.indexOf(shopName.trim().toLowerCase().replace(/ /g, '')) > 0) {

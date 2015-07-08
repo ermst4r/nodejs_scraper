@@ -24,17 +24,18 @@ var Cupones = function () {
 
   this.fetchData = function () {
         request({
-    uri: "http://www.cupones.es/cupones-descuento-por-categorias",
+    uri: "http://www.cupones.es/cupones-descuento-por-categorias"
 }, function(error, response, body) {
     var $ = cheerio.load(body);
     var baseUrl = "http://www.cupones.es/";
     var d = new Date();
-    $(".category-list .l-shops-container").each(function() {
+
+    $(".voucher").each(function() {
         var links = $(this);
         request({
-            uri: baseUrl+links.find(".title-link").attr("href"),
+            uri: baseUrl+links.find('a').attr('href')
         }, function(error, response, body) {
-
+            console.log(response.statusCode);
             var $ = cheerio.load(body);
             $(".coupon-item-content").each(function() {
                 var coupon = $(this);
@@ -63,7 +64,6 @@ var Cupones = function () {
 
                 if(coupon.find(".button-text").text()=="Accede a la oferta") {
                     var shopName = coupon.find(".coupon-title-link").text().split("      ");
-
                     if(typeof shopName[1] !== "undefined") {
                         var uid = crypto.createHash('md5').update(websiteName+shopName[1].replace("en","")+coupon.find(".coupon-title-link").text()+baseUrl+coupon.find(".coupon-title-link").attr("href")).digest('hex');
                         content.count({uid:uid}, function (error, count) {
@@ -85,7 +85,8 @@ var Cupones = function () {
                                             deleted: 0,
                                             country:"es",
                                             media_id:  matching.mediaMatchingEs(pName,media_ids),
-                                            lastUpdated: 0
+                                            lastUpdated: 0,
+                                            hasCode:0
                                         });
                                         promise.on('success', function (err, doc) {
                                             console.log(util.inspect(pName));
@@ -101,6 +102,14 @@ var Cupones = function () {
                             }
                          });
                      }
+                } else {
+
+                    // code
+
+                    console.log('code');
+
+
+
                 }
                 });
             });

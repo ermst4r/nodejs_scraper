@@ -77,7 +77,7 @@ var Scraper = function () {
                 var sparwelt = require('./sparwelt_de.js');
                 var sparwelt = sparwelt('localhost:27017/scrapedcontent');
                 sparwelt.fetchData();
-                parseFlitItWebsite('flipit_de');
+                //parseFlitItWebsite('flipit_de');
                 break;
 
             case "flipit_de":

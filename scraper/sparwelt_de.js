@@ -51,9 +51,9 @@ var Sparwelt = function () {
                         d(".teaser.teaser-voucher.status-1 ").each(function() {
                             var detail = d(this);
                             var offerChk = detail.find('.col-xs-12.col-sm-6 span.text').text().replace(/ /g,'').toLowerCase().replace(/\r?\n|\r/g, " ").trim();
+                            var productName = detail.find('span.h3.title').text().trim();
+                            var uid = crypto.createHash('md5').update(productName).digest('hex');
                             if(offerChk=='zumsale' || offerChk=='zumangebot') {
-                                var productName = detail.find('span.h3.title').text().trim();
-                                var uid = crypto.createHash('md5').update(productName).digest('hex');
                                 content.count({uid:uid}, function (error, count) {
                                     if(count == 0 ) {
                                         var promise = content.insert({
@@ -70,14 +70,50 @@ var Sparwelt = function () {
                                             deleted: 0,
                                             media_id:  matching.mediaMatchingDe(productName,media_ids),
                                             lastUpdated: 0,
-                                            country: 'de'
+                                            country: 'de',
+                                            hasCode:0
                                         });
                                         promise.on('success', function (err, doc) {
-                                            console.log("essen : " + websiteName);
+                                            //console.log("essen : " + websiteName);
 
                                         });
                                     }
                                 });
+                            } else {
+                                if(offerChk=='gutscheineinlösen') {
+                                    request({
+                                        uri: "http://www.sparwelt.de/ajax/gutschein-single/"+detail.attr('data-id')+"?utm_var="
+                                    }, function(jsonError, jsonResponse, jsonBody) {
+                                        var parsedJson = JSON.parse(jsonBody);
+                                        content.count({uid:uid}, function (error, count) {
+                                            if(count == 0 ) {
+                                                var promise = content.insert({
+                                                    uid: uid,
+                                                    website: websiteName,
+                                                    shopName: webshopName.trim().toLowerCase().replace(/ /g, ''),
+                                                    productName: productName,
+                                                    orginProductName: crypto.createHash('md5').update(productName).digest('hex'),
+                                                    newProductName: crypto.createHash('md5').update(productName).digest('hex'),
+                                                    orginProductNameUnhashed: productName,
+                                                    updated: 0,
+                                                    scrapeStartDate: scrapeStartDate,
+                                                    offerExpireDate: finalActionExpireDate,
+                                                    deleted: 0,
+                                                    media_id:  matching.mediaMatchingDe(productName,media_ids),
+                                                    lastUpdated: 0,
+                                                    country: 'de',
+                                                    hasCode:1,
+                                                    code:parsedJson.code
+                                                });
+                                                promise.on('success', function (err, doc) {
+                                                    console.log("essen CODE : " + websiteName);
+
+                                                });
+                                            }
+                                        });
+
+                                    });
+                                }
 
 
                             }

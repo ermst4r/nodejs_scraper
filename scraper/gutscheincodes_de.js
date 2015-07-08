@@ -48,13 +48,14 @@ var Gutscheincodes = function () {
 
                             var d = cheerio.load(pageBody);
                             d("ul.detail-list-vendor li").each(function() {
+
                                 var detail = d(this);
+                                console.log(detail.find('footer').text());
                                 if(detail.find('footer').text() =='Rabatt-Aktion') {
                                     var productName = detail.find('.info.has-promotion p').text();
                                     var uid = crypto.createHash('md5').update(productName).digest('hex');
                                     content.count({uid:uid}, function (error, count) {
                                         if(count == 0 ) {
-
                                                 var promise = content.insert({
                                                     uid: uid,
                                                     website: websiteName,

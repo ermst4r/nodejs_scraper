@@ -53,6 +53,7 @@ var Flipt_de = function () {
                                     var productName = detail.find('h3 a').text().replace(/^\s+|\s+$/g, '');
                                     var isOffer = detail.find('.btn-code').text();
                                     var uid = crypto.createHash('md5').update(productName).digest('hex');
+
                                     if (isOffer.trim().toLowerCase().replace(/ /g, '') == 'hierklicken') {
                                         content.count({uid: uid}, function (error, count) {
                                             if (count == 0) {
@@ -70,10 +71,11 @@ var Flipt_de = function () {
                                                         deleted: 0,
                                                         lastUpdated: 0,
                                                         country: "de",
-                                                        flipit:1
+                                                        flipit:1,
+                                                        hasCode:0
                                                     });
                                                     promise.on('success', function (err, doc) {
-                                                        console.log("essen : " + shopName.trim().toLowerCase().replace(/ /g, ''));
+                                                       // console.log("essen : " + shopName.trim().toLowerCase().replace(/ /g, ''));
 
                                                     });
 
@@ -83,6 +85,15 @@ var Flipt_de = function () {
                                                     });
                                                 }
                                             }
+                                        });
+                                    }
+
+                                    if(detail.find('.offer-teaser-button.kccode').text()=='SIEHE CODE') {
+                                        var codeUrl = detail.find('.offer-teaser-button-wrapper-inner a').attr('href')+'&type=code';
+                                        request({
+                                            uri: "http://www.sparwelt.de/ajax/gutschein-single/"+detail.attr('data-id')+"?utm_var="
+                                        }, function(jsonError, jsonResponse, jsonBody) {
+
                                         });
                                     }
 

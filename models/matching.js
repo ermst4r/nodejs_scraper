@@ -152,7 +152,7 @@ Matching = function () {
         }
 
         if(found == false) {
-            var RandGeneralTile = [128,122,126,75,70,186];
+            var RandGeneralTile = [122,126,75,70,186];
             return RandGeneralTile[Math.floor(Math.random() * RandGeneralTile.length)];
         }
     }

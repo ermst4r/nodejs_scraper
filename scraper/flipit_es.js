@@ -28,8 +28,10 @@ var Flipt_es = function () {
         uriPath[2] = 'todas-las-tiendas-k-o';
         uriPath[3] = 'todas-las-tiendas-p-t';
         uriPath[4] = 'todas-las-tiendas-u-z';
-        content.remove({ "website": 'flipit_es' }, function (err) {
+        content.remove({ "website": websiteName }, function (err) {
+            console.log('old data removed');
             if (err) throw err;
+
         });
 
 
@@ -37,7 +39,8 @@ var Flipt_es = function () {
             request({
                 uri: websiteUrl + uriPath[z]
             }, function (error, response, body) {
-                if (!error && response.statusCode == 200) {
+
+                if (response.statusCode == 200) {
                     var p = cheerio.load(body);
                     p('.content-holder ul li a').each(function () {
                         var pDetail = p(this);
@@ -45,6 +48,7 @@ var Flipt_es = function () {
                             uri: pDetail.attr('href')
 
                         }, function (pageError, pageResponse, pageBody) {
+
                             if (!pageError && pageResponse.statusCode == 200) {
                                 var d = cheerio.load(pageBody);
                                 var shopName = d('.radiusImg').attr('alt');
@@ -53,7 +57,7 @@ var Flipt_es = function () {
                                     var productName = detail.find('h3 a').text().replace(/^\s+|\s+$/g, '');
                                     var isOffer = detail.find('.btn-code').text();
                                     var uid = crypto.createHash('md5').update(productName).digest('hex');
-                                    if (isOffer.trim().toLowerCase().replace(/ /g, '') == 'verofertaeiralaweb') {
+                                    if (isOffer.trim().toLowerCase().replace(/ /g, '') == 'verofertaeir') {
                                         content.count({uid: uid}, function (error, count) {
                                             if (count == 0) {
                                                 if (jsonFile.indexOf(shopName.trim().toLowerCase().replace(/ /g, '')) > 0) {
