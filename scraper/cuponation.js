@@ -27,7 +27,6 @@ var Cuponation = function () {
 
             c(".cn-alphabet-list ul li a").each(function() {
                 var coupon = c(this);
-
                 if (!error && response.statusCode == 200) {
                     var pageUrl =  websiteUrl+coupon.attr('href');
                     var webshopName = coupon.text();
