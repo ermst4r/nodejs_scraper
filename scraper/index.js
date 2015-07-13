@@ -277,7 +277,13 @@ var Scraper = function () {
                 var Igaal_fr = require('./igaal.js');
                 var Igaal_fr = Igaal_fr('localhost:27017/scrapedcontent');
                 Igaal_fr.fetchData();
-                break;
+            break;
+
+            case 'radins_fr':
+                var Radins_fr = require('./radins.js');
+                var Radins_fr = Radins_fr('localhost:27017/scrapedcontent');
+                Radins_fr.fetchData();
+            break;
 
         }
     };
