@@ -29,8 +29,8 @@ matching = matching();
 //   mongoimport --db scrapedcontent please use dump as a foldr
 // mongo multi update: db.test.update({foo: "bar"}, {$set: {test: "success!"}}, false, true)
 //
-scraper.setScraper('flipit_de');
-var done = scraper.parseWebsite();
+//scraper.setScraper('flipit_de');
+//var done = scraper.parseWebsite();
 // ROUTES FOR OUR API
 // =============================================================================
 var router = express.Router();              // get an instance of the express Router
@@ -77,6 +77,31 @@ router.route('/updatecode')
 
 });
 
+
+
+//http://localhost:3000/api/updatekortingscode
+router.route('/updatekortingscode')
+    .post(function(req, res) {
+        var oldValue = crypto.createHash('md5').update(req.body.oldValue).digest('hex');
+        var newValue = req.body.newValue;
+        var terms = parseInt(req.body.terms);
+        if(terms == 1) {
+            content.update({newProductName: oldValue,hasCode:1}, {$set : {"updated":1,lastUpdated:today,"terms": newValue}}, function(err,doc){
+                console.log("terms geupdate " + today);
+            });
+        } else {
+            content.update({newProductName: oldValue,hasCode:1}, {$set : {"updated":1,lastUpdated:today,"productName": newValue,newProductName:crypto.createHash('md5').update(newValue).digest('hex')}}, function(err,doc){
+                console.log("gelukt" + today);
+            });
+        }
+
+
+        res.send("done");
+
+    });
+
+
+
 //http://localhost:3000/api/delete_code
 // just set param to 1
 router.route('/delete_code')
@@ -99,7 +124,7 @@ router.route('/delete_code')
 
 
 
-router.route('/noflipitdata/:country')
+router.route('/noflipitdata/:country/')
 
     .get(function(req, res) {
         var jsonQuery = { "website": { $ne: "flipit_"+req.params.country } };
@@ -115,9 +140,10 @@ router.route('/noflipitdata/:country')
     });
 
 
-router.route('/getflipitdata/:country')
+router.route('/getflipitdata/:country/:hasCode')
     .get(function(req, res) {
-        var jsonQuery = {"website":"zflipit_"+req.params.country };
+        var jsonQuery = {"website":"zflipit_"+req.params.country,"hasCode":parseInt(req.params.hasCode) };
+        console.log(jsonQuery);
         var newDocs = new Array();
         content.find(jsonQuery , function (error, docs) {
             for(var x=0; x<docs.length;x++) {
@@ -132,33 +158,37 @@ router.route('/getflipitdata/:country')
 
 
 // e.g. http://localhost:3000/api/getcontent/cupones
-router.route('/getcontent/:website_name/:updated/:deleted/:country/:scrapeDate')
+router.route('/getcontent/:website_name/:updated/:deleted/:country/:scrapeDate/:hasCode')
     .get(function(req, res) {
         var newDocs = new Array;
 
         if(req.params.scrapeDate==0) {
             if(req.params.updated == -1) {
-                var jsonQuery = {"country":req.params.country,"deleted":parseInt(req.params.deleted)};
+                var jsonQuery = {"country":req.params.country,"deleted":parseInt(req.params.deleted),"hasCode":parseInt(req.params.hasCode)};
             } else if(req.params.updated == 1) {
-                var jsonQuery = {"country":req.params.country,"updated":1,"deleted":parseInt(req.params.deleted)};
+                var jsonQuery = {"country":req.params.country,"updated":1,"deleted":parseInt(req.params.deleted),"hasCode":parseInt(req.params.hasCode)};
             } else if(req.params.updated == 0) {
-                var jsonQuery = {"country":req.params.country,"updated":0,"deleted":parseInt(req.params.deleted) };
+                var jsonQuery = {"country":req.params.country,"updated":0,"deleted":parseInt(req.params.deleted) ,"hasCode":parseInt(req.params.hasCode)};
             }
         } else {
             if(req.params.updated == -1) {
-                var jsonQuery = {"country":req.params.country,"deleted":parseInt(req.params.deleted),"scrapeStartDate":req.params.scrapeDate,};
+                var jsonQuery = {"country":req.params.country,"deleted":parseInt(req.params.deleted),"scrapeStartDate":req.params.scrapeDate,"hasCode":parseInt(req.params.hasCode)};
             } else if(req.params.updated == 1) {
-                var jsonQuery = {"country":req.params.country,"updated":1,"deleted":parseInt(req.params.deleted),"scrapeStartDate":req.params.scrapeDate};
+                var jsonQuery = {"country":req.params.country,"updated":1,"deleted":parseInt(req.params.deleted),"scrapeStartDate":req.params.scrapeDate,"hasCode":parseInt(req.params.hasCode)};
             } else if(req.params.updated == 0) {
-                var jsonQuery = {"country":req.params.country,"updated":0,"deleted":parseInt(req.params.deleted) ,"scrapeStartDate":req.params.scrapeDate};
+                var jsonQuery = {"country":req.params.country,"updated":0,"deleted":parseInt(req.params.deleted) ,"scrapeStartDate":req.params.scrapeDate,"hasCode":parseInt(req.params.hasCode)};
             }
         }
 
         content.find(jsonQuery, {sort:{shopName:1,website:-1},fields : {productUrl:0,_id:0,orginProductName:0}} , function (error, docs) {
                 for(var x=0; x<docs.length;x++) {
                     var obj = docs[x];
+                    if(parseInt(req.params.hasCode) == 0 ) {
+                        newDocs.push({website:obj.website,shopName:obj.shopName,productName:obj.productName,endDate:obj.offerExpireDate});
+                    } else {
+                        newDocs.push({website:obj.website,shopName:obj.shopName,productName:obj.productName,endDate:obj.offerExpireDate,code:obj.code,terms:obj.terms});
+                    }
 
-                    newDocs.push({website:obj.website,shopName:obj.shopName,productName:obj.productName,endDate:obj.offerExpireDate});
                 }
             res.json(newDocs);
         });
@@ -196,23 +226,23 @@ router.route('/getsrapedates/:country')
     });
 
 
-router.route('/gethashcontent/:website_name/:updated/:deleted/:country/:scrapeDate')
+router.route('/gethashcontent/:website_name/:updated/:deleted/:country/:scrapeDate/:hasCode')
     .get(function(req, res) {
         if(req.params.scrapeDate==0) {
             if(req.params.updated == -1) {
-                var jsonQuery = {"country":req.params.country,"deleted":parseInt(req.params.deleted)};
+                var jsonQuery = {"country":req.params.country,"deleted":parseInt(req.params.deleted),"hasCode":parseInt(req.params.hasCode)};
             } else if(req.params.updated == 1) {
-                var jsonQuery = {"country":req.params.country,"updated":1,"deleted":parseInt(req.params.deleted)};
+                var jsonQuery = {"country":req.params.country,"updated":1,"deleted":parseInt(req.params.deleted),"hasCode":parseInt(req.params.hasCode)};
             } else if(req.params.updated == 0) {
-                var jsonQuery = {"country":req.params.country,"updated":0,"deleted":parseInt(req.params.deleted)};
+                var jsonQuery = {"country":req.params.country,"updated":0,"deleted":parseInt(req.params.deleted),"hasCode":parseInt(req.params.hasCode)};
             }
         } else {
             if(req.params.updated == -1) {
-                var jsonQuery = {"country":req.params.country,"deleted":parseInt(req.params.deleted),"scrapeStartDate":req.params.scrapeDate};
+                var jsonQuery = {"country":req.params.country,"deleted":parseInt(req.params.deleted),"scrapeStartDate":req.params.scrapeDate,"hasCode":parseInt(req.params.hasCode)};
             } else if(req.params.updated == 1) {
-                var jsonQuery = {"country":req.params.country,"updated":1,"deleted":parseInt(req.params.deleted),"scrapeStartDate":req.params.scrapeDate};
+                var jsonQuery = {"country":req.params.country,"updated":1,"deleted":parseInt(req.params.deleted),"scrapeStartDate":req.params.scrapeDate,"hasCode":parseInt(req.params.hasCode)};
             } else if(req.params.updated == 0) {
-                var jsonQuery = {"country":req.params.country,"updated":0,"deleted":parseInt(req.params.deleted),"scrapeStartDate":req.params.scrapeDate};
+                var jsonQuery = {"country":req.params.country,"updated":0,"deleted":parseInt(req.params.deleted),"scrapeStartDate":req.params.scrapeDate,"hasCode":parseInt(req.params.hasCode)};
             }
         }
 
@@ -230,27 +260,27 @@ router.route('/gethashcontent/:website_name/:updated/:deleted/:country/:scrapeDa
     });
 
 
-router.route('/getdata/:type/:updated/:deleted/:country/:exportDate')
+router.route('/getdata/:type/:updated/:deleted/:country/:exportDate/:hasCode')
 // get the bear with that id
     .get(function(req, res) {
         var orginShopname = require('./shopnames/'+req.params.country);
         if(req.params.exportDate  != 0) {
             if(req.params.updated == -1) {
-                var jsonQuery = {"country":req.params.country,"deleted":parseInt(req.params.deleted),"lastUpdated":req.params.exportDate};
+                var jsonQuery = {"country":req.params.country,"deleted":parseInt(req.params.deleted),"lastUpdated":req.params.exportDate,"hasCode":parseInt(req.params.hasCode)};
             } else if(req.params.updated == 1) {
-                var jsonQuery = {"country":req.params.country,"updated":1,"deleted":parseInt(req.params.deleted),"lastUpdated":req.params.exportDate};
+                var jsonQuery = {"country":req.params.country,"updated":1,"deleted":parseInt(req.params.deleted),"lastUpdated":req.params.exportDate,"hasCode":parseInt(req.params.hasCode)};
             } else if(req.params.updated == 0) {
-                var jsonQuery = {"country":req.params.country,"updated":0,"deleted":parseInt(req.params.deleted),"lastUpdated":req.params.exportDate};
+                var jsonQuery = {"country":req.params.country,"updated":0,"deleted":parseInt(req.params.deleted),"lastUpdated":req.params.exportDate,"hasCode":parseInt(req.params.hasCode)};
             }
         }
 
         if(req.params.exportDate  == 0)  {
             if(req.params.updated == -1) {
-                var jsonQuery = {"country":req.params.country,"deleted":parseInt(req.params.deleted)};
+                var jsonQuery = {"country":req.params.country,"deleted":parseInt(req.params.deleted),"hasCode":parseInt(req.params.hasCode)};
             } else if(req.params.updated == 1) {
-                var jsonQuery = {"country":req.params.country,"updated":1,"deleted":parseInt(req.params.deleted)};
+                var jsonQuery = {"country":req.params.country,"updated":1,"deleted":parseInt(req.params.deleted),"hasCode":parseInt(req.params.hasCode)};
             } else if(req.params.updated == 0) {
-                var jsonQuery = {"country":req.params.country,"updated":0,"deleted":parseInt(req.params.deleted)};
+                var jsonQuery = {"country":req.params.country,"updated":0,"deleted":parseInt(req.params.deleted),"hasCode":parseInt(req.params.hasCode)};
             }
         }
 
@@ -273,7 +303,7 @@ router.route('/getdata/:type/:updated/:deleted/:country/:exportDate')
                             endDate: obj.offerExpireDate,
                             clickouts: 0,
                             auteur: exportAuteur,
-                            couponCode: 0,
+                            couponCode: ( parseInt(req.params.hasCode) ==0 ? 0 : obj.code) ,
                             exclusief: 0,
                             editor_picks: 0,
                             user_generated: 0,

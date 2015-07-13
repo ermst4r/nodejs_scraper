@@ -129,9 +129,6 @@ var Flipt_de = function () {
                                                                     console.log("essen code : " + shopName.trim().toLowerCase().replace(/ /g, ''));
 
                                                                 });
-                                                            } else {
-
-                                                                console.log(productName +" error");
                                                             }
 
 
