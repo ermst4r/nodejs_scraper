@@ -261,6 +261,18 @@ var Scraper = function () {
                 solden_be.fetchData();
             break;
 
+            case 'tagcity_be':
+                var tagcity_be = require('./tagcity_be.js');
+                var tagcity_be = tagcity_be('localhost:27017/scrapedcontent');
+                tagcity_be.fetchData();
+            break;
+
+            case 'promo-code_be':
+                var promocode = require('./promo-code_be.js');
+                var promocode = promocode('localhost:27017/scrapedcontent');
+                promocode.fetchData();
+            break;
+
         }
     };
 

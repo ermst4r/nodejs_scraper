@@ -42,7 +42,6 @@ var Solden_be = function () {
             c("ul.webshopGroup li a").each(function() {
                 var siteCoupon = c(this);
                 var webshopName =  siteCoupon.text();
-
                 if(typeof siteCoupon.attr('href') != 'undefined')
                 request({
                     uri: siteCoupon.attr('href')
