@@ -117,6 +117,13 @@ var Scraper = function () {
                  flipit_sg.fetchData();
             break;
 
+            case "flipit_be":
+                var flipit_be = require('./flipit_be.js');
+                var flipit_be = flipit_be('localhost:27017/scrapedcontent');
+                flipit_be.fetchData();
+
+            break;
+
             case "flipit_ch":
                 var flipit_ch = require('./flipit_ch.js');
                 var flipit_ch = flipit_ch('localhost:27017/scrapedcontent');
@@ -246,6 +253,12 @@ var Scraper = function () {
                 var bargainmoose_ca = require('./bargainmoose_ca.js');
                 var bargainmoose_ca = bargainmoose_ca('localhost:27017/scrapedcontent');
                 bargainmoose_ca.fetchData();
+            break;
+
+            case 'solden_be':
+                var solden_be = require('./solden_be.js');
+                var solden_be = solden_be('localhost:27017/scrapedcontent');
+                solden_be.fetchData();
             break;
 
         }
