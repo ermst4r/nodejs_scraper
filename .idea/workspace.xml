@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4970e438-6bc3-443b-ba85-8dd92a1a3842" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scraper/mareduc.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scraper/promo-code_be.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scraper/tagcity_be.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scraper/igaal.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scraper/index.js" afterPath="$PROJECT_DIR$/scraper/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scraper/solden_be.js" afterPath="$PROJECT_DIR$/scraper/solden_be.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scraper/tagcity_be.js" afterPath="$PROJECT_DIR$/scraper/tagcity_be.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="contentscraper.iws" />
@@ -33,21 +31,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="mareduc.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scraper/mareduc.js">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scraper/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="90">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="promo-code_be.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scraper/promo-code_be.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1035" max-vertical-offset="2130">
-              <caret line="85" column="32" selection-start-line="85" selection-start-column="32" selection-end-line="112" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="3590" max-vertical-offset="4485">
+              <caret line="275" column="26" selection-start-line="275" selection-start-column="18" selection-end-line="275" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -56,28 +44,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="5220">
-              <caret line="31" column="30" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tagcity_be.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/scraper/tagcity_be.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.23357664" vertical-offset="1520" max-vertical-offset="2370">
-              <caret line="112" column="47" selection-start-line="112" selection-start-column="47" selection-end-line="112" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scraper/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3523" max-vertical-offset="4395">
-              <caret line="263" column="28" selection-start-line="263" selection-start-column="18" selection-end-line="263" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="5220">
+              <caret line="31" column="28" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -86,8 +54,18 @@
       <file leaf-file-name="solden_be.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scraper/solden_be.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="2295">
-              <caret line="62" column="41" selection-start-line="62" selection-start-column="41" selection-end-line="90" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1155" max-vertical-offset="2295">
+              <caret line="95" column="39" selection-start-line="95" selection-start-column="39" selection-end-line="119" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="igaal.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/scraper/igaal.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4160584" vertical-offset="0" max-vertical-offset="2130">
+              <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -101,7 +79,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/scraper/couponzguru_in.js" />
         <option value="$PROJECT_DIR$/scraper/gutschein.js" />
         <option value="$PROJECT_DIR$/scraper/saveup_ch.js" />
         <option value="$PROJECT_DIR$/shopnames/at.json" />
@@ -148,10 +125,11 @@
         <option value="$PROJECT_DIR$/shopnames/be_match.json" />
         <option value="$PROJECT_DIR$/scraper/flipit_be.js" />
         <option value="$PROJECT_DIR$/scraper/solden_be.js" />
-        <option value="$PROJECT_DIR$/scraper/index.js" />
         <option value="$PROJECT_DIR$/scraper/promo-code_be.js" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/scraper/tagcity_be.js" />
+        <option value="$PROJECT_DIR$/scraper/index.js" />
+        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/scraper/igaal.js" />
       </list>
     </option>
   </component>
@@ -304,12 +282,6 @@
       <created>1425888692462</created>
       <option name="number" value="Default" />
       <updated>1425888692462</updated>
-    </task>
-    <task id="LOCAL-00004" summary="fixed API, added a draft for the changed procutname">
-      <created>1426683051785</created>
-      <option name="number" value="00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1426683051785</updated>
     </task>
     <task id="LOCAL-00005" summary="added latest issues">
       <created>1426693408926</created>
@@ -599,13 +571,20 @@
       <option name="project" value="LOCAL" />
       <updated>1436789183554</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="added belgium scrapers">
+      <created>1436795023240</created>
+      <option name="number" value="00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1436795023241</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="805" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -622,7 +601,6 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32881355" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -631,8 +609,8 @@
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32881355" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -667,7 +645,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="added anotjer de scraper" />
     <MESSAGE value="fixed some issues, and added de coupons" />
     <MESSAGE value="added cashkaro spid0r" />
     <MESSAGE value="added cuponation in spider" />
@@ -692,7 +669,8 @@
     <MESSAGE value="fixed flipit scraper" />
     <MESSAGE value="added posibility for codes" />
     <MESSAGE value="added solden_be" />
-    <option name="LAST_COMMIT_MESSAGE" value="added solden_be" />
+    <MESSAGE value="added belgium scrapers" />
+    <option name="LAST_COMMIT_MESSAGE" value="added belgium scrapers" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -707,13 +685,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/scraper/flipit_ch.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36756125" vertical-offset="0" max-vertical-offset="1695">
-          <caret line="21" column="30" selection-start-line="0" selection-start-column="0" selection-end-line="107" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scraper/gutschein_ch.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5313253" vertical-offset="204" max-vertical-offset="1470">
@@ -1026,6 +997,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/scraper/tagcity_be.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.459854" vertical-offset="0" max-vertical-offset="2310">
+          <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/scraper/mareduc.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100">
@@ -1034,42 +1013,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scraper/solden_be.js">
+    <entry file="file://$PROJECT_DIR$/scraper/promo-code_be.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="2295">
-          <caret line="62" column="41" selection-start-line="62" selection-start-column="41" selection-end-line="90" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.42410713" vertical-offset="165" max-vertical-offset="2130">
+          <caret line="30" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="136" selection-end-column="2" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scraper/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3523" max-vertical-offset="4395">
-          <caret line="263" column="28" selection-start-line="263" selection-start-column="18" selection-end-line="263" selection-end-column="28" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="3590" max-vertical-offset="4485">
+          <caret line="275" column="26" selection-start-line="275" selection-start-column="18" selection-end-line="275" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="5220">
-          <caret line="31" column="30" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="5220">
+          <caret line="31" column="28" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scraper/promo-code_be.js">
+    <entry file="file://$PROJECT_DIR$/scraper/solden_be.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1035" max-vertical-offset="2130">
-          <caret line="85" column="32" selection-start-line="85" selection-start-column="32" selection-end-line="112" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1155" max-vertical-offset="2295">
+          <caret line="95" column="39" selection-start-line="95" selection-start-column="39" selection-end-line="119" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scraper/tagcity_be.js">
+    <entry file="file://$PROJECT_DIR$/scraper/igaal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23357664" vertical-offset="1520" max-vertical-offset="2370">
-          <caret line="112" column="47" selection-start-line="112" selection-start-column="47" selection-end-line="112" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.4160584" vertical-offset="0" max-vertical-offset="2130">
+          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
           <folding />
         </state>
       </provider>

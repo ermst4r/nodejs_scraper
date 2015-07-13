@@ -29,7 +29,7 @@ matching = matching();
 //   mongoimport --db scrapedcontent please use dump as a foldr
 // mongo multi update: db.test.update({foo: "bar"}, {$set: {test: "success!"}}, false, true)
 //
-scraper.setScraper('tagcity_be');
+scraper.setScraper('igaal_fr');
 var done = scraper.parseWebsite();
 // ROUTES FOR OUR API
 // =============================================================================
