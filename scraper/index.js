@@ -117,6 +117,12 @@ var Scraper = function () {
                  flipit_sg.fetchData();
             break;
 
+            case "flipit_fr":
+                var flipit_fr = require('./flipit_fr.js');
+                var flipit_fr = flipit_fr('localhost:27017/scrapedcontent');
+                flipit_fr.fetchData();
+            break;
+
             case "flipit_be":
                 var flipit_be = require('./flipit_be.js');
                 var flipit_be = flipit_be('localhost:27017/scrapedcontent');
@@ -259,6 +265,7 @@ var Scraper = function () {
                 var solden_be = require('./solden_be.js');
                 var solden_be = solden_be('localhost:27017/scrapedcontent');
                 solden_be.fetchData();
+                parseFlitItWebsite('flipit_be');
             break;
 
             //case 'tagcity_be':
@@ -271,18 +278,21 @@ var Scraper = function () {
                 var promocode = require('./promo-code_be.js');
                 var promocode = promocode('localhost:27017/scrapedcontent');
                 promocode.fetchData();
+                parseFlitItWebsite('flipit_be');
             break;
 
             case 'igaal_fr':
                 var Igaal_fr = require('./igaal.js');
                 var Igaal_fr = Igaal_fr('localhost:27017/scrapedcontent');
                 Igaal_fr.fetchData();
+                parseFlitItWebsite('flipit_fr');
             break;
 
             case 'radins_fr':
                 var Radins_fr = require('./radins.js');
                 var Radins_fr = Radins_fr('localhost:27017/scrapedcontent');
                 Radins_fr.fetchData();
+                parseFlitItWebsite('flipit_fr');
             break;
 
         }

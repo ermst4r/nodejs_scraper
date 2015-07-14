@@ -38,11 +38,6 @@ var Radins_fr = function () {
 
 
     this.fetchData = function () {
-
-
-
-
-
         var MyDate = new Date();
         MyDate.setMonth(MyDate.getMonth() + 6);
         var finalActionExpireDate = ('0' + MyDate.getDate()).slice(-2) + '-'
@@ -67,7 +62,6 @@ var Radins_fr = function () {
                                     var detail = c(this);
                                     var productName = detail.find('.titre.time_redirect.fc1.fs18.bold.lh14.lblur').text().trim();
                                     var uid = crypto.createHash('md5').update(productName).digest('hex');
-
                                     if(productName !='') {
                                         if( typeof detail.find('.b0.shadow0.left.gmt5.w60p.fs20.gmb0.gp5').attr('value') == 'undefined') {
                                             content.count({uid:uid}, function (error, count) {
