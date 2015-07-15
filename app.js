@@ -27,9 +27,9 @@ matching = matching();
 
 // restore mongo dump
 //   mongoimport --db scrapedcontent please use dump as a foldr
-// mongo multi update: db.test.update({foo: "bar"}, {$set: {test: "success!"}}, false, true)
+// mongo multi update: db.content.update({}, {$set: {hasCode: 0}}, false, true)
 //
-//scraper.setScraper('radins_fr');
+//scraper.setScraper('solden_be');
 //var done = scraper.parseWebsite();
 // ROUTES FOR OUR API
 // =============================================================================

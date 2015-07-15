@@ -98,38 +98,40 @@ var Flipit_be = function () {
                                                 uri: codeUrl
                                             }, function (jsonError, jsonResponse, jsonBody) {
                                                 //console.log(jsonBody);
-                                                if (typeof jsonResponse !== 'undefined') {
-                                                    var codePage = cheerio.load(jsonBody);
-                                                    codePage('article.block.active').each(function () {
-                                                        var codeDetail = codePage(this);
-                                                        if (internalId == codeDetail.find('.holder.offer-holder').attr('id')) {
-                                                            if( typeof codeDetail.find('img.small-code').attr('alt') !== 'undefined') {
-                                                                var promise = content.insert({
-                                                                    uid: uid,
-                                                                    website: websiteName,
-                                                                    shopName: shopName.trim().toLowerCase().replace(/ /g, ''),
-                                                                    productName: productName,
-                                                                    orginProductName: crypto.createHash('md5').update(productName + websiteName).digest('hex'),
-                                                                    newProductName: crypto.createHash('md5').update(productName + websiteName).digest('hex'),
-                                                                    orginProductNameUnhashed: productName + websiteName,
-                                                                    updated: 0,
-                                                                    scrapeStartDate: scrapeStartDate,
-                                                                    deleted: 0,
-                                                                    lastUpdated: 0,
-                                                                    country: countryCode,
-                                                                    flipit: 1,
-                                                                    hasCode: 1,
-                                                                    code: codeDetail.find('.code-value').text()
-                                                                });
-                                                                promise.on('success', function (err, doc) {
-                                                                    console.log("essen code : " + shopName.trim().toLowerCase().replace(/ /g, ''));
+                                                if (typeof jsonResponse != 'undefined') {
+                                                    if (typeof jsonBody != 'undefined') {
+                                                        var codePage = cheerio.load(jsonBody);
+                                                        codePage('article.block.active').each(function () {
+                                                            var codeDetail = codePage(this);
+                                                            if (internalId == codeDetail.find('.holder.offer-holder').attr('id')) {
+                                                                if (typeof codeDetail.find('img.small-code').attr('alt') !== 'undefined') {
+                                                                    var promise = content.insert({
+                                                                        uid: uid,
+                                                                        website: websiteName,
+                                                                        shopName: shopName.trim().toLowerCase().replace(/ /g, ''),
+                                                                        productName: productName,
+                                                                        orginProductName: crypto.createHash('md5').update(productName + websiteName).digest('hex'),
+                                                                        newProductName: crypto.createHash('md5').update(productName + websiteName).digest('hex'),
+                                                                        orginProductNameUnhashed: productName + websiteName,
+                                                                        updated: 0,
+                                                                        scrapeStartDate: scrapeStartDate,
+                                                                        deleted: 0,
+                                                                        lastUpdated: 0,
+                                                                        country: countryCode,
+                                                                        flipit: 1,
+                                                                        hasCode: 1,
+                                                                        code: codeDetail.find('.code-value').text()
+                                                                    });
+                                                                    promise.on('success', function (err, doc) {
+                                                                        console.log("essen code : " + shopName.trim().toLowerCase().replace(/ /g, ''));
 
-                                                                });
+                                                                    });
+                                                                }
+
+
                                                             }
-
-
-                                                        }
-                                                    });
+                                                        });
+                                                    }
 
                                                 }
 
