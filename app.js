@@ -288,11 +288,17 @@ router.route('/getdata/:type/:updated/:deleted/:country/:exportDate/:hasCode')
 
         content.find(jsonQuery, { sort:{shopName:1},fields : {productUrl:0,_id:0,orginProductName:0,uid:0,newProductName:0}} , function (error, docs) {
             var jsonFile = new Array;
-            var mediaIds = matching.loadMediaIds(req.params.country);
+            var countryPrefix = req.params.country;
+            if(parseInt(req.params.hasCode) == 0 ) {
+                countryPrefix = req.params.country;
+            } else {
+                countryPrefix = req.params.country+'_code';
+            }
+            var mediaIds = matching.loadMediaIds(countryPrefix);
+
                 for (var y = 0; y < docs.length; y++) {
                     var obj = docs[y];
                     var shopName  = exportFile.exportShopNames(obj.shopName,orginShopname);
-
                     if(shopName != false) {
                         jsonFile.push({
                             productName: obj.productName,
@@ -311,7 +317,7 @@ router.route('/getdata/:type/:updated/:deleted/:country/:exportDate/:hasCode')
                             offline: 0,
                             created_at: today,
                             deeplink: '',
-                            media_id:matching.matchingFactory(req.params.country,obj.productName,mediaIds)
+                            media_id:matching.matchingFactory(countryPrefix,obj.productName,mediaIds)
                         })
                     }
                 }

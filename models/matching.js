@@ -15,28 +15,40 @@ Matching = function () {
     {
         switch(country) {
             case 'es':
-                return this.mediaMatchingEs(productName,mediaIds)
+                return this.mediaMatchingEs(productName,mediaIds);
             break;
             case 'de':
-                return this.mediaMatchingDe(productName,mediaIds)
+                return this.mediaMatchingDe(productName,mediaIds);
             break;
             case 'in':
-                return this.mediaMatchingIn(productName,mediaIds)
+                return this.mediaMatchingIn(productName,mediaIds);
             break;
             case 'sg':
-                return this.mediaMatchingSg(productName,mediaIds)
+                return this.mediaMatchingSg(productName,mediaIds);
             break;
             case 'at':
-                return this.mediaMatchingAt(productName,mediaIds)
+                return this.mediaMatchingAt(productName,mediaIds);
             break;
             case 'ch':
-                return this.mediaMatchingCh(productName,mediaIds)
+                return this.mediaMatchingCh(productName,mediaIds);
             break;
             case 'us':
-                return this.mediaMatchingUs(productName,mediaIds)
+                return this.mediaMatchingUs(productName,mediaIds);
             break;
-            case 'ca':
-                return this.mediaMatchingCa(productName,mediaIds)
+            case 'be':
+                return this.mediaMatchingBe(productName,mediaIds,0);
+            break;
+
+            case 'be_code':
+                return this.mediaMatchingBe(productName,mediaIds,1);
+            break;
+
+            case 'fr':
+                return this.mediaMatchingFr(productName,mediaIds,0);
+            break;
+
+            case 'fr_code':
+                return this.mediaMatchingFr(productName,mediaIds,1);
             break;
         }
     },
@@ -66,7 +78,21 @@ Matching = function () {
                 var media_ids = require('../media_ids/unitedstates');
             break;
             case 'ca':
-                var media_ids = require('../media_ids/canada');
+            var media_ids = require('../media_ids/canada');
+            break;
+            case 'be':
+                var media_ids = require('../media_ids/be');
+            break;
+            case 'fr':
+                var media_ids = require('../media_ids/fr');
+            break;
+
+            case 'fr_code':
+                var media_ids = require('../media_ids/fr_code');
+            break;
+
+            case 'be_code':
+                var media_ids = require('../media_ids/be_code');
             break;
         }
 
@@ -113,6 +139,64 @@ Matching = function () {
             return RandGeneralTile[Math.floor(Math.random() * RandGeneralTile.length)];
         }
     }
+
+
+
+    this.mediaMatchingBe = function(productName,media_ids,hasCode)   // Only visible inside Restaurant()
+    {
+        var found = false;
+
+
+        for(var i =0; i<media_ids.length; i++) {
+            var obj = media_ids[i];
+            var re = new RegExp("\\b("+String(obj.media_title).toLowerCase()+")\\b");
+            var result = re.exec(String(productName).replace("€","euro").replace("%","percent").toLowerCase().replace(/(-?\d*\,\d+|\d*\.\d+)/, ""));
+            if(result != null) {
+                found = true;
+                return obj.media_id;
+            }
+        }
+
+        if(found == false) {
+            if(hasCode == 0) {
+                var RandGeneralTile = [72,70,44];
+            } else {
+                var RandGeneralTile = [71];
+            }
+
+            return RandGeneralTile[Math.floor(Math.random() * RandGeneralTile.length)];
+        }
+    }
+
+
+
+    this.mediaMatchingFr= function(productName,media_ids,hasCode)   // Only visible inside Restaurant()
+    {
+        var found = false;
+
+
+        for(var i =0; i<media_ids.length; i++) {
+            var obj = media_ids[i];
+            var re = new RegExp("\\b("+String(obj.media_title).toLowerCase()+")\\b");
+            var result = re.exec(String(productName).replace("€","euro").replace("%","percent").toLowerCase().replace(/(-?\d*\,\d+|\d*\.\d+)/, ""));
+            if(result != null) {
+                found = true;
+                return obj.media_id;
+            }
+        }
+
+        if(found == false) {
+            if(hasCode == 0) {
+                var RandGeneralTile = [63,49,47];
+            } else {
+                var RandGeneralTile = [193,192,177];
+            }
+
+            return RandGeneralTile[Math.floor(Math.random() * RandGeneralTile.length)];
+        }
+    }
+
+
 
 
     this.mediaMatchingCa = function(productName,media_ids)   // Only visible inside Restaurant()
