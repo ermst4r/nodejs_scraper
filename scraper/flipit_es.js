@@ -50,6 +50,7 @@ var Flipt_es = function () {
                         }, function (pageError, pageResponse, pageBody) {
 
                             if (!pageError && pageResponse.statusCode == 200) {
+                                console.log('start');
                                 var d = cheerio.load(pageBody);
                                 var shopName = d('.radiusImg').attr('alt');
                                 d('.holder.offer-holder').each(function () {
@@ -74,7 +75,8 @@ var Flipt_es = function () {
                                                         deleted: 0,
                                                         lastUpdated: 0,
                                                         country: "es",
-                                                        flipit:1
+                                                        flipit:1,
+                                                        hasCode:0
                                                     });
                                                     promise.on('success', function (err, doc) {
                                                         console.log("essen : " + shopName.trim().toLowerCase().replace(/ /g, ''));

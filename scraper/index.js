@@ -29,28 +29,28 @@ var Scraper = function () {
                 var cupones = require('./cupones.js');
                 var getcupones = cupones('localhost:27017/scrapedcontent');
                 getcupones.fetchData();
-                parseFlitItWebsite('flipit_es');
+
 
             break;
             case "cuponation":
                 var cuponation = require('./cuponation.js');
                 var getcuponation = cuponation('localhost:27017/scrapedcontent');
                 getcuponation.fetchData();
-                parseFlitItWebsite('flipit_es');
+
             break;
 
             case "cupon_es":
                 var cuponation = require('./cupon_es.js');
                 var getcupon_es = cuponation('localhost:27017/scrapedcontent');
                 getcupon_es.fetchData();
-                parseFlitItWebsite('flipit_es');
+
             break;
 
             case "cuponesmagicos":
                 var cuponesmagicos = require('./cuponesmagicos.js');
                 var cuponesmagicos = cuponesmagicos('localhost:27017/scrapedcontent');
                 cuponesmagicos.fetchData();
-                parseFlitItWebsite('flipit_es');
+
             break;
 
             case "flipit_es":

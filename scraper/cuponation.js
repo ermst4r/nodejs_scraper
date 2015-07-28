@@ -30,7 +30,6 @@ var Cuponation = function () {
                 if (!error && response.statusCode == 200) {
                     var pageUrl =  websiteUrl+coupon.attr('href');
                     var webshopName = coupon.text();
-
                     request({
                         url:pageUrl
                     }, function(pageErr,pageRes,pageBody) {
@@ -44,8 +43,7 @@ var Cuponation = function () {
                                     + date.getFullYear();
 
                                 var detail = d(this);
-
-                                if(detail.find('footer span.text').text()=='Ver oferta.') {
+                                if(detail.find('footer span.text').text().trim().toLowerCase().replace(/ /g, '')=='veroferta') {
                                     var productName = detail.find('h3').text().replace("-", "").replace("+", "").replace("\"", "");
                                     var siteEndDate = String(detail.attr('data-end-date'));
                                     var endDate = (Date.parse(siteEndDate) / 1000) + futureTimestamp;
@@ -55,7 +53,6 @@ var Cuponation = function () {
                                     var finalActionExpireDate = ('0' + MyDate.getDate()).slice(-2) + '-'
                                         + ('0' + (MyDate.getMonth()+1)).slice(-2) + '-'
                                         + MyDate.getFullYear();
-
 
                                     content.count({uid: uid}, function (error, count) {
                                         if (count == 0) {
@@ -74,7 +71,8 @@ var Cuponation = function () {
                                                     deleted: 0,
                                                     country:"es",
                                                     media_id:  matching.mediaMatchingEs(productName,media_ids),
-                                                    lastUpdated: 0
+                                                    lastUpdated: 0,
+                                                    hasCode:0
                                                 });
                                                 promise.on('success', function (err, doc) {
                                                     console.log("essen" + webshopName.trim().toLowerCase().replace(/ /g, ''));

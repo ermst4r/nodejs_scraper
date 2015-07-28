@@ -39,8 +39,6 @@ router.use(function(req, res, next) {
     console.log('Something is happening.');
     next();
 });
-
-
 var enableCORS = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
@@ -54,9 +52,6 @@ var enableCORS = function(req, res, next) {
         next();
     }
 };
-
-
-
 //http://localhost:3000/api/updatecode
 router.route('/updatecode')
     .post(function(req, res) {

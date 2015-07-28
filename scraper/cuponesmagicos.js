@@ -74,7 +74,8 @@ var Cuponesmagicos = function () {
                                                     deleted: 0,
                                                     country:"es",
                                                     media_id:  matching.mediaMatchingEs(productName,media_ids),
-                                                    lastUpdated: 0
+                                                    lastUpdated: 0,
+                                                    hasCode:0
                                                 });
                                                 promise.on('success', function (err, doc) {
                                                     console.log("essen : " + websiteName);
